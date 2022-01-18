@@ -24,6 +24,7 @@
 
 
 
+
 dofile(reaper.GetResourcePath().."/UserPlugins/ultraschall_api.lua")
 
 local r = reaper
@@ -72,13 +73,13 @@ end
 
 function set_initial_state()
     if r.HasExtState("Mavirq Bank Display", "realearn_fxchain_slot") then
-		bankmon.bank_size = tonumber(r.GetExtState("Mavirq Bank Display", "bank_size"))
-		bankmon.realearn_cur_bank = tonumber(r.GetExtState("Mavirq Bank Display", "realearn_cur_bank"))
-		bankmon.realearn_param_num = tonumber(r.GetExtState("Mavirq Bank Display", "realearn_param_num"))
-		bankmon.realearn_fxchain_slot = tonumber(r.GetExtState("Mavirq Bank Display", "realearn_fxchain_slot"))
-		bankmon.realearn_track_num = tonumber(r.GetExtState("Mavirq Bank Display", "realearn_track_num"))
-		bankmon.fxchain_type = r.GetExtState("Mavirq Bank Display", "fxchain_type")
-		bankmon.get_FXList()
+    bankmon.bank_size = tonumber(r.GetExtState("Mavirq Bank Display", "bank_size"))
+    bankmon.realearn_cur_bank = tonumber(r.GetExtState("Mavirq Bank Display", "realearn_cur_bank"))
+    bankmon.realearn_param_num = tonumber(r.GetExtState("Mavirq Bank Display", "realearn_param_num"))
+    bankmon.realearn_fxchain_slot = tonumber(r.GetExtState("Mavirq Bank Display", "realearn_fxchain_slot"))
+    bankmon.realearn_track_num = tonumber(r.GetExtState("Mavirq Bank Display", "realearn_track_num"))
+    bankmon.fxchain_type = r.GetExtState("Mavirq Bank Display", "fxchain_type")
+    bankmon.get_FXList()
     end
 end
 
@@ -153,12 +154,12 @@ function bankmon.ShowBankmonWindow()
 
 
   r.ImGui_SetNextItemWidth(ctx, 200)
-  bankmon.realearn_param_num = ({r.ImGui_DragInt(ctx, "Realearn Parameter #", bankmon.realearn_param_num + 1, 0.5, 1, 200, "%d", r.ImGui_SliderFlags_AlwaysClamp())})[2] -1 
+  bankmon.realearn_param_num = ({r.ImGui_DragInt(ctx, "ReaLearn Parameter #", bankmon.realearn_param_num + 1, 0.5, 1, 200, "%d", r.ImGui_SliderFlags_AlwaysClamp())})[2] -1 
   r.ImGui_SameLine(ctx)
-  HelpMarker("Enter the number that corrisponds to Realearn's parameter that holds the bank value. If you are using DAW Control that is parameter #1 in main. Controller compartment parameters start at #101")
+  HelpMarker("Enter the number that corrisponds to ReaLearn's parameter that holds the bank value. If you are using DAW Control that is parameter #1 in main. Controller compartment parameters start at #101")
 
   r.ImGui_SetNextItemWidth(ctx, 200)
-  if r.ImGui_BeginCombo(ctx, "Realearn FX Chain", bankmon.fxchain_type) then
+  if r.ImGui_BeginCombo(ctx, "ReaLearn FX Chain", bankmon.fxchain_type) then
     local is_selected = bankmon.fxchain_type == "Monitoring"
     if r.ImGui_Selectable(ctx, "Monitoring", is_selected) then
       bankmon.fxchain_type = "Monitoring"
