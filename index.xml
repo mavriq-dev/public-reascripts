@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Mavriq ReaScript Repository" commit="8c20c95cc2519b95058d1ce6ca5a7d84ab16fb26">
+<index version="1" name="Mavriq ReaScript Repository" commit="008f8d35eeb544522fd0535fe004cea6409d3e0d">
+  <category name="Various">
+    <reapack name="mavriq_bank_monitor v2.lua" type="script" desc="Mavriq ReaLearn Bank Monitor">
+      <metadata>
+        <link rel="screenshot">https://i.postimg.cc/HLCgSW0x/Relearn-Monitor.png</link>
+      </metadata>
+      <version name="0.1" author="Mavriq" time="2022-01-18T18:37:00Z">
+        <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/008f8d35eeb544522fd0535fe004cea6409d3e0d/Various/mavriq_bank_monitor%20v2.lua</source>
+      </version>
+    </reapack>
+  </category>
   <metadata>
     <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
