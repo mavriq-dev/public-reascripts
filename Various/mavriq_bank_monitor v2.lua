@@ -10,8 +10,7 @@
  * Donation: https://www.paypal.com/paypalme/mavriqdev--]]
 
  --[[
- * About: 
- * # Mavriq Realearn Bank Monitor
+ * About: # Mavriq Realearn Bank Monitor
  A reaper script to monitor what bank is currently selected in ReLearn.
 
  To setup the script you must select a Relearn Instance and the parameter that holds the bank information.
