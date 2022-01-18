@@ -6,7 +6,7 @@
  * Repository URI: https://github.com/mavriq-dev/public-reascripts
  * Licence: GPL v3
  * REAPER: 5.0
- * Version: 0.2
+ * Version: 0.3
  * Donation: https://www.paypal.com/paypalme/mavriqdev
  * About: # Mavriq ReaLearn Bank Monitor
  *  A reaper script to monitor what bank is currently selected in ReLearn.
@@ -125,7 +125,7 @@ r.defer(bankmon.loop)
 function bankmon.ShowBankmonWindow()
   local visible, isopen = nil 
 
-  r.ImGui_PushStyleColor(ctx, r.ImGui_Col_WindowBg(), bg_color)
+  --r.ImGui_PushStyleColor(ctx, r.ImGui_Col_WindowBg(), bg_color)
   main_viewport = r.ImGui_GetMainViewport(ctx)
   work_pos = {r.ImGui_Viewport_GetWorkPos(main_viewport)}
   r.ImGui_SetNextWindowPos(ctx, work_pos[1] + 20, work_pos[2] + 20,r.ImGui_Cond_FirstUseEver() )
@@ -136,13 +136,13 @@ function bankmon.ShowBankmonWindow()
     bankmon.dock_id = nil 
   end
 
-  r.ImGui_PopStyleColor(ctx)
+  --r.ImGui_PopStyleColor(ctx)
   visible, isopen = r.ImGui_Begin(ctx, "Mavriq Bank Monitor", true)
 
   
   if not visible then return isopen end
 
-  r.ImGui_PushStyleColor(ctx, r.ImGui_Col_WindowBg(), bg_color)
+  --r.ImGui_PushStyleColor(ctx, r.ImGui_Col_WindowBg(), bg_color)
   r.ImGui_SetNextItemWidth(ctx, 200)
   bankmon.bank_size = ({r.ImGui_DragInt(ctx, "Bank Size", bankmon.bank_size, 0.5, 0, 100, "%d", r.ImGui_SliderFlags_AlwaysClamp())})[2]
   r.ImGui_SameLine(ctx)
