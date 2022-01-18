@@ -136,8 +136,10 @@ function bankmon.ShowBankmonWindow()
     bankmon.dock_id = nil 
   end
 
+  r.ImGui_PopStyleColor(ctx)
   visible, isopen = r.ImGui_Begin(ctx, "Mavriq Bank Monitor", true)
 
+  
   if not visible then return isopen end
 
   r.ImGui_PushStyleColor(ctx, r.ImGui_Col_WindowBg(), bg_color)
@@ -229,7 +231,7 @@ function bankmon.ShowBankmonWindow()
   r.ImGui_SetNextItemWidth(ctx, 70)
   r.ImGui_LabelText(ctx, "Tracks", bankmon.bank_track_numbers)
 
-  r.ImGui_PopStyleColor(ctx)
+
 
   r.ImGui_End(ctx)
 
