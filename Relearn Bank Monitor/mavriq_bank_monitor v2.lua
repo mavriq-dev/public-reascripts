@@ -1,3 +1,8 @@
+-- @description Mavriq ReaLearn Bank Monitor
+-- @author mavriq
+-- @version 0.1
+-- @about
+
 dofile(reaper.GetResourcePath().."/UserPlugins/ultraschall_api.lua")
 
 local r = reaper
