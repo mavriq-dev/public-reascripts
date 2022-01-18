@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Mavriq ReaScript Repository" commit="11b221b9c5be3cd0e69892c0685999f74954697a">
+<index version="1" name="Mavriq ReaScript Repository" commit="532e0f83af92ddab3a666f1c428bcc21ca3f52bc">
   <category name="Various">
     <reapack name="mavriq_bank_monitor v2.lua" type="script" desc="Mavriq ReaLearn Bank Monitor">
       <metadata>
@@ -7,10 +7,10 @@
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
-{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Mavriq Realearn Bank Monitor\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Mavriq ReaLearn Bank Monitor\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 A reaper script to monitor what bank is currently selected in ReLearn.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 To setup the script you must select a Relearn Instance and the parameter that holds the bank information.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 The instance can be on the Monitoring FX Chain, The Master FX Chain or on a regular track. Select the appropriate location then pick the Realearn instance in the dropdown.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 To setup the script you must select a ReaLearn Instance and the parameter that holds the bank information.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 The instance can be on the Monitoring FX Chain, The Master FX Chain or on a regular track. Select the appropriate location then pick the ReaLearn instance in the dropdown.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 Select the parameter number that stores the bank information. If you are using DAW Control (see ReaLearn documentation) then that is Master parameter #1. To select a compartment parameter, select 101 - 200. IE 101 = compartment #1.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 The bank size parameter is how many controls are in each bank. If you have 10 sliders, then select 10. The tracks display will then show the correct amount of tracks "targeted" by the bank.\par}
 }
