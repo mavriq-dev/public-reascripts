@@ -8,12 +8,12 @@
  * REAPER: 5.0
  * Version: 0.1
  * Donation: https://www.paypal.com/paypalme/mavriqdev
- * About: # Mavriq Realearn Bank Monitor
+ * About: # Mavriq ReaLearn Bank Monitor
  *  A reaper script to monitor what bank is currently selected in ReLearn.
  *  
- *  To setup the script you must select a Relearn Instance and the parameter that holds the bank information.
+ *  To setup the script you must select a ReaLearn Instance and the parameter that holds the bank information.
  *  
- *  The instance can be on the Monitoring FX Chain, The Master FX Chain or on a regular track. Select the appropriate location then pick the Realearn instance in the dropdown.
+ *  The instance can be on the Monitoring FX Chain, The Master FX Chain or on a regular track. Select the appropriate location then pick the ReaLearn instance in the dropdown.
  *  
  *  Select the parameter number that stores the bank information. If you are using DAW Control (see ReaLearn documentation) then that is Master parameter #1. To select a  compartment parameter, select 101 - 200. IE 101 = compartment #1.
  *  
