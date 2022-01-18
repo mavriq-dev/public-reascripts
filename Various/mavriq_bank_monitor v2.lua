@@ -11,10 +11,10 @@
 
  --[[
  * About: 
- # Mavriq Realearn Bank Monitor
- A reaper script to monitor what bank is currently selected in ReLearn. 
-  
- To setup the script you must select a Relearn Instance and the parameter that holds the bank information. 
+ * # Mavriq Realearn Bank Monitor
+ A reaper script to monitor what bank is currently selected in ReLearn.
+
+ To setup the script you must select a Relearn Instance and the parameter that holds the bank information.
  
  The instance can be on the Monitoring FX Chain, The Master FX Chain or on a regular track. Select the appropriate location then pick the Relearn instance in the dropdown.
  
