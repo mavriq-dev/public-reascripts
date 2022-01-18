@@ -1,3 +1,24 @@
+--[[
+ * ReaScript Name: Mavriq ReaLearn Bank Monitor
+ * Screenshot: https://i.postimg.cc/HLCgSW0x/Relearn-Monitor.png
+ * Author: Mavriq
+ * Repository: GitHub > mavriq-dev > public-reascripts
+ * Repository URI: https://github.com/mavriq-dev/public-reascripts
+ * Licence: GPL v3
+ * REAPER: 5.0
+ * Version: 0.1
+--]]
+
+--[[
+ * Changelog:
+  + Initial Release
+--]]
+
+
+
+
+
+
 -- @description Mavriq ReaLearn Bank Monitor
 -- @author mavriq
 -- @version 0.1
