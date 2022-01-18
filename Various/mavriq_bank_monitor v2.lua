@@ -140,6 +140,7 @@ function bankmon.ShowBankmonWindow()
 
   if not visible then return isopen end
 
+  r.ImGui_PushStyleColor(ctx, r.ImGui_Col_WindowBg(), bg_color)
   r.ImGui_SetNextItemWidth(ctx, 200)
   bankmon.bank_size = ({r.ImGui_DragInt(ctx, "Bank Size", bankmon.bank_size, 0.5, 0, 100, "%d", r.ImGui_SliderFlags_AlwaysClamp())})[2]
   r.ImGui_SameLine(ctx)
@@ -226,9 +227,9 @@ function bankmon.ShowBankmonWindow()
   r.ImGui_SetNextItemWidth(ctx, 70)
   r.ImGui_LabelText(ctx, "Active Bank", bankmon.realearn_cur_bank)
   r.ImGui_SetNextItemWidth(ctx, 70)
-    r.ImGui_LabelText(ctx, "Tracks", bankmon.bank_track_numbers)
+  r.ImGui_LabelText(ctx, "Tracks", bankmon.bank_track_numbers)
 
-    r.ImGui_PopStyleColor(ctx)
+  r.ImGui_PopStyleColor(ctx)
 
   r.ImGui_End(ctx)
 
