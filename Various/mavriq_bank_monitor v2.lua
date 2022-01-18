@@ -11,13 +11,19 @@
  * About: # Mavriq ReaLearn Bank Monitor
  *  A reaper script to monitor what bank is currently selected in ReLearn.
  *  
- *  To setup the script you must select a ReaLearn Instance and the parameter that holds the bank information.
+ *   To setup the script you must select a ReaLearn Instance and the parameter that holds the bank information.
  *  
- *  The instance can be on the Monitoring FX Chain, The Master FX Chain or on a regular track. Select the appropriate location then pick the ReaLearn instance in the dropdown.
+ *  The instance can be on the Monitoring FX Chain, The Master FX Chain or on a regular "Track". Select the appropriate location From the "ReaLearn FX Chain" Drop down. If you selected "Track", enter the track number below it.
+ *  
+ *  Pick the ReaLearn instance in the "FX List" dropdown.
  *  
  *  Select the parameter number that stores the bank information. If you are using DAW Control (see ReaLearn documentation) then that is Master parameter #1. To select a  compartment parameter, select 101 - 200. IE 101 = compartment #1.
  *  
  *  The bank size parameter is how many controls are in each bank. If you have 10 sliders, then select 10. The tracks display will then show the correct amount of tracks "targeted" by the bank.
+ *  
+ *  Use the "Dock" and "Undock" buttons to control docking
+ *  
+ *  That's it, the bank and track information should appear and update when you change banks.
  * Changelog:
   + Initial Release
 --]]
