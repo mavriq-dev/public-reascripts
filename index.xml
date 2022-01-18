@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Mavriq ReaScript Repository" commit="4967820c93afecb49887f37c6b76577d2bd4c230">
+<index version="1" name="Mavriq ReaScript Repository" commit="d6ab0f510ed34e30eee04dc545b1a8c230722104">
   <category name="Various">
     <reapack name="mavriq_bank_monitor v2.lua" type="script" desc="Mavriq ReaLearn Bank Monitor">
       <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Mavriq Realearn Bank Monitor\par}
+}
+]]></description>
         <link rel="screenshot">https://i.postimg.cc/HLCgSW0x/Relearn-Monitor.png</link>
         <link rel="donation">https://www.paypal.com/paypalme/mavriqdev</link>
       </metadata>
