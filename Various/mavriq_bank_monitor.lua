@@ -6,7 +6,7 @@
  * Repository URI: https://github.com/mavriq-dev/public-reascripts
  * Licence: GPL v3
  * REAPER: 5.0
- * Version: 0.3
+ * Version: 0.31
  * Donation: https://www.paypal.com/paypalme/mavriqdev
  * About: # Mavriq ReaLearn Bank Monitor
  *  A reaper script to monitor what bank is currently selected in ReLearn.
@@ -46,7 +46,9 @@ bankmon = {
   fxchain_type = "Monitoring",
   fx_list = {},
   bank_track_numbers = "",
-  bg_color = 0
+  --bg_color = 0,
+  theme_layout_default = "",
+  theme_layout_active = ""
 }
 
 
@@ -114,6 +116,8 @@ function bankmon.loop()
     r.defer(bankmon.loop)
   else
     save_state()
+    local cur_low_track,  cur_high_track = bankmon.get_track_numbers(bankmon.realearn_cur_bank)
+    bankmon.SetTrackLayout(cur_low_track, cur_high_track, "▶︎2x_A")
     r.ImGui_DestroyContext(ctx)
   end
 end
@@ -142,15 +146,19 @@ function bankmon.ShowBankmonWindow()
   
   if not visible then return isopen end
 
-  --r.ImGui_PushStyleColor(ctx, r.ImGui_Col_WindowBg(), bg_color)
-  r.ImGui_SetNextItemWidth(ctx, 200)
-  bankmon.bank_size = ({r.ImGui_DragInt(ctx, "Bank Size", bankmon.bank_size, 0.5, 0, 100, "%d", r.ImGui_SliderFlags_AlwaysClamp())})[2]
-  r.ImGui_SameLine(ctx)
-  HelpMarker("Enter the number sliders etc that are in one bank.")
-  r.ImGui_SameLine(ctx)  
-  r.ImGui_Dummy(ctx, 50, 20)
-  r.ImGui_SameLine(ctx)  
 
+  --[[
+      ------------ FX Chain Selection ---------------
+  ]]--
+
+  r.ImGui_BeginTable(ctx, "Main Table",  3,r.ImGui_TableFlags_SizingFixedFit())
+  r.ImGui_TableSetupColumn(ctx, "1", r.ImGui_TableColumnFlags_NoResize(), 300 )
+  r.ImGui_TableSetupColumn(ctx, "2", r.ImGui_TableColumnFlags_NoResize(), 5 )
+  r.ImGui_TableSetupColumn(ctx, "3", r.ImGui_TableColumnFlags_NoResize(), 100 )
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
+  r.ImGui_Text(ctx, "ReaLean Instance")
+  r.ImGui_TableSetColumnIndex(ctx, 2)
   if r.ImGui_IsWindowDocked(ctx) then
     if r.ImGui_Button(ctx, "Undock", 60, 20) then
       bankmon.dock_id = 0
@@ -162,12 +170,10 @@ function bankmon.ShowBankmonWindow()
   end
 
 
-  r.ImGui_SetNextItemWidth(ctx, 200)
-  bankmon.realearn_param_num = ({r.ImGui_DragInt(ctx, "ReaLearn Parameter #", bankmon.realearn_param_num + 1, 0.5, 1, 200, "%d", r.ImGui_SliderFlags_AlwaysClamp())})[2] -1 
-  r.ImGui_SameLine(ctx)
-  HelpMarker("Enter the number that corrisponds to ReaLearn's parameter that holds the bank value. If you are using DAW Control that is parameter #1 in main. Controller compartment parameters start at #101")
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
 
-  r.ImGui_SetNextItemWidth(ctx, 200)
+  r.ImGui_SetNextItemWidth(ctx, 150)
   if r.ImGui_BeginCombo(ctx, "ReaLearn FX Chain", bankmon.fxchain_type) then
     local is_selected = bankmon.fxchain_type == "Monitoring"
     if r.ImGui_Selectable(ctx, "Monitoring", is_selected) then
@@ -192,11 +198,24 @@ function bankmon.ShowBankmonWindow()
     end
     r.ImGui_EndCombo(ctx)
   end
+  r.ImGui_SameLine(ctx)
+  HelpMarker("Select where the ReaLearn instance is you want to monitor; in the Monitoring FX Chain, The Master FX Chain or on a regular Track.")
 
+  --r.ImGui_TableSetColumnIndex(ctx, 1)
+  --r.ImGui_Dummy(ctx, 50, 20)
+
+
+
+  --[[
+      ------------ Track # Selection ---------------
+  ]]--
+
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
   if bankmon.fxchain_type ~= "Track" then
     r.ImGui_BeginDisabled(ctx)
   end
-  r.ImGui_SetNextItemWidth(ctx, 200)
+  r.ImGui_SetNextItemWidth(ctx, 150)
   rv, bankmon.realearn_track_num = r.ImGui_DragInt(ctx, "Track #", bankmon.realearn_track_num, 0.5, 1, 300, "%d", r.ImGui_SliderFlags_AlwaysClamp())
   if rv then
     bankmon.fx_list = {}
@@ -208,9 +227,14 @@ function bankmon.ShowBankmonWindow()
     r.ImGui_EndDisabled(ctx)
   end
 
+   --[[
+      ------------ VST Selection ---------------
+  ]]--
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
   preview_text = "Select Relearn VST" 
   if bankmon.realearn_fxchain_slot ~= -1 then preview_text = bankmon.fx_list[bankmon.realearn_fxchain_slot] end
-  r.ImGui_SetNextItemWidth(ctx, 200)
+  r.ImGui_SetNextItemWidth(ctx, 150)
   if r.ImGui_BeginCombo(ctx, "FX List", preview_text) then    
     bankmon.get_FXList() 
     for i , fx_name in ipairs(bankmon.fx_list) do
@@ -222,7 +246,76 @@ function bankmon.ShowBankmonWindow()
     end
     r.ImGui_EndCombo(ctx)
   end
-  
+  r.ImGui_SameLine(ctx)
+  HelpMarker("Select the target ReaLearn Instance.")
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
+  r.ImGui_Dummy(ctx, 50, 20) 
+
+
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
+  r.ImGui_Text(ctx, "Bank Information")
+   --[[
+      ------------ Bank Size ---------------
+  ]]--
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
+  --r.ImGui_PushStyleColor(ctx, r.ImGui_Col_WindowBg(), bg_color)
+  r.ImGui_SetNextItemWidth(ctx, 150)
+  bankmon.bank_size = ({r.ImGui_DragInt(ctx, "Bank Size", bankmon.bank_size, 0.5, 0, 100, "%d", r.ImGui_SliderFlags_AlwaysClamp())})[2]
+  r.ImGui_SameLine(ctx)
+  HelpMarker("Enter the number sliders etc that are in one bank.")
+
+
+ --[[
+      ------------ Relearn Param # ---------------
+  ]]--
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
+  r.ImGui_SetNextItemWidth(ctx, 150)
+  bankmon.realearn_param_num = ({r.ImGui_DragInt(ctx, "ReaLearn Parameter #", bankmon.realearn_param_num + 1, 0.5, 1, 200, "%d", r.ImGui_SliderFlags_AlwaysClamp())})[2] -1 
+  r.ImGui_SameLine(ctx)
+  HelpMarker("Enter the number that corrisponds to ReaLearn's parameter that holds the bank value. "..
+    "If you are using DAW Control that is parameter #1 in main. Controller compartment parameters start at #101.")
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
+  r.ImGui_Dummy(ctx, 50, 20) 
+
+
+ --[[
+      ------------ Theme Settings ---------------
+  ]]--
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
+  r.ImGui_Text(ctx, "Theme Settings")
+
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
+  r.ImGui_SetNextItemWidth(ctx, 150)
+  r.ImGui_InputText(ctx, "Default Layout", bankmon.theme_layout_default)
+  r.ImGui_SameLine(ctx)
+  HelpMarker("Set the theme layout you want to use when tracks ARE NOT in an active bank.")
+  r.ImGui_TableSetColumnIndex(ctx, 2)
+  --r.ImGui_SameLine(ctx)
+  r.ImGui_Button(ctx, " Set ",60,20)
+  r.ImGui_SameLine(ctx)
+  HelpMarker("Select a track to copy the Theme Layout from.")
+
+  r.ImGui_TableNextRow(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 0)
+  r.ImGui_SetNextItemWidth(ctx, 150)
+  r.ImGui_InputText(ctx, "Active Layout", bankmon.theme_layout_active)
+    r.ImGui_SameLine(ctx)
+  HelpMarker("Set the theme layout you want to use when tracks ARE in an active bank.")
+  --r.ImGui_SameLine(ctx)
+  r.ImGui_TableSetColumnIndex(ctx, 2)
+  r.ImGui_Button(ctx, " Set ", 60, 20)
+  r.ImGui_SameLine(ctx)
+  HelpMarker("Select a track to copy the Theme Layout from.")
+
+  r.ImGui_EndTable(ctx)
+
   bankmon.get_selected_bank()
 
   r.ImGui_Dummy(ctx, 50, 20)
@@ -230,8 +323,6 @@ function bankmon.ShowBankmonWindow()
   r.ImGui_LabelText(ctx, "Active Bank", bankmon.realearn_cur_bank)
   r.ImGui_SetNextItemWidth(ctx, 70)
   r.ImGui_LabelText(ctx, "Tracks", bankmon.bank_track_numbers)
-
-
 
   r.ImGui_End(ctx)
 
@@ -248,14 +339,35 @@ function bankmon.get_selected_bank()
     end
 
     local raw_bank_data = r.TrackFX_GetParamNormalized(bankmon.realearn_track, fx_pos - 1, bankmon.realearn_param_num)
-      local dec_place = 10^(2)
-      bankmon.realearn_cur_bank = math.floor(raw_bank_data * 12.5 * dec_place + 0.01) + 1
+    local dec_place = 10^(2)
+    local cur_low_track,  cur_high_track = bankmon.get_track_numbers(bankmon.realearn_cur_bank)
+    local cur_bank = bankmon.realearn_cur_bank
+    bankmon.realearn_cur_bank = math.floor(raw_bank_data * 12.5 * dec_place + 0.01) + 1
 
-      local low_track_num = (bankmon.realearn_cur_bank - 1) * bankmon.bank_size + 1 
-      local high_track_num = low_track_num + bankmon.bank_size - 1
-      bankmon.bank_track_numbers = string.format("%.0f",low_track_num).." - "..string.format("%.0f",high_track_num)
+    local low_track_num,  high_track_num = bankmon.get_track_numbers(bankmon.realearn_cur_bank)
+    bankmon.bank_track_numbers = string.format("%.0f",low_track_num).." - "..string.format("%.0f",high_track_num)
+
+    if(cur_bank ~= bankmon.realearn_cur_bank) then
+      bankmon.SetTrackLayout(cur_low_track, cur_high_track, "▶︎2x_A")
+      bankmon.SetTrackLayout(low_track_num, high_track_num, "▶︎2x_A MCP-Thumb_RED")
+    end
   end
 end
+
+function bankmon.SetTrackLayout(low_track_num, high_track_num, layout_name)
+    for i = low_track_num -1 , high_track_num - 1, 1 do
+      track = r.GetTrack(0, i)
+      if track then
+        r.GetSetMediaTrackInfo_String(track,"P_MCP_LAYOUT",layout_name,true)
+      end
+    end
+end
+
+function bankmon.get_track_numbers(banknumber)
+       local low_track_num = (banknumber - 1) * bankmon.bank_size + 1 
+       local high_track_num = low_track_num + bankmon.bank_size - 1
+       return low_track_num, high_track_num
+  end
 
 function HelpMarker(desc) -- Function to show a ?
   r.ImGui_TextDisabled(ctx, '(?)')
