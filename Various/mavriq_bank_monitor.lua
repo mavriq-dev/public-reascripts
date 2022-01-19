@@ -157,6 +157,7 @@ function bankmon.ShowBankmonWindow()
   r.ImGui_TableSetupColumn(ctx, "3", r.ImGui_TableColumnFlags_NoResize(), 100 )
   r.ImGui_TableNextRow(ctx)
   r.ImGui_TableSetColumnIndex(ctx, 0)
+
   r.ImGui_Text(ctx, "ReaLean Instance")
   r.ImGui_TableSetColumnIndex(ctx, 2)
   if r.ImGui_IsWindowDocked(ctx) then
@@ -169,10 +170,8 @@ function bankmon.ShowBankmonWindow()
     end
   end
 
-
   r.ImGui_TableNextRow(ctx)
   r.ImGui_TableSetColumnIndex(ctx, 0)
-
   r.ImGui_SetNextItemWidth(ctx, 150)
   if r.ImGui_BeginCombo(ctx, "ReaLearn FX Chain", bankmon.fxchain_type) then
     local is_selected = bankmon.fxchain_type == "Monitoring"
@@ -201,11 +200,6 @@ function bankmon.ShowBankmonWindow()
   r.ImGui_SameLine(ctx)
   HelpMarker("Select where the ReaLearn instance is you want to monitor; in the Monitoring FX Chain, The Master FX Chain or on a regular Track.")
 
-  --r.ImGui_TableSetColumnIndex(ctx, 1)
-  --r.ImGui_Dummy(ctx, 50, 20)
-
-
-
   --[[
       ------------ Track # Selection ---------------
   ]]--
@@ -230,6 +224,7 @@ function bankmon.ShowBankmonWindow()
    --[[
       ------------ VST Selection ---------------
   ]]--
+
   r.ImGui_TableNextRow(ctx)
   r.ImGui_TableSetColumnIndex(ctx, 0)
   preview_text = "Select Relearn VST" 
@@ -248,6 +243,7 @@ function bankmon.ShowBankmonWindow()
   end
   r.ImGui_SameLine(ctx)
   HelpMarker("Select the target ReaLearn Instance.")
+  
   r.ImGui_TableNextRow(ctx)
   r.ImGui_TableSetColumnIndex(ctx, 0)
   r.ImGui_Dummy(ctx, 50, 20) 
@@ -256,9 +252,11 @@ function bankmon.ShowBankmonWindow()
   r.ImGui_TableNextRow(ctx)
   r.ImGui_TableSetColumnIndex(ctx, 0)
   r.ImGui_Text(ctx, "Bank Information")
+
    --[[
       ------------ Bank Size ---------------
   ]]--
+
   r.ImGui_TableNextRow(ctx)
   r.ImGui_TableSetColumnIndex(ctx, 0)
   --r.ImGui_PushStyleColor(ctx, r.ImGui_Col_WindowBg(), bg_color)
@@ -267,10 +265,10 @@ function bankmon.ShowBankmonWindow()
   r.ImGui_SameLine(ctx)
   HelpMarker("Enter the number sliders etc that are in one bank.")
 
-
  --[[
       ------------ Relearn Param # ---------------
   ]]--
+
   r.ImGui_TableNextRow(ctx)
   r.ImGui_TableSetColumnIndex(ctx, 0)
   r.ImGui_SetNextItemWidth(ctx, 150)
@@ -282,10 +280,10 @@ function bankmon.ShowBankmonWindow()
   r.ImGui_TableSetColumnIndex(ctx, 0)
   r.ImGui_Dummy(ctx, 50, 20) 
 
-
  --[[
       ------------ Theme Settings ---------------
   ]]--
+
   r.ImGui_TableNextRow(ctx)
   r.ImGui_TableSetColumnIndex(ctx, 0)
   r.ImGui_Text(ctx, "Theme Settings")
@@ -297,7 +295,6 @@ function bankmon.ShowBankmonWindow()
   r.ImGui_SameLine(ctx)
   HelpMarker("Set the theme layout you want to use when tracks ARE NOT in an active bank.")
   r.ImGui_TableSetColumnIndex(ctx, 2)
-  --r.ImGui_SameLine(ctx)
   r.ImGui_Button(ctx, " Set ",60,20)
   r.ImGui_SameLine(ctx)
   HelpMarker("Select a track to copy the Theme Layout from.")
@@ -306,9 +303,8 @@ function bankmon.ShowBankmonWindow()
   r.ImGui_TableSetColumnIndex(ctx, 0)
   r.ImGui_SetNextItemWidth(ctx, 150)
   r.ImGui_InputText(ctx, "Active Layout", bankmon.theme_layout_active)
-    r.ImGui_SameLine(ctx)
+  r.ImGui_SameLine(ctx)
   HelpMarker("Set the theme layout you want to use when tracks ARE in an active bank.")
-  --r.ImGui_SameLine(ctx)
   r.ImGui_TableSetColumnIndex(ctx, 2)
   r.ImGui_Button(ctx, " Set ", 60, 20)
   r.ImGui_SameLine(ctx)
@@ -355,19 +351,19 @@ function bankmon.get_selected_bank()
 end
 
 function bankmon.SetTrackLayout(low_track_num, high_track_num, layout_name)
-    for i = low_track_num -1 , high_track_num - 1, 1 do
-      track = r.GetTrack(0, i)
-      if track then
-        r.GetSetMediaTrackInfo_String(track,"P_MCP_LAYOUT",layout_name,true)
-      end
+  for i = low_track_num -1 , high_track_num - 1, 1 do
+    track = r.GetTrack(0, i)
+    if track then
+      r.GetSetMediaTrackInfo_String(track,"P_MCP_LAYOUT",layout_name,true)
     end
+  end
 end
 
 function bankmon.get_track_numbers(banknumber)
-       local low_track_num = (banknumber - 1) * bankmon.bank_size + 1 
-       local high_track_num = low_track_num + bankmon.bank_size - 1
-       return low_track_num, high_track_num
-  end
+ local low_track_num = (banknumber - 1) * bankmon.bank_size + 1 
+ local high_track_num = low_track_num + bankmon.bank_size - 1
+ return low_track_num, high_track_num
+end
 
 function HelpMarker(desc) -- Function to show a ?
   r.ImGui_TextDisabled(ctx, '(?)')
