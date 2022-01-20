@@ -26,8 +26,10 @@
       <version name="0.1" author="Mavriq" time="2022-01-18T18:37:00Z">
         <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/008f8d35eeb544522fd0535fe004cea6409d3e0d/Various/mavriq_bank_monitor%20v2.lua</source>
          </version>
+      
        <version name="0.2" author="Mavriq" time="2022-01-18T22:55:44Z">
         <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/c1b6cb490b55091835361d77f925cc7247a6f1bd/Various/mavriq_bank_monitor%20v2.lua</source>
+         
       </version>
       <version name="0.3" author="Mavriq" time="2022-01-18T23:05:07Z">
         <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/d85240325f8b4d17be255feba698325b6687f716/Various/mavriq_bank_monitor%20v2.lua</source>
