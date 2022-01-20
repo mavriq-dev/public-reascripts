@@ -9,34 +9,34 @@
  * Version: 0.3.1
  * Donation: https://www.paypal.com/paypalme/mavriqdev
  * About: # Mavriq ReaLearn Bank Monitor
- *  A reaper script to monitor what bank is currently selected in ReLearn.
+ * A reaper script to monitor what bank is currently selected in ReLearn.
  *  
- *   To setup the script you must select a ReaLearn Instance and the parameter that holds the bank information.
+ * To setup the script you must select a ReaLearn Instance and the parameter that holds the bank information.
+ * 
+ * The instance can be on the Monitoring FX Chain, The Master FX Chain or on a regular "Track". Select the appropriate location From the "ReaLearn FX Chain" Drop down. If you selected "Track", enter the track number below it.
+ * 
+ * Pick the ReaLearn instance in the "FX List" drop-down.
  *  
- *  The instance can be on the Monitoring FX Chain, The Master FX Chain or on a regular "Track". Select the appropriate location From the "ReaLearn FX Chain" Drop down. If you selected "Track", enter the track number below it.
- *  
- *  Pick the ReaLearn instance in the "FX List" drop-down.
- *  
- *  Select the parameter number that stores the bank information. If you are using DAW Control (see ReaLearn documentation) then that is Master parameter #1. To select a  compartment parameter, select 101 - 200. IE 101 = compartment #1.
- *  
- *  The bank size parameter is how many controls are in each bank. If you have 10 sliders, then select 10. The tracks display will then show the correct amount of tracks "targeted" by the bank.
- *  
- *  There are 4 Theme Layout settings. 2 each for the mixer and tcp tracks. The default settings are the Theme Layout you want to apply when the tracks are not targeted by the current bank. The active is for when they are. For example you may pick a track layout with red slider knobs when the bank is active, and grey when not. This lets you see quickly which tracks are in the current bank.
- *  
- *  You can type the name of the layout manually or you can set a track up with the required layout and press "Set". The name will be pulled from the track. This is useful when the name has special characters not easy to enter via the keyboard.
- *  
- *  Use the "Dock" and "Undock" buttons to control docking
- *  
- *  That's it, the bank and track information should appear and update when you change banks.--]]
+ * Select the parameter number that stores the bank information. If you are using DAW Control (see ReaLearn documentation) then that is Master parameter #1. To select a  compartment parameter, select 101 - 200. IE 101 = compartment #1.
+ * 
+ * The bank size parameter is how many controls are in each bank. If you have 10 sliders, then select 10. The tracks display will then show the correct amount of tracks "targeted" by the bank.
+ * 
+ * There are 4 Theme Layout settings. 2 each for the mixer and tcp tracks. The default settings are the Theme Layout you want to apply when the tracks are not targeted by the current bank. The active is for when they are. For example you may pick a track layout with red slider knobs when the bank is active, and grey when not. This lets you see quickly which tracks are in the current bank.
+ * 
+ * You can type the name of the layout manually or you can set a track up with the required layout and press "Set". The name will be pulled from the track. This is useful when the name has special characters not easy to enter via the keyboard.
+ * 
+ * Use the "Dock" and "Undock" buttons to control docking
+ * 
+ * That's it, the bank and track information should appear and update when you change banks.--]]
 
  --[[
- *  Changelog:
- *  v0.3.1 (2022-01-19)
+ * Changelog:
+ * v0.3.1 (2022-01-19)
   + Added Track Layout Application to Banks
   + Reorganized GUI
- *  v0.2.0 (2022-01-18)
+ * v0.2.0 (2022-01-18)
   # bug fix (crash when docking)
- *  v0.1.0 (2022-01-18)
+ * v0.1.0 (2022-01-18)
   + Initial Release
 --]] 
 
