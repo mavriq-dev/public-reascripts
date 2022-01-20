@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Mavriq ReaScript Repository" commit="e156f26eb13ad6f03be4e01f27d3edf3fd9efccd">
+<index version="1" name="Mavriq ReaScript Repository" commit="1bf7b2e57492c6059cbdbc5bf1c5affac80f9dc8">
   <category name="Various">
     <reapack name="mavriq_bank_monitor.lua" type="script" desc="Mavriq ReaLearn Bank Monitor">
       <metadata>
@@ -8,16 +8,6 @@
 \widowctrl\hyphauto
 
 {\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Mavriq ReaLearn Bank Monitor\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 A reaper script to monitor what bank is currently selected in ReLearn.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 To setup the script you must select a ReaLearn Instance and the parameter that holds the bank information.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 The instance can be on the Monitoring FX Chain, The Master FX Chain or on a regular "Track". Select the appropriate location From the "ReaLearn FX Chain" Drop down. If you selected "Track", enter the track number below it.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Pick the ReaLearn instance in the "FX List" drop-down.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Select the parameter number that stores the bank information. If you are using DAW Control (see ReaLearn documentation) then that is Master parameter #1. To select a compartment parameter, select 101 - 200. IE 101 = compartment #1.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 The bank size parameter is how many controls are in each bank. If you have 10 sliders, then select 10. The tracks display will then show the correct amount of tracks "targeted" by the bank.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 There are 4 Theme Layout settings. 2 each for the mixer and tcp tracks. The default settings are the Theme Layout you want to apply when the tracks are not targeted by the current bank. The active is for when they are. For example you may pick a track layout with red slider knobs when the bank is active, and grey when not. This lets you see quickly which tracks are in the current bank.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 You can type the name of the layout manually or you can set a track up with the required layout and press "Set". The name will be pulled from the track. This is useful when the name has special characters not easy to enter via the keyboard.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Use the "Dock" and "Undock" buttons to control docking\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 That's it, the bank and track information should appear and update when you change banks.--]]\par}
 }
 ]]></description>
         <link rel="screenshot">https://i.postimg.cc/HLCgSW0x/Relearn-Monitor.png</link>
@@ -25,15 +15,13 @@
       </metadata>
       <version name="0.1" author="Mavriq" time="2022-01-18T18:37:00Z">
         <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/008f8d35eeb544522fd0535fe004cea6409d3e0d/Various/mavriq_bank_monitor%20v2.lua</source>
-         </version>
-      
-       <version name="0.2" author="Mavriq" time="2022-01-18T22:55:44Z">
+      </version>
+      <version name="0.2" author="Mavriq" time="2022-01-18T22:55:44Z">
         <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/c1b6cb490b55091835361d77f925cc7247a6f1bd/Various/mavriq_bank_monitor%20v2.lua</source>
-         
       </version>
       <version name="0.3" author="Mavriq" time="2022-01-18T23:05:07Z">
         <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/d85240325f8b4d17be255feba698325b6687f716/Various/mavriq_bank_monitor%20v2.lua</source>
-         </version>
+      </version>
       <version name="0.3.1" author="Mavriq" time="2022-01-20T02:46:54Z">
         <changelog><![CDATA[+ Added Track Layout Application to Banks
 + Reorganized GUI]]></changelog>
