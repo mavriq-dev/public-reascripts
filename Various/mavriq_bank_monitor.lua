@@ -31,13 +31,13 @@
 
  --[[
  * Changelog:
- * v0.3.1 (2022-01-19)
-  + Added Track Layout Application to Banks
-  + Reorganized GUI
- * v0.2.0 (2022-01-18)
-  # bug fix (crash when docking)
- * v0.1.0 (2022-01-18)
-  + Initial Release
+ *  v0.3.1 (2022-01-19)
+ *      + Added Track Layout Application to Banks
+ *      + Reorganized GUI
+ *  v0.2.0 (2022-01-18)
+ *      # bug fix (crash when docking)
+ *  v0.1.0 (2022-01-18)
+ *      + Initial Release
 --]] 
 
 
