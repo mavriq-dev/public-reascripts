@@ -34,6 +34,7 @@
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
+{\pard \ql \f0 \sa180 \li0 \fi0 {\cf1 [image: https://github.com/mavriq-dev/public-reascripts/actions/workflows/deploy.yml/badge.svg]\cf0}\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Mavriq ReaScripts Repository\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 This git repository houses all Scripts created by Mavriq for the Reaper Digital Audio Workstation\par}
 }
