@@ -31,15 +31,14 @@
 
  --[[
  * Changelog:
- * v0.3.1 (2022-01-19)
-  + Added Track Layout Application to Banks
-  + Reorganized GUI
- * v0.2.0 (2022-01-18)
-  # bug fix (crash when docking)
- * v0.1.0 (2022-01-18)
-  + Initial Release
+ *  v0.3.1 (2022-01-19)
+ *      + Added Track Layout Application to Banks
+ *      + Reorganized GUI
+ *  v0.2.0 (2022-01-18)
+ *      # bug fix (crash when docking)
+ *  v0.1.0 (2022-01-18)
+ *      + Initial Release
 --]] 
-
 
 
 -- Todo: Remember window settings when undocking and between open and closing.
@@ -368,7 +367,7 @@ function bankmon.ShowBankmonWindow()
     HelpMarker(
         "Set the mix theme layout you want to use when tracks ARE in an active bank.")
     r.ImGui_TableSetColumnIndex(ctx, 2)
-    if r.ImGui_Button(ctx, " Set ", 60, 20) then
+    if r.ImGui_Button(ctx, " Set ", 60, 20) then -- NOTE: this is a hack. Buttons with the same label will not function. I added spaces to make them unique.
         bankmon.theme_mix_layout_act = bankmon.get_first_sel_trk_layout(
                                            "P_MCP_LAYOUT")
     end
@@ -387,7 +386,7 @@ function bankmon.ShowBankmonWindow()
     HelpMarker(
         "Set the tcp theme layout you want to use when tracks ARE NOT in an active bank.")
     r.ImGui_TableSetColumnIndex(ctx, 2)
-    if r.ImGui_Button(ctx, "  Set  ", 60, 20) then
+    if r.ImGui_Button(ctx, "  Set  ", 60, 20) then -- NOTE: this is a hack. Buttons with the same label will not function. I added spaces to make them unique.
         bankmon.theme_trk_layout_def = bankmon.get_first_sel_trk_layout(
                                            "P_TCP_LAYOUT")
     end
@@ -404,7 +403,7 @@ function bankmon.ShowBankmonWindow()
     HelpMarker(
         "Set the tcp theme layout you want to use when tracks ARE in an active bank.")
     r.ImGui_TableSetColumnIndex(ctx, 2)
-    if r.ImGui_Button(ctx, "  Set    ", 60, 20) then
+    if r.ImGui_Button(ctx, "  Set    ", 60, 20) then -- NOTE: this is a hack. Buttons with the same label will not function. I added spaces to make them unique.
         bankmon.theme_trk_layout_act = bankmon.get_first_sel_trk_layout(
                                            "P_TCP_LAYOUT")
     end
