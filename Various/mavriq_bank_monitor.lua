@@ -6,7 +6,7 @@
  * Repository URI: https://github.com/mavriq-dev/public-reascripts
  * License: GPL v3
  * REAPER: 5.0
- * Version: 0.3.1
+ * Version: 0.3.2
  * Donation: https://www.paypal.com/paypalme/mavriqdev
  * About: # Mavriq ReaLearn Bank Monitor
  *  A reaper script to monitor what bank is currently selected in ReLearn.
