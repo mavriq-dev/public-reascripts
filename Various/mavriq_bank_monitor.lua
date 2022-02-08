@@ -31,6 +31,9 @@
 
  --[[
  * Changelog:
+ *  v0.3.2 (2022-02-07)
+ *      + added notification for missing ReaImGUI extension
+ *      # removed dependancy on Ultrashall API.
  *  v0.3.1 (2022-01-19)
  *      + Added Track Layout Application to Banks
  *      + Reorganized GUI
@@ -41,8 +44,12 @@
 --]] 
 
 
--- Todo: Remember window settings when undocking and between open and closing.
-dofile(reaper.GetResourcePath() .. "/UserPlugins/ultraschall_api.lua")
+-- Todo: Remember window settings when undocking and between open and closing
+
+if reaper.ImGui_AcceptDragDropPayload == nil then
+  reaper.ShowMessageBox("You must have ReaIMGui installed to use Bank Monitor. \nPlease see: https://forums.cockos.com/showthread.php?t=250419", "Bank Monitor Exception", 0);
+  return
+end
 
 local r = reaper
 
