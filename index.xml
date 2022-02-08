@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Mavriq ReaScript Repository" commit="bb670ae3cf6fa9571243f002954a37259ea4e777">
+<index version="1" name="Mavriq ReaScript Repository" commit="6bc026efebca209b42f962a23a62f3ccdf6c6adc">
   <category name="Various">
     <reapack name="mavriq_bank_monitor.lua" type="script" desc="Mavriq ReaLearn Bank Monitor">
       <metadata>
@@ -36,6 +36,11 @@
         <changelog><![CDATA[+ Added Track Layout Application to Banks
 + Reorganized GUI]]></changelog>
         <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/bb670ae3cf6fa9571243f002954a37259ea4e777/Various/mavriq_bank_monitor.lua</source>
+      </version>
+      <version name="0.3.2" author="Mavriq" time="2022-02-08T03:59:36Z">
+        <changelog><![CDATA[*      + added notification for missing ReaImGUI extension
+*      # removed dependancy on Ultrashall API.]]></changelog>
+        <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/6bc026efebca209b42f962a23a62f3ccdf6c6adc/Various/mavriq_bank_monitor.lua</source>
       </version>
     </reapack>
   </category>
