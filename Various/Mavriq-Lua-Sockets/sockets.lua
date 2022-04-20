@@ -1,6 +1,6 @@
 -- @metapackage
 -- @description Mavriq Lua Sockets
--- @version 1.0.0pre2
+-- @version 1.0.0pre3
 -- @author Mavriq
 -- @about
 --   # Allows use of Lua Sockets in 'REAPER'
@@ -22,4 +22,4 @@
 --   /Various/Mavriq-Lua-Sockets/*.lua
 --   [win64] /Various/Mavriq-Lua-Sockets/socket/core.dll
 --   [darwin64] /Various/Mavriq-Lua-Sockets/socket/core.so
---   [linux64] /Various/Mavriq-Lua-Sockets/socket/core.so.linux > core.so
+--   [linux64] /Various/Mavriq-Lua-Sockets/socket/core.so.linux > socket/core.so
