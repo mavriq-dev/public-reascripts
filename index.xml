@@ -85,7 +85,7 @@
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
-{\pard \ql \f0 \sa180 \li0 \fi0 {\cf1 [image: https://img.shields.io/github/license/mavriq-dev/public-reascripts]\cf0} {\cf1 [image: https://img.shields.io/github/languages/code-size/reaper-csi/reaper_csurf_integrator]\cf0} {\cf1 [image: https://img.shields.io/github/repo-size/reaper-csi/reaper_csurf_integrator]\cf0} {\cf1 [image: https://img.shields.io/github/v/release/reaper-csi/reaper_csurf_integrator]\cf0} {\cf1 [image: https://img.shields.io/github/v/release/reaper-csi/reaper_csurf_integrator?include_prereleases]\cf0}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 [{\cf1 [image: https://img.shields.io/badge/license-GPLv3-orange]\cf0}./LICENSE] {\cf1 [image: https://img.shields.io/github/languages/code-size/reaper-csi/reaper_csurf_integrator]\cf0} {\cf1 [image: https://img.shields.io/github/repo-size/reaper-csi/reaper_csurf_integrator]\cf0} {\cf1 [image: https://img.shields.io/github/v/release/reaper-csi/reaper_csurf_integrator]\cf0} {\cf1 [image: https://img.shields.io/github/v/release/reaper-csi/reaper_csurf_integrator?include_prereleases]\cf0}\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Mavriq ReaScripts Repository\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 This git repository houses all Scripts created by Mavriq for the Reaper Digital Audio Workstation\par}
 }
