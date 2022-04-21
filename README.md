@@ -7,7 +7,7 @@ The files can be installed via `Reapack`. Details on the Reapack see its main we
 
 
 ### Support
-If you find these scripts useful a donation would be greatly appreciated. Your supports helps offset some of the costs associated with creating, housing and maintaining the scripts, and makes further work possible.
+If you find these scripts useful a donation would be greatly appreciated. Your supports helps offset some of the costs associated with creating, housing and maintaining the scripts, and makes further work possible. You can donate [HERE](https://www.paypal.com/paypalme/mavriqdev).
 
 ### Useful Links
 [Mavriq GitHub Repositories](https://github.com/mavriq-dev)
