@@ -6,7 +6,7 @@
  * Repository URI: https://github.com/mavriq-dev/public-reascripts
  * License: GPL v3
  * REAPER: 5.0
- * Version: 0.3.2
+ * Version: 0.3.3
  * Donation: https://www.paypal.com/paypalme/mavriqdev
  * About: # Mavriq ReaLearn Bank Monitor
  *  A reaper script to monitor what bank is currently selected in ReLearn.
@@ -27,10 +27,15 @@
  *  
  *  Use the "Dock" and "Undock" buttons to control docking
  *  
- *  That's it, the bank and track information should appear and update when you change banks.--]]
+ *  That's it, the bank and track information should appear and update when you change banks.
+ *  
+ *  A huge thanks to cfillion for ReaImGui.
+ --]]
 
  --[[
  * Changelog:
+ *  v0.3.3 (2022-04-20)
+ *      + give props to cfillion for ReaImGUI
  *  v0.3.2 (2022-02-07)
  *      + added notification for missing ReaImGUI extension
  *      # removed dependancy on Ultrashall API.

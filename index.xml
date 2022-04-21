@@ -108,10 +108,48 @@ v1.0.0pre1
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
-{\pard \ql \f0 \sa180 \li0 \fi0 {\cf1 [image: https://github.com/mavriq-dev/public-reascripts/actions/workflows/deploy.yml/badge.svg]\cf0}\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 Mavriq ReaScripts Repository\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 This git repository houses all Scripts created by Mavriq for the Reaper Digital Audio Workstation\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 This git repository houses all Scripts created by Mavriq for the {\f1 Reaper Digital Audio Workstation}.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Repack Download\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 The files can be installed via {\f1 Reapack}. Details on the Reapack see its main webpage {\field{\*\fldinst{HYPERLINK "https://reapack.com"}}{\fldrslt{\ul
+HERE
+}}}
+. Add the Mavriq ReaScripts Repository using {\f1 Manage Repositories}. The URL for the repository is {\field{\*\fldinst{HYPERLINK "https://raw.githubusercontent.com/mavriq-dev/public-reascripts/master/index.xml"}}{\fldrslt{\ul
+https://raw.githubusercontent.com/mavriq-dev/public-reascripts/master/index.xml
+}}}
+.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Support\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 If you find these scripts useful a donation would be greatly appreciated. Your supports helps offset some of the costs associated with creating, housing and maintaining the scripts, and makes further work possible.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Useful Links\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\field{\*\fldinst{HYPERLINK "https://github.com/mavriq-dev"}}{\fldrslt{\ul
+Mavriq GitHub Repositories
+}}}
+ {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/showthread.php?t=262893"}}{\fldrslt{\ul
+ZeroBrane Lua Debugging
+}}}
+ {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/showthread.php?t=263326"}}{\fldrslt{\ul
+IDE AutoAnswer
+}}}
+ {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/showthread.php?t=262143"}}{\fldrslt{\ul
+Bank Monitor
+}}}
+\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Contributors\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/member.php?u=98780"}}{\fldrslt{\ul
+cfillion
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/member.php?u=121892"}}{\fldrslt{\ul
+daniellumertz
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/member.php?u=106541"}}{\fldrslt{\ul
+Edgemeal
+}}}
+\sa180\par}
 }
 ]]></description>
+    <link rel="website">https://github.com/mavriq-dev/public-reascripts</link>
+    <link rel="donation">https://www.paypal.com/paypalme/mavriqdev</link>
   </metadata>
 </index>
