@@ -49,6 +49,7 @@
 --]] 
 
 
+
 -- Todo: Remember window settings when undocking and between open and closing
 
 if reaper.ImGui_AcceptDragDropPayload == nil then
