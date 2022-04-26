@@ -20,5 +20,7 @@ If you find these scripts useful a donation would be greatly appreciated. Your s
 * [cfillion](https://forum.cockos.com/member.php?u=98780)
 * [daniellumertz](https://forum.cockos.com/member.php?u=121892)
 * [Edgemeal](https://forum.cockos.com/member.php?u=106541)
+* [Amagalma](https://forum.cockos.com/member.php?u=32436)
+* [Julian Sader](https://forum.cockos.com/member.php?u=14710)
 
 

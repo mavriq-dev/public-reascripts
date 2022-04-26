@@ -1,0 +1,19 @@
+-- Start Mavriq Debugging --
+-----------------  Added by Mavriq Debugging -------------------------
+------- You may remove this if accidentally left behind --------------
+
+---- DO NOT FORGET 'Project->Start Debugger Server' IN ZEROBRANE -----
+
+mav_repo = '/Scripts/Mavriq ReaScript Repository/Various/'
+package.cpath = package.path .. ';' .. reaper.GetResourcePath() .. 
+   mav_repo .. 'Mavriq-Lua-Sockets/?.dll' .. ';' .. reaper.GetResourcePath() .. 
+   mav_repo .. 'Mavriq-Lua-Sockets/?.so'
+package.path = package.path .. ';' .. reaper.GetResourcePath() .. 
+   mav_repo .. 'Debugging/?.lua' .. ';' .. reaper.GetResourcePath() .. 
+   mav_repo .. 'Mavriq-Lua-Sockets/?.lua' 
+
+require("mobdebug").start()
+-- End Mavriq Debugging --
+
+
+
