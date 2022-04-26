@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Mavriq ReaScript Repository" commit="14805db181890413b6909fbab09443119a46ec16">
+<index version="1" name="Mavriq ReaScript Repository" commit="91256882e19c6be078c7787c086e97409edc36e2">
   <category name="Various">
     <reapack name="mavriq_bank_monitor.lua" type="script" desc="Mavriq ReaLearn Bank Monitor">
       <metadata>
@@ -46,6 +46,51 @@
       <version name="0.3.3" author="Mavriq" time="2022-04-21T00:51:02Z">
         <changelog><![CDATA[*      + give props to cfillion for ReaImGUI]]></changelog>
         <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/14805db181890413b6909fbab09443119a46ec16/Various/mavriq_bank_monitor.lua</source>
+      </version>
+    </reapack>
+  </category>
+  <category name="Various/Debugging">
+    <reapack name="Mavriq_Debug_Tool.lua" type="script" desc="Mavriq Debugging Tools">
+      <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 Mavriq Debugging Tool\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Allows you to easily use an interactive debugger with Lua ReaScripts. Currently supports ZeroBrane IDE and plan to support more soon.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Now available via Reapack and works on Windows, macos and Linux.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Known Bugs\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 On {\f1 macos} and {\f1 Linux} you MUST have the {\f1 Command ID} and {\f1 ReaScript Path} columns showing. {\f1 Right Click} on the {\f1 Action} window and select the appropriate settings.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Thanks\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/member.php?u=32436"}}{\fldrslt{\ul
+Amagalma
+}}}
+ who's script for the original debugging helper script that inspired this version. It saved many coding hours for me.\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/member.php?u=121892"}}{\fldrslt{\ul
+daniellumertz
+}}}
+ foraged on where I gave up and figured out part of the answer to having core.dll live outside the predefined paths.\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/member.php?u=14710"}}{\fldrslt{\ul
+Julian Sader
+}}}
+ for his API which vastly extended the capabilities of scripting.\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab And of course {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/member.php?u=98780"}}{\fldrslt{\ul
+cfillion
+}}}
+ for ReaImGui which is a game changer for the scripting community.\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab And the countless coders out there who have contributed to the ReaScript community and laid the groundwork for all of us.\sa180\par}
+}
+]]></description>
+        <link rel="website" href="https://github.com/available_soon">Forum Thread</link>
+        <link rel="donation" href="https://www.paypal.com/paypalme/mavriqdev">:</link>
+      </metadata>
+      <version name="1.0.0" author="Mavriq, Amagalma" time="2022-04-26T01:17:26Z">
+        <changelog><![CDATA[v1.0.0
+ + initial release]]></changelog>
+        <source file="ZeroBrane_Injection_Code.mav">https://github.com/mavriq-dev/public-reascripts/raw/91256882e19c6be078c7787c086e97409edc36e2/Various/Debugging/ZeroBrane_Injection_Code.mav</source>
+        <source file="Mavriq-Debugging.ttf">https://github.com/mavriq-dev/public-reascripts/raw/91256882e19c6be078c7787c086e97409edc36e2/Various/Debugging/Mavriq-Debugging.ttf</source>
+        <source main="main">https://github.com/mavriq-dev/public-reascripts/raw/91256882e19c6be078c7787c086e97409edc36e2/Various/Debugging/Mavriq_Debug_Tool.lua</source>
+        <source file="mobdebug.lua">https://github.com/mavriq-dev/public-reascripts/raw/91256882e19c6be078c7787c086e97409edc36e2/Various/Debugging/mobdebug.lua</source>
       </version>
     </reapack>
   </category>
@@ -139,6 +184,14 @@ daniellumertz
 \par}
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/member.php?u=106541"}}{\fldrslt{\ul
 Edgemeal
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/member.php?u=32436"}}{\fldrslt{\ul
+Amagalma
+}}}
+\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\field{\*\fldinst{HYPERLINK "https://forum.cockos.com/member.php?u=14710"}}{\fldrslt{\ul
+Julian Sader
 }}}
 \sa180\par}
 }
