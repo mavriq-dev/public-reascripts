@@ -1,5 +1,5 @@
 -- @description Mavriq Debugging Tools
--- @version 1.0.0
+-- @version 1.0.1
 -- @author Mavriq, Amagalma
 -- @about
 --   # Mavriq Debugging Tool 
@@ -7,19 +7,23 @@
 --   
 --   Now available via Reapack and works on Windows, macos and Linux. 
 --   
---   ### Known Bugs
+--   #Known Bugs
 --   On `macos` and `Linux` you MUST have the `Command ID` and `ReaScript Path` columns showing. `Right Click` on the `Action` window and select the appropriate settings.
 --
 --   ### Thanks
---   * [Amagalma](https://forum.cockos.com/member.php?u=32436) who's script for the original debugging helper script that inspired this version. It saved many coding hours for me.</br>
---   * [daniellumertz](https://forum.cockos.com/member.php?u=121892) foraged on where I gave up and figured out part of the answer to having core.dll live outside the predefined paths.</br>
---   * [Julian Sader](https://forum.cockos.com/member.php?u=14710) for his API which vastly extended the capabilities of scripting.</br>
---   * And of course [cfillion](https://forum.cockos.com/member.php?u=98780) for ReaImGui which is a game changer for the scripting community.</br>
---   * And the countless coders out there who have contributed to the ReaScript community and laid the groundwork for all of us.
+--   Amagalma who's script for the original debugging helper script that inspired this version. It saved many coding hours for me.
+--   daniellumertz's foraged on where I gave up and figured out part of the answer to having core.dll live outside the predefined paths.
+--   Julian Sader for his API which vastly extended the capabilities of scripting.
+--   And of course cfillion for ReaImGui which is a game changer for the scripting community.
+--   And the countless coders out there who have contributed to the ReaScript community and laid the groundwork for all of us.
 -- @donation: https://www.paypal.com/paypalme/mavriqdev
 -- @links
 --   Forum Thread https://github.com/available_soon
 -- @changelog
+--   v1.0.1
+--    + Added VS Code Debugger
+--    + Added Help Section
+--    + Added ReaPack Prompts - Thanks to Goran for pointing that out
 --   v1.0.0
 --    + initial release
 -- @provides
@@ -31,7 +35,7 @@
 r = reaper
 local script_path = "" -- "C:/Users/geoff_obr9bt1/Desktop/reaper/Scripts/Mavriq ReaScript Repository/Various/Debugging/mavriq_test.lua"
 local sockets_path = r.GetResourcePath() .. '/Scripts/Mavriq ReaScript Repository/Various/Mavriq-Lua-Sockets/'
-local injected_code_path = r.GetResourcePath() ..  '/Scripts/Mavriq ReaScript Repository/Various/Debugging/ZeroBrane_Injection_Code.mav'
+local injected_code_path = r.GetResourcePath() ..  '/Scripts/Mavriq ReaScript Repository/Various/Debugging/Injection_Code.mav'
 --local match_expr = "%-%- start %-%-%c+[% %w%p]*%c+[% %w%p]*%c+[% %w%p]*%c+[% %w%p]*%c+[% %w%p]*%c+[% %w%p]*%c+[% %w%p]*%c+[% %w%p]*%c+[% %w%p]*%c+%-%- end %-%-%c+"
 local match_expr = "%-%- Start Mavriq Debugging %-%-.+%-%- End Mavriq Debugging %-%-%c+"
 
@@ -58,10 +62,13 @@ local mav_debug = {
    btn_act =      0x3CDA1DFF,        
    check =        0x3CDA1DFF,
    text =         0x151515FF,
+   hdr =          0x30AD1777,
+   hdr_hov =      0x3CDA1DFF,  
    undock_win_x = 0,
    undock_win_y = 0,
    undock_sz_w =  0,
    undock_sz_h =  0,
+   help_open = false,
 }
 
 
@@ -83,6 +90,8 @@ function Set_Theme()
    r.ImGui_PushStyleColor(ctx, r.ImGui_Col_ButtonActive(),        mav_debug.btn_act)
    r.ImGui_PushStyleColor(ctx, r.ImGui_Col_CheckMark(),           mav_debug.check)
    r.ImGui_PushStyleColor(ctx, r.ImGui_Col_Text(),                mav_debug.text)
+   r.ImGui_PushStyleColor(ctx, r.ImGui_Col_Header(),              mav_debug.hdr)
+   r.ImGui_PushStyleColor(ctx, r.ImGui_Col_HeaderHovered(),       mav_debug.hdr_hov)
 end
 
 
@@ -98,7 +107,7 @@ function DrawHeader()
 
    r.ImGui_TableSetColumnIndex(ctx, 1)
    r.ImGui_PushStyleColor(ctx, r.ImGui_Col_Text(), mav_debug.btn_txt_col)
-   r.ImGui_PushFont(ctx, symbols)
+   r.ImGui_PushFont(ctx, symbol_font)
    if r.ImGui_IsWindowDocked(ctx) then
       if r.ImGui_Button(ctx, "þ", 22, 20) then mav_debug.dock_id = 0 end
    else
@@ -312,7 +321,7 @@ end
 
 function Settings()
    r.ImGui_PushStyleColor(ctx, r.ImGui_Col_Text(),       mav_debug.btn_txt_col)
-   r.ImGui_PushFont(ctx, symbols)
+   r.ImGui_PushFont(ctx, symbol_font)
    local settings_pressed = r.ImGui_Button(ctx, "ÿ", 22, 20)
    r.ImGui_PopFont(ctx)
    r.ImGui_PopStyleColor(ctx, 1)
@@ -343,10 +352,8 @@ function Settings()
       end
       r.ImGui_PopStyleColor(ctx, 1)
 
-      if rv == 1 and (fileName:match("zbstudio%.exe") or fileName:match("ZeroBraneStudio.app") or fileName:match("zbstudio.sh")) then
+      if rv == 1 then
          mav_debug.zerobrane_path = fileName
-      elseif rv == 1 then
-         r.ShowMessageBox("Selected file is not ZeroBrane Studio. \nPlease select zbstudio (Win) or ZeroBraneStudio.app (macos)", "Not a valid Executable", 1)
       end
 
       r.ImGui_Separator(ctx)
@@ -387,7 +394,44 @@ function Settings()
    end 
 end
 
-
+function HelpSection()
+   if r.ImGui_CollapsingHeader(ctx, 'Help') then
+      r.ImGui_BeginChild(ctx, "HelpWindow", 0, 0)
+      r.ImGui_PushTextWrapPos(ctx, 0)
+      r.ImGui_PushFont(ctx, bold_font)
+      r.ImGui_Text(ctx, 'How to use Mavriq Debugging Tools:')
+      r.ImGui_PopFont(ctx)
+      r.ImGui_BulletText(ctx, "Open settings via the 'Hamburger' menu and select your preferences.")
+      r.ImGui_BulletText(ctx, "Works in 2 modes: 'Internal' uses the built in REAPER IDE and 'External' which uses another script editor such as Sublime Text.")
+      r.ImGui_Spacing(ctx)
+      r.ImGui_PushFont(ctx, bold_font)
+      r.ImGui_Text(ctx, "Internal Editor Buttons")
+      r.ImGui_PopFont(ctx)
+      r.ImGui_BulletText(ctx, "Set Script: Will get the script name via the open REAPER IDE window.")
+      r.ImGui_BulletText(ctx, "Open Debugger: Will inject needed debug code into the script and open it in the debugger of choice.")
+      r.ImGui_Spacing(ctx)
+      r.ImGui_PushFont(ctx, bold_font)
+      r.ImGui_Text(ctx, "External Editor Buttons")
+      r.ImGui_PopFont(ctx)
+      r.ImGui_BulletText(ctx,"Select Script: Select a script via the REAPER Actions dialog.")
+      r.ImGui_BulletText(ctx,"Open Editor: Will open the script in your selected editor if not already open. (optional)")
+      r.ImGui_BulletText(ctx,"Open Debugger: Will inject needed debug code into the script and open it in the debugger of choice.")
+      r.ImGui_BulletText(ctx,"Debug Script: Will execute the script in reaper for use with and external editor.")
+      r.ImGui_Spacing(ctx)    
+      r.ImGui_PushFont(ctx, bold_font)  
+      r.ImGui_Text(ctx, "Debuggers")
+      r.ImGui_PopFont(ctx)
+      r.ImGui_Text(ctx, "ZeroBrane: Click on Project->Start Debugger Server after opening.")
+      r.ImGui_Spacing(ctx)  
+      r.ImGui_Text(ctx, "VS Code: Install the 'Lua MobDebug adapter'. Click on 'Run and debug' on left toolbar, then click on 'create a launch.json file'. Select 'luaMobDebug: Listen'  next to the green triangle, then click on the triangle. Start your script in the REAPER IDE or via the 'Debug Script' button.")
+      r.ImGui_PopTextWrapPos(ctx)
+      r.ImGui_Separator(ctx)
+      r.ImGui_EndChild(ctx)
+      mav_debug.help_open = true
+   else
+      mav_debug.help_open = false
+   end 
+ end
 
 function DrawFrame()
 
@@ -408,7 +452,10 @@ function DrawFrame()
 
    if not script_set then r.ImGui_EndDisabled(ctx) end
 
-   --r.ImGui_Separator(ctx)
+   r.ImGui_Dummy(ctx, 20, 20)
+   r.ImGui_Separator(ctx)
+
+   HelpSection()
 
    return 
 end
@@ -422,7 +469,13 @@ function MainLoop()
    work_pos = {r.ImGui_Viewport_GetWorkPos(main_viewport)}
    r.ImGui_SetNextWindowPos(ctx, work_pos[1] + 20, work_pos[2] + 20, r.ImGui_Cond_FirstUseEver())
    
-   r.ImGui_SetNextWindowSizeConstraints(ctx, 440, 100, 10000, 10000)
+   _h = nil 
+   if mav_debug.help_open then 
+      _h = 130 + 440
+   else
+      _h = 130
+   end
+   r.ImGui_SetNextWindowSizeConstraints(ctx, 450, _h, 10000, 10000)
    r.ImGui_SetNextWindowSize(ctx, 0, 0, r.ImGui_Cond_Once()) 
    Set_Theme()
 
@@ -443,7 +496,7 @@ function MainLoop()
    end
 
    r.ImGui_PopFont(ctx)
-   r.ImGui_PopStyleColor(ctx, 11)
+   r.ImGui_PopStyleColor(ctx, 13)
    r.ImGui_PopStyleVar(ctx, 3)
    if open then
       r.defer(MainLoop)
@@ -462,7 +515,7 @@ end
 -------------------------------------------------------------
 ]]
 
-function zzzzzzUtilityzzzzzzzzzzzzzzzzzz() end
+function _________Utility_________() end
 
 function set_initial_state()
    if r.HasExtState("Mavriq Debugging", "editor_type") then
@@ -484,13 +537,16 @@ end
 function dependancies_are_installed() 
    if not r.APIExists("ImGui_AcceptDragDropPayload") then
       r.MB("You must have ReaIMGui installed to use Debugging Tools.", "IMGui missing...", 0);
+      reaper.ReaPack_BrowsePackages("Dear ImGui")
       return false
    elseif not r.APIExists("JS_Window_Find") then
       r.MB( "Please, install the JS_ReaScriptAPI to use Debugging Tools.", "JS_ReaScriptAPI missing...", 0 )
+      reaper.ReaPack_BrowsePackages("js_ReascriptAPI")
       return false
    end
    if (not r.file_exists(sockets_path .. "socket/core.dll")) and (not r.file_exists(sockets_path .. "socket/core.so")) then
-      r.MB( "Please, install the Mavriq Sockets to use Debugging Tools.", "Mavirq Sockets missing...", 0 )
+      r.MB( "Please, install Mavriq Lua Sockets to use Debugging Tools.", "Mavirq Sockets missing...", 0 )
+      reaper.ReaPack_BrowsePackages("Mavriq Lua Sockets")
       return false
    end
    return true
@@ -540,6 +596,8 @@ function extract_debug_code()
 end
 
 
+function _______Global_Code_______() end
+
 --[[
 -------------------------------------------------------------
 --------------------- Global Code ---------------------------
@@ -554,9 +612,10 @@ ctx = r.ImGui_CreateContext('Mavriq Debugging',
    r.ImGui_ConfigFlags_DockingEnable())
 font = r.ImGui_CreateFont("sans-serif", 14)
 r.ImGui_AttachFont(ctx,font)
-symbols = r.ImGui_CreateFont( reaper.GetResourcePath() .."/Scripts/Mavriq ReaScript Repository/Various/Debugging/Mavriq-Debugging.ttf", 14)
-r.ImGui_AttachFont(ctx,symbols)
-
+symbol_font = r.ImGui_CreateFont( reaper.GetResourcePath() .."/Scripts/Mavriq ReaScript Repository/Various/Debugging/Mavriq-Debugging.ttf", 14)
+r.ImGui_AttachFont(ctx,symbol_font)
+bold_font = r.ImGui_CreateFont("sans-serif", 14, reaper.ImGui_FontFlags_Bold())
+r.ImGui_AttachFont(ctx,bold_font)
 
 r.defer(MainLoop)
 
