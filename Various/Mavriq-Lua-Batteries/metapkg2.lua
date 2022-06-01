@@ -1,0 +1,15 @@
+-- @metapackage
+-- @description Mavriq Lua Batteries (Docs)
+-- @version 0.1.0rc1
+-- @author Mavriq
+-- @about
+--   # Documentation for Mavriq Lua Batteries
+-- @donation: https://www.paypal.com/paypalme/mavriqdev
+-- @links
+--   Forum Thread https://github.com/available_soon
+--   GitHub repository https://github.com/mavriq-dev/mavriq-lua-batteries
+-- @changelog
+--   v0.1.0rc1
+--    + initial release
+-- @provides
+--   /Various/Mavriq-Lua-Batteries/docs/**/*

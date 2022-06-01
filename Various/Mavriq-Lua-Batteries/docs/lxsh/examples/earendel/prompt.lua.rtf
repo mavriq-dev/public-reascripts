@@ -1,0 +1,19 @@
+{\rtf1\ansi\deflang1033{\fonttbl{\f0 Consolas;}}\deff0{\colortbl;\red168\green102\blue13;\red85\green136\blue23;\red132\green70\blue49;\red34\green57\blue168;\red39\green47\blue194;\red0\green0\blue0;\red255\green255\blue255;\red163\green50\blue67;\red81\green43\blue30;\red254\green220\blue86;\red14\green124\blue107;}{\*\pgdsctbl{\pgdsc0{\cbpat7}\pgdscnxt0 Standard;}}{\cf2 Lua 5.1.4  Copyright (C) 1994-2008 Lua.org, PUC-Rio}\par
+{\cf2 >} {\cf2 -- Load the LXSH module.\par
+}{\cf2 >} {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-require"}{\fldrslt {\cf11 require}}} {\cf1 'lxsh'}\par
+{\cf2 >} {\cf2 -- Run the lexer on a string of source code.\par
+}{\cf2 >} {\cf4\b for} kind{\cf4\b ,} text {\cf4\b in} lxsh.lexers.lua.gmatch {\cf1 'i = i + 1 -- example'} {\cf4\b do}\par
+{\cf2 >>}  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-print"}{\fldrslt {\cf11 print}}}{\cf4\b (}kind{\cf4\b ,} text{\cf4\b )}\par
+{\cf2 >>} {\cf4\b end}\par
+identifier  i\par
+whitespace   \par
+operator    {\cf4\b =}\par
+whitespace   \par
+identifier  i\par
+whitespace   \par
+operator    {\cf4\b +}\par
+whitespace   \par
+number      {\cf1 1}\par
+whitespace   \par
+comment     {\cf2 -- example\par
+}}

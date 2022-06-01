@@ -1,0 +1,8 @@
+.sourcecode .comment { color:#00A000; }
+.sourcecode .constant { color:#009090; }
+.sourcecode { font-family: Monaco, Consolas, monospace; color:#000000; background:#FFFFFF; }
+.sourcecode .keyword { color:#000080; font-weight:bold; }
+.sourcecode .library { color:#900090 !important; }
+.sourcecode .marker { background:#FFFF00; }
+.sourcecode .prompt { color:#00A000; }
+.sourcecode a:link, .sourcecode a:visited { color:#0000FF; text-decoration:underline; }

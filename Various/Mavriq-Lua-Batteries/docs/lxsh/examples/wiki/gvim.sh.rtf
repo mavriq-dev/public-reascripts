@@ -1,0 +1,44 @@
+{\rtf1\ansi\deflang1033{\fonttbl{\f0 Consolas;}}\deff0{\colortbl;\red0\green0\blue255;\red144\green0\blue144;\red0\green160\blue0;\red0\green144\blue144;\red255\green255\blue0;\red0\green0\blue128;\red0\green0\blue0;\red255\green255\blue255;}{\*\pgdsctbl{\pgdsc0{\cbpat8}\pgdscnxt0 Standard;}}{\cf3 #!/bin/bash\par
+}\par
+{\cf3 # This UNIX shell script makes graphical Vim use one instance where possible.\par
+}{\cf3 # Save this script as ~/bin/gvim, make sure it's executable and you're off!\par
+}\par
+{\cf3 # Configuration variables.\par
+}{\cf4 GVIM}=/usr/local/bin/gvim\par
+{\cf4 WMCTRL}=/usr/bin/wmctrl {\cf3 # <- try `sudo apt-get install wmctrl'\par
+}{\cf4 DEBUG}=no {\cf3 # yes or no\par
+}\par
+{\cf3 # Look for command-line arguments that aren't filenames and\par
+}{\cf3 # if one is found then fall back to Vim's regular behavior.\par
+}{\cf6\b for} ARG {\cf6\b in} {\cf4 "$@"}; {\cf6\b do}\par
+  {\cf6\b if} {\cf6\b echo} {\cf4 "$ARG"} | {\cf6\b grep} -q {\cf4 '^note:'}; {\cf6\b then}\par
+    {\cf3 # Don't consider "note:..." as non-file argument (this is a\par
+}    {\cf3 # hack to make my note taking plug-in work with this script).\par
+}    {\cf6\b continue}\par
+  {\cf6\b elif} [ ! -f {\cf4 "$ARG"} ]; {\cf6\b then}\par
+    {\cf3 # Replace the wrapper with Vim itself.\par
+}    [ {\cf4 $DEBUG} = yes ] && {\cf6\b echo} {\cf4 "Process $$: Executing $GVIM $@"} >&{\cf4 2}\par
+    {\cf6\b exec} {\cf4 $GVIM} {\cf4 "$@"}\par
+    {\cf6\b exit} {\cf3 # <- shouldn't be reached!\par
+}  {\cf6\b fi}\par
+{\cf6\b done}\par
+\par
+{\cf3 # Check if Vim is already running.\par
+}{\cf6\b if} ! pidof {\cf4 $GVIM} > /dev/null; {\cf6\b then}\par
+  {\cf3 # It's not: Open file(s) in new instance.\par
+}  [ {\cf4 $DEBUG} = yes ] && {\cf4 "Process $$: Executing $GVIM -p $@"} >&{\cf4 2}\par
+  {\cf6\b exec} {\cf4 "$GVIM"} -p {\cf4 "$@"}\par
+{\cf6\b else}\par
+  [ {\cf4 $DEBUG} = yes ] && {\cf6\b echo} {\cf4 "Process $$: Requesting server list"} >&{\cf4 2}\par
+  {\cf4 $GVIM} --serverlist | {\cf6\b grep} {\cf4 '^GVIM[0-9]*$'} | {\cf6\b while} {\cf6\b read} VIM_SERVER_NAME; {\cf6\b do}\par
+    [ {\cf4 $DEBUG} = yes ] && {\cf6\b echo} {\cf4 "Process $$: Raising selected Vim server"} >&{\cf4 2}\par
+    {\cf4 $WMCTRL} -xa {\cf4 $VIM_SERVER_NAME}\par
+    {\cf3 # Pass any pathname arguments on to Vim?\par
+}    {\cf6\b if} [ ${\cf3 # -ge 1 ]; then\par
+}      {\cf3 # Open files on command-line in existing Vim window.\par
+}      [ {\cf4 $DEBUG} = yes ] && {\cf6\b echo} {\cf4 "Process $$: Executing $GVIM --servername '$VIM_SERVER_NAME' --remote-tab-silent $@"} >&{\cf4 2}\par
+      {\cf6\b exec} {\cf4 $GVIM} --servername {\cf4 "$VIM_SERVER_NAME"} --remote-tab-silent {\cf4 "$@"}\par
+    {\cf6\b fi}\par
+  {\cf6\b done}\par
+{\cf6\b fi}\par
+}

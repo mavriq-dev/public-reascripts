@@ -1,0 +1,19 @@
+{\rtf1\ansi\deflang1033{\fonttbl{\f0 Consolas;}}\deff0{\colortbl;\red0\green0\blue255;\red144\green0\blue144;\red0\green160\blue0;\red0\green144\blue144;\red255\green255\blue0;\red0\green0\blue128;\red0\green0\blue0;\red255\green255\blue255;}{\*\pgdsctbl{\pgdsc0{\cbpat8}\pgdscnxt0 Standard;}}{\cf3 Lua 5.1.4  Copyright (C) 1994-2008 Lua.org, PUC-Rio}\par
+{\cf3 >} {\cf3 -- Load the LXSH module.\par
+}{\cf3 >} {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-require"}{\fldrslt {\cf2 require}}} {\cf4 'lxsh'}\par
+{\cf3 >} {\cf3 -- Run the lexer on a string of source code.\par
+}{\cf3 >} {\cf6\b for} kind, text {\cf6\b in} lxsh.lexers.lua.gmatch {\cf4 'i = i + 1 -- example'} {\cf6\b do}\par
+{\cf3 >>}  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-print"}{\fldrslt {\cf2 print}}}(kind, text)\par
+{\cf3 >>} {\cf6\b end}\par
+identifier  i\par
+whitespace   \par
+operator    =\par
+whitespace   \par
+identifier  i\par
+whitespace   \par
+operator    +\par
+whitespace   \par
+number      {\cf4 1}\par
+whitespace   \par
+comment     {\cf3 -- example\par
+}}

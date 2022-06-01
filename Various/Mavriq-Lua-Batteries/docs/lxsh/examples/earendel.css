@@ -1,0 +1,12 @@
+.sourcecode .comment { color:#558817; }
+.sourcecode .constant { color:#A8660D; }
+.sourcecode { font-family: Monaco, Consolas, monospace; color:#000000; background:#FFFFFF; }
+.sourcecode .escape { color:#844631; }
+.sourcecode .keyword { color:#2239A8; font-weight:bold; }
+.sourcecode .library { color:#0E7C6B !important; }
+.sourcecode .marker { color:#512B1E; background:#FEDC56; font-weight:bold; }
+.sourcecode .number { color:#A8660D; }
+.sourcecode .operator { color:#2239A8; font-weight:bold; }
+.sourcecode .preprocessor { color:#A33243; }
+.sourcecode .prompt { color:#558817; }
+.sourcecode a:link, .sourcecode a:visited { color:#272FC2; text-decoration:underline; }

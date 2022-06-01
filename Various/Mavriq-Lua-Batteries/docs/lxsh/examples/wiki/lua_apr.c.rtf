@@ -1,0 +1,408 @@
+{\rtf1\ansi\deflang1033{\fonttbl{\f0 Consolas;}}\deff0{\colortbl;\red0\green0\blue255;\red144\green0\blue144;\red0\green160\blue0;\red0\green144\blue144;\red255\green255\blue0;\red0\green0\blue128;\red0\green0\blue0;\red255\green255\blue255;}{\*\pgdsctbl{\pgdsc0{\cbpat8}\pgdscnxt0 Standard;}}{\cf3 /* Miscellaneous functions module for the Lua/APR binding.\par
+ *\par
+ * Author: Peter Odding <}{\field{\*\fldinst HYPERLINK "mailto:peter@peterodding.com"}{\fldrslt {\cf1\ul peter@peterodding.com}}}{\cf3 >\par
+ * Last Change: January 8, 2011\par
+ * Homepage: }{\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/"}{\fldrslt {\cf1\ul http://peterodding.com/code/lua/apr/}}}{\cf3 \par
+ * License: MIT\par
+ */}\par
+\par
+#include "lua_apr.h"\par
+#include <apr_portable.h>\par
+\par
+{\cf3 /* Used to make sure that APR is only initialized once. */}\par
+{\cf6\b static} {\cf6\b int} apr_was_initialized = {\cf4 0};\par
+\par
+{\cf3 /* Used to locate global memory pool used by library functions. */}\par
+{\cf6\b static} {\cf6\b int} mp_regidx = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-LUA_NOREF"}{\fldrslt {\cf2 LUA_NOREF}}};\par
+\par
+{\cf3 /* luaopen_apr_core() initializes the binding and library. \{\{\{1 */}\par
+\par
+{\cf6\b int} luaopen_apr_core({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L)\par
+\{\par
+  apr_status_t status;\par
+\par
+  {\cf3 /* Table of library functions. */}\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#luaL_Reg"}{\fldrslt {\cf2 luaL_Reg}}} functions[] = \{\par
+\par
+    {\cf3 /* lua_apr.c -- the "main" file. */}\par
+    \{ {\cf4 "platform_get"}, lua_apr_platform_get \},\par
+    \{ {\cf4 "version_get"}, lua_apr_version_get \},\par
+    \{ {\cf4 "os_default_encoding"}, lua_apr_os_default_encoding \},\par
+    \{ {\cf4 "os_locale_encoding"}, lua_apr_os_locale_encoding \},\par
+    \{ {\cf4 "type"}, lua_apr_type \},\par
+\par
+    {\cf3 /* base64.c -- base64 encoding/decoding. */}\par
+    \{ {\cf4 "base64_encode"}, lua_apr_base64_encode \},\par
+    \{ {\cf4 "base64_decode"}, lua_apr_base64_decode \},\par
+\par
+    {\cf3 /* crypt.c -- cryptographic functions. */}\par
+    \{ {\cf4 "md5_init"}, lua_apr_md5_init \},\par
+    \{ {\cf4 "md5_encode"}, lua_apr_md5_encode \},\par
+    \{ {\cf4 "password_get"}, lua_apr_password_get \},\par
+    \{ {\cf4 "password_validate"}, lua_apr_password_validate \},\par
+    \{ {\cf4 "sha1_init"}, lua_apr_sha1_init \},\par
+\par
+    {\cf3 /* date.c -- date parsing. */}\par
+    \{ {\cf4 "date_parse_http"}, lua_apr_date_parse_http \},\par
+    \{ {\cf4 "date_parse_rfc"}, lua_apr_date_parse_rfc \},\par
+\par
+    {\cf3 /* dbm.c -- dbm routines. */}\par
+    \{ {\cf4 "dbm_open"}, lua_apr_dbm_open \},\par
+    \{ {\cf4 "dbm_getnames"}, lua_apr_dbm_getnames \},\par
+\par
+    {\cf3 /* env.c -- environment variable handling. */}\par
+    \{ {\cf4 "env_get"}, lua_apr_env_get \},\par
+    \{ {\cf4 "env_set"}, lua_apr_env_set \},\par
+    \{ {\cf4 "env_delete"}, lua_apr_env_delete \},\par
+\par
+    {\cf3 /* filepath.c -- filepath manipulation. */}\par
+    \{ {\cf4 "filepath_root"}, lua_apr_filepath_root \},\par
+    \{ {\cf4 "filepath_parent"}, lua_apr_filepath_parent \},\par
+    \{ {\cf4 "filepath_name"}, lua_apr_filepath_name \},\par
+    \{ {\cf4 "filepath_merge"}, lua_apr_filepath_merge \},\par
+    \{ {\cf4 "filepath_list_split"}, lua_apr_filepath_list_split \},\par
+    \{ {\cf4 "filepath_list_merge"}, lua_apr_filepath_list_merge \},\par
+    \{ {\cf4 "filepath_get"}, lua_apr_filepath_get \},\par
+    \{ {\cf4 "filepath_set"}, lua_apr_filepath_set \},\par
+\par
+    {\cf3 /* fnmatch.c -- filename matching. */}\par
+    \{ {\cf4 "fnmatch"}, lua_apr_fnmatch \},\par
+    \{ {\cf4 "fnmatch_test"}, lua_apr_fnmatch_test \},\par
+\par
+    {\cf3 /* io_dir.c -- directory manipulation. */}\par
+    \{ {\cf4 "temp_dir_get"}, lua_apr_temp_dir_get \},\par
+    \{ {\cf4 "dir_make"}, lua_apr_dir_make \},\par
+    \{ {\cf4 "dir_make_recursive"}, lua_apr_dir_make_recursive \},\par
+    \{ {\cf4 "dir_remove"}, lua_apr_dir_remove \},\par
+    \{ {\cf4 "dir_remove_recursive"}, lua_apr_dir_remove_recursive \},\par
+    \{ {\cf4 "dir_open"}, lua_apr_dir_open \},\par
+\par
+    {\cf3 /* io_file.c -- file i/o handling. */}\par
+#   if APR_MAJOR_VERSION > 1 || (APR_MAJOR_VERSION == 1 && APR_MINOR_VERSION >= 4)\par
+    \{ {\cf4 "file_link"}, lua_apr_file_link \},\par
+#   endif\par
+    \{ {\cf4 "file_copy"}, lua_apr_file_copy \},\par
+    \{ {\cf4 "file_append"}, lua_apr_file_append \},\par
+    \{ {\cf4 "file_rename"}, lua_apr_file_rename \},\par
+    \{ {\cf4 "file_remove"}, lua_apr_file_remove \},\par
+    \{ {\cf4 "file_mtime_set"}, lua_apr_file_mtime_set \},\par
+    \{ {\cf4 "file_attrs_set"}, lua_apr_file_attrs_set \},\par
+    \{ {\cf4 "file_perms_set"}, lua_apr_file_perms_set \},\par
+    \{ {\cf4 "stat"}, lua_apr_stat \},\par
+    \{ {\cf4 "file_open"}, lua_apr_file_open \},\par
+\par
+    {\cf3 /* io_net.c -- network i/o handling. */}\par
+    \{ {\cf4 "socket_create"}, lua_apr_socket_create \},\par
+    \{ {\cf4 "hostname_get"}, lua_apr_hostname_get \},\par
+    \{ {\cf4 "host_to_addr"}, lua_apr_host_to_addr \},\par
+    \{ {\cf4 "addr_to_host"}, lua_apr_addr_to_host \},\par
+\par
+    {\cf3 /* io_pipe.c -- pipe i/o handling. */}\par
+    \{ {\cf4 "pipe_open_stdin"}, lua_apr_pipe_open_stdin \},\par
+    \{ {\cf4 "pipe_open_stdout"}, lua_apr_pipe_open_stdout \},\par
+    \{ {\cf4 "pipe_open_stderr"}, lua_apr_pipe_open_stderr \},\par
+    \{ {\cf4 "namedpipe_create"}, lua_apr_namedpipe_create \},\par
+    \{ {\cf4 "pipe_create"}, lua_apr_pipe_create \},\par
+\par
+    {\cf3 /* proc -- process handling. */}\par
+    \{ {\cf4 "proc_create"}, lua_apr_proc_create \},\par
+    \{ {\cf4 "proc_detach"}, lua_apr_proc_detach \},\par
+#   if APR_HAS_FORK\par
+    \{ {\cf4 "proc_fork"}, lua_apr_proc_fork \},\par
+#   endif\par
+\par
+    {\cf3 /* str.c -- string handling. */}\par
+    \{ {\cf4 "strnatcmp"}, lua_apr_strnatcmp \},\par
+    \{ {\cf4 "strnatcasecmp"}, lua_apr_strnatcasecmp \},\par
+    \{ {\cf4 "strfsize"}, lua_apr_strfsize \},\par
+    \{ {\cf4 "tokenize_to_argv"}, lua_apr_tokenize_to_argv \},\par
+\par
+    {\cf3 /* time.c -- time management */}\par
+    \{ {\cf4 "sleep"}, lua_apr_sleep \},\par
+    \{ {\cf4 "time_now"}, lua_apr_time_now \},\par
+    \{ {\cf4 "time_explode"}, lua_apr_time_explode \},\par
+    \{ {\cf4 "time_implode"}, lua_apr_time_implode \},\par
+    \{ {\cf4 "time_format"}, lua_apr_time_format \},\par
+\par
+    {\cf3 /* uri.c -- URI parsing/unparsing. */}\par
+    \{ {\cf4 "uri_parse"}, lua_apr_uri_parse \},\par
+    \{ {\cf4 "uri_unparse"}, lua_apr_uri_unparse \},\par
+    \{ {\cf4 "uri_port_of_scheme"}, lua_apr_uri_port_of_scheme \},\par
+\par
+    {\cf3 /* user.c -- user/group identification. */}\par
+    \{ {\cf4 "user_get"}, lua_apr_user_get \},\par
+    \{ {\cf4 "user_homepath_get"}, lua_apr_user_homepath_get \},\par
+\par
+    {\cf3 /* uuid.c -- UUID generation. */}\par
+    \{ {\cf4 "uuid_get"}, lua_apr_uuid_get \},\par
+    \{ {\cf4 "uuid_format"}, lua_apr_uuid_format \},\par
+    \{ {\cf4 "uuid_parse"}, lua_apr_uuid_parse \},\par
+\par
+    {\cf3 /* xlate.c -- character encoding translation. */}\par
+    \{ {\cf4 "xlate"}, lua_apr_xlate \},\par
+\par
+    \{ NULL, NULL \}\par
+  \};\par
+\par
+  {\cf3 /* Initialize the library (only once per process). */}\par
+  {\cf6\b if} (!apr_was_initialized) \{\par
+    {\cf6\b if} ((status = apr_initialize()) != APR_SUCCESS)\par
+      raise_error_status(L, status);\par
+    {\cf6\b if} ({\field{\*\fldinst HYPERLINK "http://linux.die.net/man/3/atexit"}{\fldrslt {\cf2 atexit}}}(apr_terminate) != {\cf4 0})\par
+      raise_error_message(L, {\cf4 "Lua/APR: Failed to register apr_terminate()"});\par
+    apr_was_initialized = {\cf4 1};\par
+ \}\par
+\par
+  {\cf3 /* Create the table of global functions. */}\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_createtable"}{\fldrslt {\cf2 lua_createtable}}}(L, {\cf4 0}, count(functions));\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#luaL_register"}{\fldrslt {\cf2 luaL_register}}}(L, NULL, functions);\par
+\par
+  {\cf3 /* Let callers of process:user_set() know whether it requires a password. */}\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushboolean"}{\fldrslt {\cf2 lua_pushboolean}}}(L, APR_PROCATTR_USER_SET_REQUIRES_PASSWORD);\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_setfield"}{\fldrslt {\cf2 lua_setfield}}}(L, -{\cf4 2}, {\cf4 "user_set_requires_password"});\par
+\par
+  {\cf3 /* Let callers of apr.socket_create() know whether it supports IPv6. */}\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushboolean"}{\fldrslt {\cf2 lua_pushboolean}}}(L, APR_HAVE_IPV6);\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_setfield"}{\fldrslt {\cf2 lua_setfield}}}(L, -{\cf4 2}, {\cf4 "socket_supports_ipv6"});\par
+\par
+  {\cf6\b return} {\cf4 1};\par
+\}\par
+\par
+{\cf3 /* apr.platform_get() -> name \{\{\{1\par
+ * \par
+ * Get the name of the platform for which the Lua/APR binding was compiled.\par
+ * Returns one of the following strings:\par
+ *\par
+ *  - `'UNIX'`\par
+ *  - `'WIN32'`\par
+ *  - `'NETWARE'`\par
+ *  - `'OS2'`\par
+ *\par
+ * Please note that the labels returned by `apr.platform_get()` don't imply\par
+ * that these platforms are fully supported; the author of the Lua/APR binding\par
+ * doesn't have NETWARE and OS2 environments available for testing.\par
+ */}\par
+\par
+{\cf6\b int} lua_apr_platform_get({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L)\par
+\{\par
+# if defined(WIN32)\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushstring"}{\fldrslt {\cf2 lua_pushstring}}}(L, {\cf4 "WIN32"});\par
+# elif defined(NETWARE)\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushstring"}{\fldrslt {\cf2 lua_pushstring}}}(L, {\cf4 "NETWARE"});\par
+# elif defined(OS2)\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushstring"}{\fldrslt {\cf2 lua_pushstring}}}(L, {\cf4 "OS2"});\par
+# else\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushstring"}{\fldrslt {\cf2 lua_pushstring}}}(L, {\cf4 "UNIX"});\par
+# endif\par
+  {\cf6\b return} {\cf4 1};\par
+\}\par
+\par
+{\cf3 /* apr.version_get() -> apr_version, apu_version \{\{\{1\par
+ *\par
+ * Get the version numbers of the Apache Portable Runtime and its utility\par
+ * library as strings. Each string contains three numbers separated by dots.\par
+ * The numbers have the following meaning:\par
+ *\par
+ *  - The 1st number is used for major [API] [api] changes that can cause\par
+ *    compatibility problems between the Lua/APR binding and the APR and\par
+ *    APR-util libraries\par
+ *  - The 2nd number is used for minor API changes that shouldn't impact\par
+ *    existing functionality in the Lua/APR binding\par
+ *  - The 3rd number is used exclusively for bug fixes\par
+ *\par
+ * This function can be useful when you want to know whether a certain bug fix\par
+ * has been applied to APR and/or APR-util or if you want to report a bug in\par
+ * APR, APR-util or the Lua/APR binding.\par
+ *\par
+ * If you're looking for the version of the Lua/APR binding you can use the\par
+ * `apr._VERSION` string, but note that Lua/APR currently does not use the\par
+ * above versioning rules.\par
+ *\par
+ * [api]: }{\field{\*\fldinst HYPERLINK "http://en.wikipedia.org/wiki/Application_programming_interface"}{\fldrslt {\cf1\ul http://en.wikipedia.org/wiki/Application_programming_interface}}}{\cf3 \par
+ */}\par
+\par
+{\cf6\b int} lua_apr_version_get({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L)\par
+\{\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushstring"}{\fldrslt {\cf2 lua_pushstring}}}(L, apr_version_string());\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushstring"}{\fldrslt {\cf2 lua_pushstring}}}(L, apu_version_string());\par
+  {\cf6\b return} {\cf4 2};\par
+\}\par
+\par
+{\cf3 /* apr.os_default_encoding() -> name \{\{\{1\par
+ *\par
+ * Get the name of the system default character set as a string.\par
+ */}\par
+\par
+{\cf6\b int} lua_apr_os_default_encoding({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L)\par
+\{\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushstring"}{\fldrslt {\cf2 lua_pushstring}}}(L, apr_os_default_encoding(to_pool(L)));\par
+  {\cf6\b return} {\cf4 1};\par
+\}\par
+\par
+{\cf3 /* apr.os_locale_encoding() -> name \{\{\{1\par
+ *\par
+ * Get the name of the current locale character set as a string. If the current\par
+ * locale's data cannot be retrieved on this system, the name of the system\par
+ * default character set is returned instead.\par
+ */}\par
+\par
+{\cf6\b int} lua_apr_os_locale_encoding({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L)\par
+\{\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushstring"}{\fldrslt {\cf2 lua_pushstring}}}(L, apr_os_locale_encoding(to_pool(L)));\par
+  {\cf6\b return} {\cf4 1};\par
+\}\par
+\par
+{\cf3 /* apr.type(object) -> name \{\{\{1\par
+ *\par
+ * Return the type of a userdata value as a string. If @object is of a known\par
+ * type one of the strings `'file'`, `'directory'`, `'socket'`, `'process'` or\par
+ * `'dbm'` will be returned, otherwise nothing is returned.\par
+ */}\par
+\par
+{\cf6\b int} lua_apr_type({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L)\par
+\{\par
+  lua_apr_objtype *types[] = \{\par
+    &lua_apr_file_type,\par
+    &lua_apr_dir_type,\par
+    &lua_apr_socket_type,\par
+    &lua_apr_proc_type,\par
+    &lua_apr_dbm_type\par
+  \};\par
+  {\cf6\b int} i;\par
+\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_settop"}{\fldrslt {\cf2 lua_settop}}}(L, {\cf4 1});\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#luaL_checktype"}{\fldrslt {\cf2 luaL_checktype}}}(L, {\cf4 1}, LUA_TUSERDATA);\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_getmetatable"}{\fldrslt {\cf2 lua_getmetatable}}}(L, {\cf4 1});\par
+\par
+  {\cf6\b for} (i = {\cf4 0}; i < count(types); i++) \{\par
+    get_metatable(L, types[i]);\par
+    {\cf6\b if} ({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_rawequal"}{\fldrslt {\cf2 lua_rawequal}}}(L, {\cf4 2}, {\cf4 3})) \{\par
+      {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushstring"}{\fldrslt {\cf2 lua_pushstring}}}(L, types[i]->friendlyname);\par
+      {\cf6\b return} {\cf4 1};\par
+    \}\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pop"}{\fldrslt {\cf2 lua_pop}}}(L, {\cf4 1});\par
+  \}\par
+\par
+  {\cf6\b return} {\cf4 0};\par
+\}\par
+\par
+{\cf3 /* to_pool() returns the global memory pool from the registry. \{\{\{1 */}\par
+\par
+apr_pool_t *to_pool({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L)\par
+\{\par
+  apr_pool_t *memory_pool;\par
+  apr_status_t status;\par
+\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#luaL_checkstack"}{\fldrslt {\cf2 luaL_checkstack}}}(L, {\cf4 1}, {\cf4 "not enough stack space to get memory pool"});\par
+\par
+  {\cf6\b if} (mp_regidx == {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-LUA_NOREF"}{\fldrslt {\cf2 LUA_NOREF}}}) \{\par
+    status = apr_pool_create(&memory_pool, NULL);\par
+    {\cf6\b if} (status != APR_SUCCESS)\par
+      raise_error_status(L, status);\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushlightuserdata"}{\fldrslt {\cf2 lua_pushlightuserdata}}}(L, memory_pool);\par
+    mp_regidx = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#luaL_ref"}{\fldrslt {\cf2 luaL_ref}}}(L, {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-LUA_REGISTRYINDEX"}{\fldrslt {\cf2 LUA_REGISTRYINDEX}}});\par
+  \} {\cf6\b else} \{\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_rawgeti"}{\fldrslt {\cf2 lua_rawgeti}}}(L, {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-LUA_REGISTRYINDEX"}{\fldrslt {\cf2 LUA_REGISTRYINDEX}}}, mp_regidx);\par
+    memory_pool = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_touserdata"}{\fldrslt {\cf2 lua_touserdata}}}(L, -{\cf4 1});\par
+    apr_pool_clear(memory_pool);\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pop"}{\fldrslt {\cf2 lua_pop}}}(L, {\cf4 1});\par
+  \}\par
+\par
+  {\cf6\b return} memory_pool;\par
+\}\par
+\par
+{\cf3 /* status_to_message() converts APR status codes to error messages. \{\{\{1 */}\par
+\par
+{\cf6\b int} status_to_message({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L, apr_status_t status)\par
+\{\par
+  {\cf6\b char} message[{\cf4 512}];\par
+  apr_strerror(status, message, count(message));\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushstring"}{\fldrslt {\cf2 lua_pushstring}}}(L, message);\par
+  {\cf6\b return} {\cf4 1};\par
+\}\par
+\par
+{\cf3 /* push_status() returns true for APR_SUCCESS or the result of status_to_message(). \{\{\{1 */}\par
+\par
+{\cf6\b int} push_status({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L, apr_status_t status)\par
+\{\par
+  {\cf6\b if} (status == APR_SUCCESS) \{\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushboolean"}{\fldrslt {\cf2 lua_pushboolean}}}(L, {\cf4 1});\par
+    {\cf6\b return} {\cf4 1};\par
+  \} {\cf6\b else} \{\par
+    {\cf6\b return} push_error_status(L, status);\par
+  \}\par
+\}\par
+\par
+{\cf3 /* push_error_status() converts APR status codes to (nil, message, code). \{\{\{1 */}\par
+\par
+{\cf6\b int} push_error_status({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L, apr_status_t status)\par
+\{\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushnil"}{\fldrslt {\cf2 lua_pushnil}}}(L);\par
+  status_to_message(L, status);\par
+  status_to_name(L, status);\par
+  {\cf6\b return} {\cf4 3};\par
+\}\par
+\par
+{\cf3 /* new_object() allocates userdata of the given type. \{\{\{1 */}\par
+\par
+{\cf6\b void} *new_object({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L, lua_apr_objtype *T)\par
+\{\par
+  {\cf6\b void} *object;\par
+\par
+  object = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_newuserdata"}{\fldrslt {\cf2 lua_newuserdata}}}(L, T->objsize);\par
+  {\cf6\b if} (object != NULL) \{\par
+    {\field{\*\fldinst HYPERLINK "http://linux.die.net/man/3/memset"}{\fldrslt {\cf2 memset}}}(object, {\cf4 0}, T->objsize);\par
+    get_metatable(L, T);\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_setmetatable"}{\fldrslt {\cf2 lua_setmetatable}}}(L, -{\cf4 2});\par
+    getdefaultenv(L);\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_setfenv"}{\fldrslt {\cf2 lua_setfenv}}}(L, -{\cf4 2});\par
+  \}\par
+  {\cf6\b return} object;\par
+\}\par
+\par
+{\cf6\b void} getdefaultenv({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L) {\cf3 /* \{\{\{1 */}\par
+\{\par
+  {\cf6\b const} {\cf6\b char} *key = {\cf4 "Lua/APR default environment for userdata"};\par
+\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_getfield"}{\fldrslt {\cf2 lua_getfield}}}(L, {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-LUA_REGISTRYINDEX"}{\fldrslt {\cf2 LUA_REGISTRYINDEX}}}, key);\par
+  {\cf6\b if} (!{\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_istable"}{\fldrslt {\cf2 lua_istable}}}(L, -{\cf4 1})) \{\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pop"}{\fldrslt {\cf2 lua_pop}}}(L, {\cf4 1});\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_newtable"}{\fldrslt {\cf2 lua_newtable}}}(L);\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pushvalue"}{\fldrslt {\cf2 lua_pushvalue}}}(L, -{\cf4 1});\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_setfield"}{\fldrslt {\cf2 lua_setfield}}}(L, {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-LUA_REGISTRYINDEX"}{\fldrslt {\cf2 LUA_REGISTRYINDEX}}}, key);\par
+  \}\par
+\}\par
+\par
+{\cf3 /* check_object() validates objects created by new_object(). \{\{\{1 */}\par
+\par
+{\cf6\b void} *check_object({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L, {\cf6\b int} idx, lua_apr_objtype *T)\par
+\{\par
+  {\cf6\b int} valid = {\cf4 0};\par
+  get_metatable(L, T);\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_getmetatable"}{\fldrslt {\cf2 lua_getmetatable}}}(L, idx);\par
+  valid = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_rawequal"}{\fldrslt {\cf2 lua_rawequal}}}(L, -{\cf4 1}, -{\cf4 2});\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pop"}{\fldrslt {\cf2 lua_pop}}}(L, {\cf4 2});\par
+  {\cf6\b if} (valid)\par
+    {\cf6\b return} {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_touserdata"}{\fldrslt {\cf2 lua_touserdata}}}(L, idx);\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#luaL_typerror"}{\fldrslt {\cf2 luaL_typerror}}}(L, idx, T->typename);\par
+  {\cf6\b return} NULL;\par
+\}\par
+\par
+{\cf3 /* get_metatable() returns the metatable for the given type. \{\{\{1 */}\par
+\par
+{\cf6\b int} get_metatable({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_State"}{\fldrslt {\cf2 lua_State}}} *L, lua_apr_objtype *T)\par
+\{\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#luaL_getmetatable"}{\fldrslt {\cf2 luaL_getmetatable}}}(L, T->typename);\par
+  {\cf6\b if} ({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_type"}{\fldrslt {\cf2 lua_type}}}(L, -{\cf4 1}) != LUA_TTABLE) \{\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_pop"}{\fldrslt {\cf2 lua_pop}}}(L, {\cf4 1});\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#luaL_newmetatable"}{\fldrslt {\cf2 luaL_newmetatable}}}(L, T->typename);\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#luaL_register"}{\fldrslt {\cf2 luaL_register}}}(L, NULL, T->metamethods);\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_newtable"}{\fldrslt {\cf2 lua_newtable}}}(L);\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#luaL_register"}{\fldrslt {\cf2 luaL_register}}}(L, NULL, T->methods);\par
+    {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#lua_setfield"}{\fldrslt {\cf2 lua_setfield}}}(L, -{\cf4 2}, {\cf4 "__index"});\par
+  \}\par
+  {\cf6\b return} {\cf4 1};\par
+\}\par
+\par
+{\cf3 /* vim: set ts=2 sw=2 et tw=79 fen fdm=marker : */}\par
+}

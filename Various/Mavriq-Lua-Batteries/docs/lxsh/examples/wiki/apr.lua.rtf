@@ -1,0 +1,175 @@
+{\rtf1\ansi\deflang1033{\fonttbl{\f0 Consolas;}}\deff0{\colortbl;\red0\green0\blue255;\red144\green0\blue144;\red0\green160\blue0;\red0\green144\blue144;\red255\green255\blue0;\red0\green0\blue128;\red0\green0\blue0;\red255\green255\blue255;}{\*\pgdsctbl{\pgdsc0{\cbpat8}\pgdscnxt0 Standard;}}{\cf3 --[[\par
+\par
+ Lua source code for the Lua/APR binding.\par
+\par
+ Author: Peter Odding <}{\field{\*\fldinst HYPERLINK "mailto:peter@peterodding.com"}{\fldrslt {\cf1\ul peter@peterodding.com}}}{\cf3 >\par
+ Last Change: January 8, 2011\par
+ Homepage: }{\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/"}{\fldrslt {\cf1\ul http://peterodding.com/code/lua/apr/}}}{\cf3 \par
+ License: MIT\par
+ Version: 0.9.29\par
+\par
+ This Lua script is executed on require("apr"), loads the binary module using\par
+ require("apr.core"), defines several library functions implemented on top of\par
+ the binary module and returns the module table as the result of require().\par
+\par
+--]]}\par
+\par
+{\cf6\b local} apr = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-require"}{\fldrslt {\cf2 require}}} {\cf4 'apr.core'}\par
+apr._VERSION = {\cf4 '0.9.29'}\par
+\par
+{\cf3 -- apr.md5(input [, binary]) -> digest \{\{\{1\par
+}{\cf3 --\par
+}{\cf3 -- Calculate the [MD5] [md5] message digest of the string @input. On success\par
+}{\cf3 -- the digest is returned as a string of 32 hexadecimal characters, or a string\par
+}{\cf3 -- of 16 bytes if @binary evaluates to true. Otherwise a nil followed by an\par
+}{\cf3 -- error message is returned.\par
+}{\cf3 --\par
+}{\cf3 -- *This function is binary safe.*\par
+}{\cf3 --\par
+}{\cf3 -- Part of the "Cryptography routines" module.\par
+}\par
+{\cf6\b function} {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.md5"}{\fldrslt {\cf2 apr.md5}}}(input, binary)\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-assert"}{\fldrslt {\cf2 assert}}}({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-type"}{\fldrslt {\cf2 type}}}(input) == {\cf4 'string'}, {\cf4 "bad argument #1 to apr.md5() (string expected)"})\par
+  {\cf6\b local} context, digest, status, errmsg, errcode\par
+  context, errmsg, errcode = {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.md5_init"}{\fldrslt {\cf2 apr.md5_init}}}()\par
+  {\cf6\b if} context {\cf6\b then}\par
+    status, errmsg, errcode = context:update(input)\par
+    {\cf6\b if} status {\cf6\b then}\par
+      digest, errmsg, errcode = context:digest(binary)\par
+      {\cf6\b if} digest {\cf6\b then} {\cf6\b return} digest {\cf6\b end}\par
+    {\cf6\b end}\par
+  {\cf6\b end}\par
+  {\cf6\b return} {\cf4 nil}, errmsg, errcode\par
+{\cf6\b end}\par
+\par
+{\cf3 -- apr.sha1(input [, binary]) -> digest \{\{\{1\par
+}{\cf3 --\par
+}{\cf3 -- Calculate the [SHA1] [sha1] message digest of the string @input. On success\par
+}{\cf3 -- the digest is returned as a string of 40 hexadecimal characters, or a string\par
+}{\cf3 -- of 20 bytes if @binary evaluates to true. Otherwise a nil followed by an\par
+}{\cf3 -- error message is returned.\par
+}{\cf3 --\par
+}{\cf3 -- *This function is binary safe.*\par
+}{\cf3 --\par
+}{\cf3 -- Part of the "Cryptography routines" module.\par
+}\par
+{\cf6\b function} {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.sha1"}{\fldrslt {\cf2 apr.sha1}}}(input, binary)\par
+  {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-assert"}{\fldrslt {\cf2 assert}}}({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-type"}{\fldrslt {\cf2 type}}}(input) == {\cf4 'string'}, {\cf4 "bad argument #1 to apr.sha1() (string expected)"})\par
+  {\cf6\b local} context, digest, status, errmsg, errcode\par
+  context, errmsg, errcode = {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.sha1_init"}{\fldrslt {\cf2 apr.sha1_init}}}()\par
+  {\cf6\b if} context {\cf6\b then}\par
+    status, errmsg, errcode = context:update(input)\par
+    {\cf6\b if} status {\cf6\b then}\par
+      digest, errmsg, errcode = context:digest(binary)\par
+      {\cf6\b if} digest {\cf6\b then} {\cf6\b return} digest {\cf6\b end}\par
+    {\cf6\b end}\par
+  {\cf6\b end}\par
+  {\cf6\b return} {\cf4 nil}, errmsg, errcode\par
+{\cf6\b end}\par
+\par
+{\cf3 -- apr.filepath_which(program [, find_all]) -> pathname \{\{\{1\par
+}{\cf3 -- \par
+}{\cf3 -- Find the full pathname of @program by searching the directories in the\par
+}{\cf3 -- [$PATH] [path_var] environment variable and return the pathname of the\par
+}{\cf3 -- first program that's found. If @find_all is true then a list with the\par
+}{\cf3 -- pathnames of all matching programs is returned instead.\par
+}{\cf3 --\par
+}{\cf3 -- [path_var]: }{\field{\*\fldinst HYPERLINK "http://en.wikipedia.org/wiki/PATH_%28variable%29"}{\fldrslt {\cf1\ul http://en.wikipedia.org/wiki/PATH_%28variable%29}}}{\cf3 \par
+}{\cf3 --\par
+}{\cf3 -- Part of the "File path manipulation" module.\par
+}\par
+{\cf6\b function} {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.filepath_which"}{\fldrslt {\cf2 apr.filepath_which}}}(program, find_all)\par
+  {\cf6\b local} split = {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.filepath_list_split"}{\fldrslt {\cf2 apr.filepath_list_split}}}\par
+  {\cf6\b local} is_windows = {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.platform_get"}{\fldrslt {\cf2 apr.platform_get}}}() == {\cf4 'WIN32'}\par
+  {\cf6\b local} extensions = is_windows and split({\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.env_get"}{\fldrslt {\cf2 apr.env_get}}} {\cf4 'PATHEXT'})\par
+  {\cf6\b local} results = find_all and \{\}\par
+  {\cf6\b for} _, directory {\cf6\b in} {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-ipairs"}{\fldrslt {\cf2 ipairs}}}(split({\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.env_get"}{\fldrslt {\cf2 apr.env_get}}} {\cf4 'PATH'})) {\cf6\b do}\par
+    {\cf6\b local} candidate = {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.filepath_merge"}{\fldrslt {\cf2 apr.filepath_merge}}}(directory, program)\par
+    {\cf6\b if} {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.stat"}{\fldrslt {\cf2 apr.stat}}}(candidate, {\cf4 'type'}) == {\cf4 'file'} {\cf6\b then}\par
+      {\cf3 -- }{\chcbpat5 TODO}{\cf3  if not is_windows check executable bits\par
+}      {\cf6\b if} not find_all {\cf6\b then} {\cf6\b return} candidate {\cf6\b end}\par
+      results[#results + {\cf4 1}] = candidate\par
+    {\cf6\b end}\par
+    {\cf6\b if} is_windows and #extensions >= {\cf4 1} {\cf6\b then}\par
+      {\cf6\b for} _, extension {\cf6\b in} {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-ipairs"}{\fldrslt {\cf2 ipairs}}}(extensions) {\cf6\b do}\par
+        candidate = {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.filepath_merge"}{\fldrslt {\cf2 apr.filepath_merge}}}(directory, program .. {\cf4 '.'} .. extension)\par
+        {\cf6\b if} {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.stat"}{\fldrslt {\cf2 apr.stat}}}(candidate, {\cf4 'type'}) == {\cf4 'file'} {\cf6\b then}\par
+          {\cf6\b if} not find_all {\cf6\b then} {\cf6\b return} candidate {\cf6\b end}\par
+          results[#results + {\cf4 1}] = candidate\par
+        {\cf6\b end}\par
+      {\cf6\b end}\par
+    {\cf6\b end}\par
+  {\cf6\b end}\par
+  {\cf6\b return} results\par
+{\cf6\b end}\par
+\par
+{\cf3 -- apr.glob(pattern [, ignorecase]) -> iterator \{\{\{1\par
+}{\cf3 -- \par
+}{\cf3 -- Split @pattern into a directory path and a filename pattern and return an\par
+}{\cf3 -- iterator which returns all filenames in the directory that match the\par
+}{\cf3 -- extracted filename pattern. The `apr.fnmatch()` function is used for\par
+}{\cf3 -- filename matching so the documentation there applies.\par
+}{\cf3 --\par
+}{\cf3 -- *This function is not binary safe.*\par
+}{\cf3 --\par
+}{\cf3 -- Part of the "Filename matching" module.\par
+}\par
+{\cf6\b function} {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.glob"}{\fldrslt {\cf2 apr.glob}}}(pattern, ignorecase)\par
+  {\cf6\b local} fnmatch = {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.fnmatch"}{\fldrslt {\cf2 apr.fnmatch}}}\par
+  {\cf6\b local} yield = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-coroutine.yield"}{\fldrslt {\cf2 coroutine.yield}}}\par
+  {\cf6\b local} directory, pattern = {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.filepath_parent"}{\fldrslt {\cf2 apr.filepath_parent}}}(pattern)\par
+  {\cf6\b local} handle = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-assert"}{\fldrslt {\cf2 assert}}}({\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.dir_open"}{\fldrslt {\cf2 apr.dir_open}}}(directory))\par
+  {\cf6\b return} {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-coroutine.wrap"}{\fldrslt {\cf2 coroutine.wrap}}}({\cf6\b function}()\par
+    {\cf6\b for} path, name {\cf6\b in} handle:entries({\cf4 'path'}, {\cf4 'name'}) {\cf6\b do}\par
+      {\cf6\b if} fnmatch(pattern, name, ignorecase) {\cf6\b then}\par
+        yield(path)\par
+      {\cf6\b end}\par
+    {\cf6\b end}\par
+    handle:close()\par
+  {\cf6\b end})\par
+{\cf6\b end}\par
+\par
+{\cf3 -- apr.uri_encode(string) -> encoded \{\{\{1\par
+}{\cf3 --\par
+}{\cf3 -- Encode all unsafe bytes in @string using [percent-encoding] [percenc] so\par
+}{\cf3 -- that the string can be embedded in a [URI] [uri] query string.\par
+}{\cf3 --\par
+}{\cf3 -- [percenc]: }{\field{\*\fldinst HYPERLINK "http://en.wikipedia.org/wiki/Percent-encoding"}{\fldrslt {\cf1\ul http://en.wikipedia.org/wiki/Percent-encoding}}}{\cf3 \par
+}{\cf3 --\par
+}{\cf3 -- Part of the "Uniform resource identifier parsing" module.\par
+}\par
+{\cf6\b function} {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.uri_encode"}{\fldrslt {\cf2 apr.uri_encode}}}(s)\par
+  {\cf6\b local} byte = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-string.byte"}{\fldrslt {\cf2 string.byte}}}\par
+  {\cf6\b local} format = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-string.format"}{\fldrslt {\cf2 string.format}}}\par
+  {\cf6\b return} (s:gsub({\cf4 '[^A-Za-z0-9_.-]'}, {\cf6\b function}(c)\par
+    {\cf6\b if} c == {\cf4 ' '} {\cf6\b then}\par
+      {\cf6\b return} {\cf4 '+'}\par
+    {\cf6\b else}\par
+      {\cf6\b return} format({\cf4 '}%%%0{\cf4 2x'}, byte(c))\par
+    {\cf6\b end}\par
+  {\cf6\b end}))\par
+{\cf6\b end}\par
+\par
+{\cf3 -- apr.uri_decode(encoded) -> string \{\{\{1\par
+}{\cf3 --\par
+}{\cf3 -- Decode all [percent-encoded] [percenc] bytes in the string @encoded.\par
+}{\cf3 --\par
+}{\cf3 -- [percenc]: }{\field{\*\fldinst HYPERLINK "http://en.wikipedia.org/wiki/Percent-encoding"}{\fldrslt {\cf1\ul http://en.wikipedia.org/wiki/Percent-encoding}}}{\cf3 \par
+}{\cf3 --\par
+}{\cf3 -- Part of the "Uniform resource identifier parsing" module.\par
+}\par
+{\cf6\b function} {\field{\*\fldinst HYPERLINK "http://peterodding.com/code/lua/apr/docs/#apr.uri_decode"}{\fldrslt {\cf2 apr.uri_decode}}}(s)\par
+  {\cf6\b local} char = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-string.char"}{\fldrslt {\cf2 string.char}}}\par
+  {\cf6\b local} {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-tonumber"}{\fldrslt {\cf2 tonumber}}} = {\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-tonumber"}{\fldrslt {\cf2 tonumber}}}\par
+  s = s:gsub({\cf4 '+'}, {\cf4 ' '})\par
+  {\cf6\b return} (s:gsub({\cf4 '}%%{\cf4 (}%x%x{\cf4 ?)'}, {\cf6\b function}(code)\par
+    {\cf6\b return} char({\field{\*\fldinst HYPERLINK "http://www.lua.org/manual/5.1/manual.html#pdf-tonumber"}{\fldrslt {\cf2 tonumber}}}(code, {\cf4 16}))\par
+  {\cf6\b end}))\par
+{\cf6\b end}\par
+\par
+{\cf3 -- \}\}\}1\par
+}\par
+{\cf6\b return} apr\par
+\par
+{\cf3 -- vim: ts=2 sw=2 et tw=79 fen fdm=marker\par
+}}
