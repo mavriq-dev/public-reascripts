@@ -1,7 +1,7 @@
 ![License](https://img.shields.io/github/license/mavriq-dev/public-reascripts)
 ![Code Size](https://img.shields.io/github/languages/code-size/mavriq-dev/public-reascripts)
 ![Repo Size](https://img.shields.io/github/repo-size/mavriq-dev/public-reascripts)
-![PreRelease Ver](https://img.shields.io/github/v/release/mavriq-dev/public-reascripts?include_prereleases)
+![Release Ver](https://img.shields.io/github/v/release/mavriq-dev/public-reascripts)
 # Mavriq ReaScripts Repository
 
 This git repository houses all Scripts created by Mavriq for the `Reaper Digital Audio Workstation`. 
