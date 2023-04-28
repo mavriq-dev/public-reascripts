@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Mavriq ReaScript Repository" commit="a020e34d08d0233334d1d8f44af36fc1014f093b">
+<index version="1" name="Mavriq ReaScript Repository" commit="e600839e711161704eb10cdf76e0d98c9acdd84d">
   <category name="Various">
     <reapack name="mavriq_bank_monitor.lua" type="script" desc="Mavriq ReaLearn Bank Monitor">
       <metadata>
@@ -952,11 +952,11 @@ v1.0.0
   <category name="Various/Mavriq-Lua-Sockets">
     <reapack name="socket.lua" type="script" desc="Mavriq Lua Sockets">
       <metadata>
-        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
-{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 Allows use of Lua Sockets in 'REAPER'\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Allows use of Lua Sockets in 'REAPER'\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 Reaper is missing Lua Auxlib in it's embedded version of Lua. As such things such as the luasockets library etc will not work. If loaded they will throw an error for missing symbols when the library tries to access those in the missing AuxLib.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 Until the REAPER devs fix this, we have to work around the issue. This project does that for all all three REAPER platforms.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 This package is used by other scripts and doesn't do anything on its own.\par}
@@ -1015,6 +1015,35 @@ v1.0.0pre1
         <source platform="darwin64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/8ccf04d72ada51f6fd30fa7e24af20033ed17bb7/Various/Mavriq-Lua-Sockets/socket/core.so</source>
         <source platform="linux64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/8ccf04d72ada51f6fd30fa7e24af20033ed17bb7/Various/Mavriq-Lua-Sockets/socket/core.so.linux</source>
       </version>
+      <version name="1.1.1" author="Mavriq" time="2023-04-28T13:33:11Z">
+        <changelog><![CDATA[V1.1.1
+ + fixed issue with mac silicon due to changes in Reapack
+V1.1.0
+ + added support for mac silicon
+ + added support for older macs (10.9+)
+v1.0.0
+ + initial release
+v1.0.0pre3
+ + linux fix
+v1.0.0pre2
+ + fixed linux version
+v1.0.0pre1
+ + initial release]]></changelog>
+        <source file="ftp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/ftp.lua</source>
+        <source file="headers.lua">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/headers.lua</source>
+        <source file="http.lua">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/http.lua</source>
+        <source file="ltn12.lua">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/ltn12.lua</source>
+        <source file="mbox.lua">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/mbox.lua</source>
+        <source file="mime.lua">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/mime.lua</source>
+        <source file="smtp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/smtp.lua</source>
+        <source>https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/socket.lua</source>
+        <source file="tp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/tp.lua</source>
+        <source file="url.lua">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/url.lua</source>
+        <source platform="win64" file="socket/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/socket/core.dll</source>
+        <source platform="darwin64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/socket/core.so</source>
+        <source platform="darwin-arm64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/socket/core.so</source>
+        <source platform="linux64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/socket/core.so.linux</source>
+      </version>
     </reapack>
   </category>
   <metadata>
@@ -1022,6 +1051,7 @@ v1.0.0pre1
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 
+{\pard \ql \f0 \sa180 \li0 \fi0 {\cf1 [image: https://img.shields.io/github/license/mavriq-dev/public-reascripts]\cf0} {\cf1 [image: https://img.shields.io/github/languages/code-size/mavriq-dev/public-reascripts]\cf0} {\cf1 [image: https://img.shields.io/github/repo-size/mavriq-dev/public-reascripts]\cf0} {\cf1 [image: https://img.shields.io/github/v/release/mavriq-dev/public-reascripts]\cf0}\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Mavriq ReaScripts Repository\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 This git repository houses all Scripts created by Mavriq for the {\f1 Reaper Digital Audio Workstation}.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \b \fs28 Repack Download\par}
