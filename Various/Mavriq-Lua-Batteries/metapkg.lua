@@ -22,5 +22,5 @@
 --   /Various/Mavriq-Lua-Batteries/lua/**/*
 --   /Various/Mavriq-Lua-Batteries/tests/**/*
 --   [win64] /Various/Mavriq-Lua-Batteries/bin/**/*.dll
---   [darwin64] /Various/Mavriq-Lua-Batteries/bin/**/*.dylib
+--   [darwin] /Various/Mavriq-Lua-Batteries/bin/**/*.dylib
 --   [darwin-arm64] /Various/Mavriq-Lua-Batteries/bin/**/*.dylib
