@@ -32,12 +32,11 @@
             <li><a href="index.html#credits">Credits</a></li>
         </ul>
     </li>
-    <li><strong>Manual</strong>
-    </li>
-    <li><a href="reference.html">Reference</a>
-    <li><a href="http://github.com/keplerproject/copas/">Project</a>
+    <li><strong>Manual</strong></li>
+    <li><a href="reference.html">Reference</a></li>
+    <li><a href="http://github.com/lunarmodules/copas/">Project</a>
         <ul>
-            <li><a href="http://github.com/keplerproject/copas/issues">Bug Tracker</a></li>
+            <li><a href="http://github.com/lunarmodules/copas/issues">Bug Tracker</a></li>
         </ul>
     </li>
     <li><a href="license.html">License</a></li>
@@ -55,6 +54,31 @@ luarocks install copas
 </pre>
 <p>Note: LuaSec is not automatically installed as a dependency. If you want to use ssl with Copas,
 you need to manually install LuaSec as well.</p>
+
+<h2><a name="cli"></a>Runtime</h2>
+
+Copas can either be used as a regular Lua library, or as a runtime. A command line script that
+acts as a runtime engine is included.
+
+When using the runtime, the library is available as a global (<code>copas</code>), and the
+scheduler will automatically be started. For example:
+
+<pre class="example">
+  #!/usr/bin/env copas
+
+  local count = 0
+  copas.timer.new {
+    delay = 1,
+    recurring = true,
+    callback = function(self)
+      count = count + 1
+      print('hello world ' .. count)
+      if count &gt;= 5 then
+        self:cancel()
+      end
+    end
+  }
+</pre>
 
 <h2><a name="introduction"></a>Introduction to Copas</h2>
 
@@ -121,7 +145,7 @@ copas.addserver(server, echoHandler)
 <p>Finally, to start Copas and all the registered servers we just call:</p>
 
 <pre class="example">
-copas.loop()
+copas()
 </pre>
 
 <p>As long as every handler uses Copas's <code>send</code> and <code>receive</code>,
@@ -271,7 +295,7 @@ for more information.</p>
 <p>Finally, to run the dispatcher loop you just call:</p>
 
 <pre class="example">
-copas.loop()
+copas()
 </pre>
 
 <p>During the loop Copas' dispatcher accepts connections from clients and
@@ -301,7 +325,7 @@ function handler(skt)
 end
 
 copas.addserver(server, handler, 1)
-copas.loop()
+copas()
 </pre>
 <p>For UDP sockets the <code>receivefrom()</code> and <code>sendto()</code>
 methods are available, both for copas and when the socket is wrapped. These
@@ -336,7 +360,7 @@ copas.addthread(function()
    end
 end)
 
-copas.loop()
+copas()
 </pre>
 <p>The example connects, echoes whatever it receives and exits upon receiving 'quit'. For an
 example passing arguments to a task, see the async http example below.</p>
@@ -346,10 +370,9 @@ example passing arguments to a task, see the async http example below.</p>
 Below an example of a timer;</p>
 <pre class="example">
 local copas = require("copas")
-local timer = require("copas.timer")
 
-copas.loop(function()
-   timer.new({
+copas(function()
+   copas.timer.new({
      delay = 1,                        -- delay in seconds
      recurring = true,                 -- make the timer repeat
      params = "hello world",
@@ -371,9 +394,8 @@ the protected resource becomes available, without blocking other threads.
 </p>
 <pre class="example">
 local copas = require("copas")
-local new_lock = require("copas.lock").new
 
-local lock = new_lock()
+local lock = copas.lock.new()
 
 local function some_func()
   local ok, err, wait = lock:get()
@@ -382,7 +404,7 @@ local function some_func()
   end
 
   print("doing something on my own")
-  copas.sleep()  -- allow to yield, while inside the lock
+  copas.pause()  -- allow to yield, while inside the lock
   print("after " .. ok .. " seconds waiting")
 
   lock:release()
@@ -466,7 +488,7 @@ local handler = function(host)
 end
 
 for _, host in ipairs(list) do copas.addthread(handler, host) end
-copas.loop()
+copas()
 </pre>
 
 <h2><a name="control"></a>Controlling Copas</h2>

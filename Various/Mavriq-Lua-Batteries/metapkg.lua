@@ -1,6 +1,6 @@
 -- @metapackage
 -- @description Mavriq Lua Batteries
--- @version 0.1.0rc1
+-- @version 0.1.0rc2
 -- @author Mavriq
 -- @about
 --   # Adds the missing "batteries" to lua in 'REAPER'
@@ -10,6 +10,11 @@
 --   Forum Thread https://github.com/available_soon
 --   GitHub repository https://github.com/mavriq-dev/mavriq-lua-batteries
 -- @changelog
+--   v0.1.0rc2
+--    + update various modules
+--    + add mac version
+--    - wxlua not working
+--    - rings not working
 --   v0.1.0rc1
 --    + initial release
 -- @provides
@@ -17,4 +22,5 @@
 --   /Various/Mavriq-Lua-Batteries/lua/**/*
 --   /Various/Mavriq-Lua-Batteries/tests/**/*
 --   [win64] /Various/Mavriq-Lua-Batteries/bin/**/*.dll
+--   [darwin64 darwin-arm64] /Various/Mavriq-Lua-Batteries/bin/**/*.dylib
 

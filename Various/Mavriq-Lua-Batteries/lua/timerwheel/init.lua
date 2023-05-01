@@ -32,7 +32,7 @@ end
 
 local xpcall = require("coxpcall").xpcall
 local default_err_handler = function(err)
-  io.stderr:write(debug.traceback("TimerWheel callback failed with: " .. tostring(err)))
+  io.stderr:write(debug.traceback("TimerWheel callback failed with: " .. tostring(err)).."\n")
 end
 
 local math_floor = math.floor
@@ -43,19 +43,15 @@ local _M = {}
 
 
 --- Creates a new timer wheel.
--- The options are:
---
---  - `precision` (optional) precision of the timer wheel in seconds (slot size),
--- defaults to 0.050
---  - `ringsize` (optional) number of slots in each ring, defaults to 72000 (1
--- hour span, based on default `precision`)
---  - `now` (optional) a function returning the curent time in seconds. Defaults
--- to `luasocket.gettime` or `ngx.now` if available.
---  - `err_handler` (optional) a function to use as error handler in a `xpcall` when
--- executing the callback. The default will send the stacktrace on `stderr`.
---
--- @param opts the options table
--- @return the timerwheel object
+-- @tparam table opts the options table
+-- @tparam[opt=0.050] number opts.precision the precision of the timer wheel in seconds (slot size),
+-- @tparam[opt] int opts.ringsize number of slots in each ring, defaults to 72000 (1
+-- hour span, with `precision == 0.050`)
+-- @tparam[opt] function opts.now a function returning the curent time in seconds. Defaults
+-- to `ngx.now` or `luasocket.gettime` if available.
+-- @tparam[opt] function opts.err_handler a function to use as error handler in an `xpcall` when
+-- executing the callback. The default will write the stacktrace to `stderr`.
+-- @treturn wheel the timerwheel object
 function _M.new(opts)
   assert(opts ~= _M, "new should not be called with colon ':' notation")
 
@@ -147,17 +143,17 @@ function _M.new(opts)
   end
 
   --- Gets the number of timers.
-  -- @return number of timers
+  -- @treturn int number of timers
   function wheel:count()
     return count
   end
 
   --- Sets a timer.
-  -- @param expire_in in how many seconds should the timer expire
-  -- @param cb callback function to execute upon expiring (NOTE: the
+  -- @tparam number expire_in in how many seconds should the timer expire
+  -- @tparam function cb callback function to execute upon expiring (NOTE: the
   -- callback will run within an `xpcall`)
   -- @param arg parameter to be passed to `cb` when executing
-  -- @return id
+  -- @treturn int the id of the newly set timer
   -- @usage
   -- local cb = function(arg)
   --   print("timer executed with: ", arg)  --> "timer executed with: hello world"
@@ -219,8 +215,8 @@ function _M.new(opts)
   end
 
   --- Cancels a timer.
-  -- @param id the timer id to cancel
-  -- @return `true` if cancelled, `false` if not found
+  -- @tparam int id the timer id to cancel
+  -- @treturn boolean `true` if cancelled, `false` if not found
   function wheel:cancel(id)
     local slot = id_list[id]
     if slot then
@@ -229,7 +225,11 @@ function _M.new(opts)
       slot.ids[id] = nil
       slot.arg[id] = nil
       local n = slot.n
-      slot[idx] = slot[n]
+      if idx ~= n then
+        local moved_id = slot[n]
+        slot[idx] = moved_id
+        slot[moved_id] = idx
+      end
       slot[n] = nil
       slot.n = n - 1
       id_list[id] = nil
@@ -241,9 +241,9 @@ function _M.new(opts)
 
   --- Looks up the next expiring timer.
   -- Note: traverses the wheel, O(n) operation!
-  -- @param max_ahead (optional) maximum time (in seconds)
+  -- @tparam[opt] number max_ahead maximum time (in seconds)
   -- to look ahead
-  -- @return number of seconds until next timer expires (can be negative), or
+  -- @treturn number number of seconds until next timer expires (can be negative), or
   -- 'nil' if there is no timer from now to `max_ahead`
   -- @usage
   -- local t = wheel:peek(10)
@@ -294,9 +294,10 @@ function _M.new(opts)
     return nil
   end
 
---  if _G._TEST then   -- export test variables only when testing
---    wheel._rings = rings
---  end
+  if _G._TEST then   -- export test variables only when testing
+    -- wheel._rings = rings
+    wheel._tables = tables
+  end
 
   return wheel
 end

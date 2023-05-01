@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.com/Tieske/timerwheel.lua.svg?branch=master)](https://travis-ci.com/Tieske/timerwheel.lua)
-[![Coverage Status](https://coveralls.io/repos/github/Tieske/timerwheel.lua/badge.svg?branch=master)](https://coveralls.io/github/Tieske/timerwheel.lua?branch=master)
+[![Unix build](https://img.shields.io/github/workflow/status/Tieske/timerwheel.lua/Unix%20build?label=Unix%20build&logo=linux)](https://github.com/Tieske/timerwheel.lua/actions/workflows/unix_build.yml)
+[![Coveralls code coverage](https://img.shields.io/coveralls/github/Tieske/timerwheel.lua?logo=coveralls)](https://coveralls.io/github/Tieske/timerwheel.lua)
+[![Lint](https://github.com/Tieske/timerwheel.lua/workflows/Lint/badge.svg)](https://github.com/Tieske/timerwheel.lua/actions/workflows/lint.yml)
 
 
 timerwheel.lua
@@ -30,7 +31,7 @@ Tests
 =====
 
 Tests are in the `spec` folder and can be executed using the
-[busted test framework](http://olivine-labs.github.io/busted/). Just run
+[busted test framework](https://lunarmodules.github.io/busted/). Just run
 `"busted"` from the repo.
 
 Besides that `luacheck` is configured for linting, just run `"luacheck ."` from
@@ -46,10 +47,44 @@ See [LICENSE](https://github.com/Tieske/timerwheel.lua/blob/master/LICENSE).
 History
 =======
 
+Versioning is strictly based on [Semantic Versioning](https://semver.org/).
+
+#### Releasing new versions
+
+- create a release branch
+- update the changelog below
+- update copyright-years in `./LICENSE`
+- create a new rockspec and update the version inside the new rockspec:<br/>
+  `cp timerwheel-scm-1.rockspec ./rockspecs/timerwheel-X.Y.Z-1.rockspec`
+- render the docs: run `ldoc .`
+- commit the changes as `release X.Y.Z`
+- push the commit, and create a release PR
+- after merging tag the release commit with `X.Y.Z`
+- upload to LuaRocks:<br/>
+  `luarocks upload ./rockspecs/timerwheel-X.Y.Z-1.rockspec --api-key=ABCDEFGH`
+- test the newly created rock:<br/>
+  `luarocks install timerwheel`
+
+## 1.0.2 released 03-Nov-2022
+
+- Fix: memory leak, occasionally ID's were not removed. Causing a memory leak in
+  long running processes
+
+## 1.0.1 released 04-Oct-2022
+
+- Fix: if a slot was modified (by cancelling) a hole might appear in the table
+  causing an xpcall with `nil` instead of the callback function
+
+## 1.0.0 released 22-Aug-2022
+
+- Bump to 1.0 since API is stable
+- Fix: added a newline when writing errors to `stderr`, since `io.stderr:write()`
+  does not automatically do this like `print()` does.
+
 ## 0.2.0 released 11-Feb-2020
 
-  - Added `count` method to retrieve the current number of active timers
+- Added `count` method to retrieve the current number of active timers
 
 ## 0.1.0 released 01-Feb-2020
 
-  - Initial released version
+- Initial released version

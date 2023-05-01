@@ -12,14 +12,14 @@ local registry = setmetatable({}, { __mode="kv" })
 
 -- create a new semaphore
 -- @param max maximum number of resources the semaphore can hold (this maximum does NOT include resources that have been given but not yet returned).
--- @param seconds (optional, default 10) default semaphore timeout in seconds
 -- @param start (optional, default 0) the initial resources available
+-- @param seconds (optional, default 10) default semaphore timeout in seconds, or `math.huge` to have no timeout.
 function semaphore.new(max, start, seconds)
   local timeout = tonumber(seconds or DEFAULT_TIMEOUT) or -1
   if timeout < 0 then
     error("expected timeout (2nd argument) to be a number greater than or equal to 0, got: " .. tostring(seconds), 2)
   end
-  if max < 1 then
+  if type(max) ~= "number" or max < 1 then
     error("expected max resources (1st argument) to be a number greater than 0, got: " .. tostring(max), 2)
   end
 
@@ -34,6 +34,28 @@ function semaphore.new(max, start, seconds)
     }, semaphore)
 
   return self
+end
+
+
+do
+  local destroyed_func = function()
+    return nil, "destroyed"
+  end
+
+  local destroyed_semaphore_mt = {
+    __index = function()
+      return destroyed_func
+    end
+  }
+
+  -- destroy a semaphore.
+  -- Releases all waiting threads with `nil+"destroyed"`
+  function semaphore:destroy()
+    self:give(math.huge)
+    self.destroyed = true
+    setmetatable(self, destroyed_semaphore_mt)
+    return true
+  end
 end
 
 
@@ -64,13 +86,15 @@ function semaphore:give(given)
         count = count - nxt.requested
         self.q_tip = i + 1
         copas.wakeup(nxt.co)
+        nxt.co = nil
       else
         break -- we ran out of resources
       end
     end
   end
 
-  if self.q_tip == self.q_tail then  -- reset queue pointers if empty
+  if self.q_tip == self.q_tail then  -- reset queue
+    self.queue = {}
     self.q_tip = 1
     self.q_tail = 1
   end
@@ -87,6 +111,9 @@ end
 local function timeout_handler(co)
   local self = registry[co]
   --print("checking timeout ", co)
+  if not self then
+    return
+  end
 
   for i = self.q_tip, self.q_tail do
     local item = self.queue[i]
@@ -106,8 +133,9 @@ end
 -- Waits if there are not enough resources available before returning.
 -- @param requested (optional, default 1) the number of resources requested
 -- @param timeout (optional, defaults to semaphore timeout) timeout in
--- seconds. If 0 it will either succeed or return immediately with error "timeout"
--- @return true
+-- seconds. If 0 it will either succeed or return immediately with error "timeout".
+-- If `math.huge` it will wait forever.
+-- @return true, or nil+"destroyed"
 function semaphore:take(requested, timeout)
   requested = requested or 1
   if self.q_tail == 1 and self.count >= requested then
@@ -138,7 +166,9 @@ function semaphore:take(requested, timeout)
   }
   self.q_tail = self.q_tail + 1
 
-  copas.sleep(-1) -- block until woken
+  copas.pauseforever() -- block until woken
+  registry[co] = nil
+
   if self.to_flags[co] then
     -- a timeout happened
     self.to_flags[co] = nil
@@ -146,6 +176,10 @@ function semaphore:take(requested, timeout)
   end
 
   copas.timeout(0)
+
+  if self.destroyed then
+    return nil, "destroyed"
+  end
 
   return true
 end

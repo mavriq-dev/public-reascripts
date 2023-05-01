@@ -13,7 +13,8 @@ local registry = setmetatable({}, { __mode="kv" })
 
 
 --- Creates a new lock.
--- @param seconds (optional) default timeout in seconds when acquiring the lock (defaults to 10)
+-- @param seconds (optional) default timeout in seconds when acquiring the lock (defaults to 10),
+-- set to `math.huge` to have no timeout.
 -- @param not_reentrant (optional) if truthy the lock will not allow a coroutine to grab the same lock multiple times
 -- @return the lock object
 function lock.new(seconds, not_reentrant)
@@ -52,12 +53,15 @@ do
     --print("destroying ",self)
     for i = self.q_tip, self.q_tail do
       local co = self.queue[i]
+      self.queue[i] = nil
+
       if co then
         self.errors[co] = "destroyed"
         --print("marked destroyed ", co)
         copas.wakeup(co)
       end
     end
+
     if self.owner then
       self.errors[self.owner] = "destroyed"
       --print("marked destroyed ", co)
@@ -75,6 +79,9 @@ end
 
 local function timeout_handler(co)
   local self = registry[co]
+  if not self then
+    return
+  end
 
   for i = self.q_tip, self.q_tail do
     if co == self.queue[i] then
@@ -94,7 +101,7 @@ end
 -- If the lock is owned by another thread, this will yield control, until the
 -- lock becomes available, or it times out.
 -- If `timeout == 0` then it will immediately return (without yielding).
--- @param timeout (optional) timeout in seconds, if given overrides the timeout passed to `new`.
+-- @param timeout (optional) timeout in seconds, defaults to the timeout passed to `new` (use `math.huge` to have no timeout).
 -- @return wait-time on success, or nil+error+wait_time on failure. Errors can be "timeout", "destroyed", or "lock is not re-entrant"
 function lock:get(timeout)
   local co = coroutine.running()
@@ -103,13 +110,9 @@ function lock:get(timeout)
   -- is the lock already taken?
   if self.owner then
     -- are we re-entering?
-    if co == self.owner then
-      if self.not_reentrant then
-        return nil, "lock is not re-entrant", 0
-      else
-        self.call_count = self.call_count + 1
-        return 0
-      end
+    if co == self.owner and not self.not_reentrant then
+      self.call_count = self.call_count + 1
+      return 0
     end
 
     self.queue[self.q_tail] = co
@@ -124,17 +127,17 @@ function lock:get(timeout)
     copas.timeout(timeout, timeout_handler)
 
     start_time = gettime()
-    copas.sleep(-1)
+    copas.pauseforever()
 
     local err = self.errors[co]
     self.errors[co] = nil
+    registry[co] = nil
 
     --print("released ", co, err)
     if err ~= "timeout" then
       copas.timeout(0)
     end
     if err then
-      self.errors[co] = nil
       return nil, err, gettime() - start_time
     end
   end
@@ -163,13 +166,7 @@ function lock:release()
     return true
   end
 
-  if self.q_tail == self.q_tip then
-    -- queue is empty
-    self.owner = nil
-    return true
-  end
-
-  -- need a loop, since an individual coroutine might have been removed
+  -- need a loop, since individual coroutines might have been removed
   -- so there might be holes
   while self.q_tip < self.q_tail do
     local next_up = self.queue[self.q_tip]
@@ -183,6 +180,7 @@ function lock:release()
     self.q_tip = self.q_tip + 1
   end
   -- queue is empty, reset pointers
+  self.owner = nil
   self.q_tip = 0
   self.q_tail = 0
   return true

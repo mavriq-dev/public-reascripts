@@ -1,6 +1,6 @@
 # Google protobuf support for Lua
 
-[![Build Status](https://img.shields.io/github/workflow/status/starwing/lua-protobuf/CI)](https://github.com/starwing/lua-protobuf/actions?query=branch%3Amaster)[![Coverage Status](https://img.shields.io/coveralls/github/starwing/lua-protobuf)](https://coveralls.io/github/starwing/lua-protobuf?branch=master)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/starwing/lua-protobuf/test.yml?branch=master)](https://github.com/starwing/lua-protobuf/actions?query=branch%3Amaster)[![Coverage Status](https://img.shields.io/coveralls/github/starwing/lua-protobuf)](https://coveralls.io/github/starwing/lua-protobuf?branch=master)
 
 English | [中文](https://github.com/starwing/lua-protobuf/blob/master/README.zh.md)
 
@@ -326,7 +326,8 @@ These options are supported currently:
 | `int64_as_number`       | set value to integer when it fit into uint32, otherwise return a number **(default)** |
 | `int64_as_string`       | same as above, but return a string instead |
 | `int64_as_hexstring`    | same as above, but return a hexadigit string instead         |
-| `no_default_values`     | do not default values for decoded message table **(default)** |
+| `auto_default_values`   | act as `use_default_values` for proto3 and act as `no_default_values` for the others **(default)** |
+| `no_default_values`     | do not default values for decoded message table |
 | `use_default_values`    | set default values by copy values from default table before decode |
 | `use_default_metatable` | set default values by set table from `pb.default()` as the metatable |
 | `enable_hooks`          | `pb.decode` will call `pb.hooks()` hook functions            |
@@ -335,6 +336,10 @@ These options are supported currently:
 | `no_encode_default_values` | do not encode default values **(default)** |
 | `decode_default_array`  | work with `no_default_values`,decode null to empty table for array |
 | `no_decode_default_array`  | work with `no_default_values`,decode null to nil for array **(default)** |
+| `encode_order`          | guarantees the same message will be encoded into the same result with the same schema and the same data (but the order itself is not specified) |
+| `no_encode_order`       | do not have guarantees about encode orders **(default)** |
+| `decode_default_message`  | decode null message to default message table |
+| `no_decode_default_message`  | decode null message to null  **(default)** |
 
  *Note*: The string returned by `int64_as_string` or `int64_as_hexstring` will prefix a `'#'` character. Because Lua may convert between string with number, prefix a `'#'` makes Lua return the string as-is.
 

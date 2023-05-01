@@ -1,10 +1,11 @@
 LYAML
 =====
 
+Copyright (C) 2013-2022 Gary V. Vaughan
+
 [![License](https://img.shields.io/:license-mit-blue.svg)](https://mit-license.org)
-[![travis-ci status](https://secure.travis-ci.org/gvvaughan/lyaml.png)](http://travis-ci.org/gvvaughan/lyaml/builds)
-[![codecov.io](https://codecov.io/github/lua-stdlib/strict/coverage.svg?branch=master)](https://codecov.io/github/lua-stdlib/strict?branch=master)
-[![Stories in Ready](https://badge.waffle.io/gvvaughan/lyaml.png?label=ready&title=Ready)](https://waffle.io/gvvaughan/lyaml)
+[![workflow status](https://github.com/gvvaughan/lyaml/actions/workflows/spec.yml/badge.svg?branch=release-v6.2.8)](https://github.com/gvvaughan/lyaml/actions)
+[![codecov.io](https://codecov.io/github/gvvaughan/lyaml/coverage.svg?branch=release-v6.2.8)](https://codecov.io/github/gvvaughan/lyaml?branch=release-v6.2.8)
 
 [LibYAML] binding for [Lua], with a fast C implementation
 for converting between [%YAML 1.1][yaml11] and [Lua] tables,
@@ -178,15 +179,49 @@ To install without [LuaRocks], clone the sources from the
 cd lyaml
 build-aux/luke LYAML_DIR=LIBYAML-INSTALL-PREFIX
 sudo build-aux/luke PREFIX=LYAML-INSTALL-PREFIX install
-specl -v1freport specs/*_spec.yaml
+specl -v1freport spec/*_spec.yaml
 ```
 
 The dependencies are listed in the dependencies entry of the file
 [rockspec][L15].
 
-See [INSTALL] for instructions for `configure`.
 
-[install]:  http://raw.github.com/gvvaughan/lyaml/release/INSTALL
+Bug reports and code contributions
+----------------------------------
+
+This library is maintained by its users.
+
+Please make bug reports and suggestions as [GitHub Issues][issues].
+Pull requests are especially appreciated.
+
+But first, please check that your issue has not already been reported by
+someone else, and that it is not already fixed by [master][lyaml] in
+preparation for the next release (see  Installation section above for how
+to temporarily install master with [LuaRocks][]).
+
+There is no strict coding style, but please bear in mind the following
+points when proposing changes:
+
+0. Follow existing code. There are a lot of useful patterns and avoided
+   traps there.
+
+1. 3-character indentation using SPACES in Lua sources: It makes rogue
+   TABs easier to see, and lines up nicely with 'if' and 'end' keywords.
+
+2. Simple strings are easiest to type using single-quote delimiters,
+   saving double-quotes for where a string contains apostrophes.
+
+3. Save horizontal space by only using SPACEs where the parser requires
+   them.
+
+4. Use vertical space to separate out compound statements to help the
+   coverage reports discover untested lines.
+
+5. Prefer explicit string function calls over object methods, to mitigate
+   issues with monkey-patching in caller environment.
+
+
+[issues]:   http://github.com/gvvaughas/lyaml/issues
 [libyaml]:  http://pyyaml.org/wiki/LibYAML
 [lua]:      http://www.lua.org
 [luarocks]: http://www.luarocks.org

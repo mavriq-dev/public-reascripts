@@ -227,7 +227,6 @@ function Lexer:structure(opt)
       local pos, name, npos = self "^%s*()(%b[])()"
       if not pos then
          name = self:full_ident "field name"
-         self.pos = pos
       else
          self.pos = npos
       end
@@ -333,8 +332,11 @@ function Parser:parsefile(name)
       end
       insert_tab(errors, err or fn..": ".."unknown error")
    end
-   if self.import_fallback then
-      info = self.import_fallback(name)
+   local import_fallback = self.unknown_import
+   if import_fallback == true then
+      info = import_fallback
+   elseif import_fallback then
+      info = import_fallback(self, name)
    end
    if not info then
       error("module load error: "..name.."\n\t"..table.concat(errors, "\n\t"))
@@ -459,8 +461,8 @@ local function field(self, lex, ident)
       if options.packed and options.packed == "false" then
          options.packed = false
       end
+      info.options = options
    end
-   info.options = options
    if info.number <= 0 then
       lex:error("invalid tag number: "..info.number)
    end
@@ -524,21 +526,21 @@ function toplevel:import(lex, info)
    end
 end
 
-local msg_body = {} do
+local msgbody = {} do
 
-function msg_body:message(lex, info)
+function msgbody:message(lex, info)
    local nested_type = default(info, 'nested_type')
    insert_tab(nested_type, toplevel.message(self, lex))
    return self
 end
 
-function msg_body:enum(lex, info)
+function msgbody:enum(lex, info)
    local nested_type = default(info, 'enum_type')
    insert_tab(nested_type, toplevel.enum(self, lex))
    return self
 end
 
-function msg_body:extend(lex, info)
+function msgbody:extend(lex, info)
    local extension = default(info, 'extension')
    local nested_type = default(info, 'nested_type')
    local ft, mt = toplevel.extend(self, lex, {})
@@ -551,22 +553,27 @@ function msg_body:extend(lex, info)
    return self
 end
 
-function msg_body:extensions(lex, info)
+function msgbody:extensions(lex, info)
    local rt = default(info, 'extension_range')
+   local idx = #rt
    repeat
       local start = lex:integer "field number range"
       local stop = math.floor(2^29)
-      lex:keyword 'to'
-      if not lex:keyword('max', 'opt') then
-         stop = lex:integer "field number range end or 'max'"
+      if lex:keyword('to', 'opt') then
+         if not lex:keyword('max', 'opt') then
+            stop = lex:integer "field number range end or 'max'"
+         end
+         insert_tab(rt, { start = start, ['end'] = stop })
+      else
+         insert_tab(rt, { start = start, ['end'] = start })
       end
-      insert_tab(rt, { start = start, ['end'] = stop })
    until not lex:test ','
+   rt[idx+1].options = inline_option(lex)
    lex:line_end()
    return self
 end
 
-function msg_body:reserved(lex, info)
+function msgbody:reserved(lex, info)
    lex:whitespace()
    if not lex '^%d' then
       local rt = default(info, 'reserved_name')
@@ -596,7 +603,7 @@ function msg_body:reserved(lex, info)
    return self
 end
 
-function msg_body:oneof(lex, info)
+function msgbody:oneof(lex, info)
    local fs = default(info, "field")
    local ts = default(info, "nested_type")
    local ot = default(info, "oneof_decl")
@@ -619,8 +626,8 @@ function msg_body:oneof(lex, info)
    ot[index] = oneof
 end
 
-function msg_body:option(lex, info)
-   toplevel.option(self, lex, default(info, 'options'))
+function msgbody:option(lex, info)
+   toplevel.option(self, lex, info)
 end
 
 end
@@ -634,7 +641,7 @@ function toplevel:message(lex, info)
    lex:expected "{"
    while not lex:test "}" do
       local ident, pos = lex:type_name()
-      local body_parser = msg_body[ident]
+      local body_parser = msgbody[ident]
       if body_parser then
          body_parser(self, lex, typ)
       else
@@ -659,25 +666,27 @@ function toplevel:message(lex, info)
 end
 
 function toplevel:enum(lex, info)
-   local name = lex:ident 'enum name'
+   local name, pos = lex:ident 'enum name'
    local enum = { name = name }
+   self.locmap[enum] = pos
    register_type(self, lex, name, types.enum)
    lex:expected "{"
    while not lex:test "}" do
-      local ident = lex:ident 'enum constant name'
+      local ident, pos = lex:ident 'enum constant name'
       if ident == 'option' then
-         toplevel.option(self, lex, default(enum, 'options'))
+         toplevel.option(self, lex, enum)
       elseif ident == 'reserved' then
-         msg_body.reserved(self, lex, enum)
+         msgbody.reserved(self, lex, enum)
       else
          local values  = default(enum, 'value')
          local number  = lex:expected '=' :integer()
-         lex:line_end()
-         insert_tab(values, {
+         local value = {
             name    = ident,
             number  = number,
             options = inline_option(lex)
-         })
+         }
+         self.locmap[value] = pos
+         insert_tab(values, value)
       end
       lex:line_end 'opt'
    end
@@ -738,7 +747,7 @@ function svr_body:rpc(lex, info)
       while not lex:test "}" do
          lex:line_end "opt"
          lex:keyword "option"
-         toplevel.option(self, lex, default(rpc, 'options'))
+         toplevel.option(self, lex, rpc)
       end
    end
    lex:line_end "opt"
@@ -747,7 +756,7 @@ function svr_body:rpc(lex, info)
 end
 
 function svr_body:option(lex, info)
-   toplevel.option(self, lex, default(info, 'options'))     -- TODO: should be deeper in the info?
+   return toplevel.option(self, lex, info)
 end
 
 function svr_body.stream(_, lex)
@@ -757,8 +766,9 @@ end
 end
 
 function toplevel:service(lex, info)
-   local name = lex:ident 'service name'
+   local name, pos = lex:ident 'service name'
    local svr = { name = name }
+   self.locmap[svr] = pos
    lex:expected "{"
    while not lex:test "}" do
       local ident = lex:type_name()
@@ -786,39 +796,15 @@ local function make_context(self, lex)
       locmap  = {};
       prefix  = ".";
       lex     = lex;
-      parser  = self;
    }
    ctx.loaded  = self.loaded
    ctx.typemap = self.typemap
    ctx.paths   = self.paths
    ctx.proto3_optional =
       self.proto3_optional or self.experimental_allow_proto3_optional
-
-   function ctx.import_fallback(import_name)
-      if self.unknown_import == true then
-         return true
-      elseif type(self.unknown_import) == 'string' then
-         return import_name:match(self.unknown_import) and true or nil
-      elseif self.unknown_import then
-         return self:unknown_import(import_name)
-      end
-   end
-
-   function ctx.type_fallback(type_name)
-      if self.unknown_type == true then
-         return true
-      elseif type(self.unknown_type) == 'string' then
-         return type_name:match(self.unknown_type) and true
-      elseif self.unknown_type then
-         return self:unknown_type(type_name)
-      end
-   end
-
-   function ctx.on_import(info)
-      if self.on_import then
-         return self.on_import(info)
-      end
-   end
+   ctx.unknown_type = self.unknown_type
+   ctx.unknown_import = self.unknown_import
+   ctx.on_import = self.on_import
 
    return setmetatable(ctx, Parser)
 end
@@ -897,8 +883,15 @@ local function check_type(self, lex, tname)
       if t then return t, tn end
    end
    local tn, t
-   if self.type_fallback then
-      tn, t = self.type_fallback(tname)
+   local type_fallback = self.unknown_type
+   if type_fallback then
+      if type_fallback == true then
+         tn = true
+      elseif type(type_fallback) == 'string' then
+         tn = tname:match(type_fallback) and true
+      else
+         tn = type_fallback(self, tname)
+      end
    end
    if tn then
       t = types[t or "message"]
@@ -926,11 +919,9 @@ end
 local function check_enum(self, lex, info)
    local names, numbers = {}, {}
    for _, v in iter(info, 'value') do
-      lex.pos = self.locmap[v]
+      lex.pos = assert(self.locmap[v])
       check_dup(self, lex, 'enum name', names, 'name', v)
-      if not (info.options
-              and info.options.options
-              and info.options.options.allow_alias) then
+      if not (info.options and info.options.allow_alias) then
           check_dup(self, lex, 'enum number', numbers, 'number', v)
       end
    end

@@ -8,7 +8,7 @@
 -- Contributors: Diego Nehab, Mike Pall, David Burgess, Leonardo Godinho,
 --               Thomas Harning Jr., and Gary NG
 --
--- Copyright 2005-2021 - Kepler Project (www.keplerproject.org)
+-- Copyright 2005-2013 - Kepler Project (www.keplerproject.org), 2015-2023 Thijs Schreijer
 --
 -- $Id: copas.lua,v 1.37 2009/04/07 22:09:52 carregal Exp $
 -------------------------------------------------------------------------------
@@ -16,6 +16,10 @@
 if package.loaded["socket.http"] and (_VERSION=="Lua 5.1") then     -- obsolete: only for Lua 5.1 compatibility
   error("you must require copas before require'ing socket.http")
 end
+if package.loaded["copas.http"] and (_VERSION=="Lua 5.1") then     -- obsolete: only for Lua 5.1 compatibility
+  error("you must require copas before require'ing copas.http")
+end
+
 
 local socket = require "socket"
 local binaryheap = require "binaryheap"
@@ -23,50 +27,98 @@ local gettime = socket.gettime
 local ssl -- only loaded upon demand
 
 local WATCH_DOG_TIMEOUT = 120
-local UDP_DATAGRAM_MAX = 8192  -- TODO: dynamically get this value from LuaSocket
+local UDP_DATAGRAM_MAX = socket._DATAGRAMSIZE or 8192
 local TIMEOUT_PRECISION = 0.1  -- 100ms
 local fnil = function() end
+
+
+local coroutine_create = coroutine.create
+local coroutine_running = coroutine.running
+local coroutine_yield = coroutine.yield
+local coroutine_resume = coroutine.resume
+local coroutine_status = coroutine.status
+
+
+-- nil-safe versions for pack/unpack
+local _unpack = unpack or table.unpack
+local unpack = function(t, i, j) return _unpack(t, i or 1, j or t.n or #t) end
+local pack = function(...) return { n = select("#", ...), ...} end
+
 
 local pcall = pcall
 if _VERSION=="Lua 5.1" and not jit then     -- obsolete: only for Lua 5.1 compatibility
   pcall = require("coxpcall").pcall
+  coroutine_running = require("coxpcall").running
 end
 
--- Redefines LuaSocket functions with coroutine safe versions
--- (this allows the use of socket.http from within copas)
-local function statusHandler(status, ...)
-  if status then return ... end
-  local err = (...)
-  if type(err) == "table" then
-    return nil, err[1]
-  else
-    error(err)
+
+do
+  -- Redefines LuaSocket functions with coroutine safe versions (pure Lua)
+  -- (this allows the use of socket.http from within copas)
+  local err_mt = {
+    __tostring = function (self)
+      return "Copas 'try' error intermediate table: '"..tostring(self[1].."'")
+    end,
+  }
+
+  local function statusHandler(status, ...)
+    if status then return ... end
+    local err = (...)
+    if type(err) == "table" and getmetatable(err) == err_mt then
+      return nil, err[1]
+    else
+      error(err)
+    end
   end
+
+  function socket.protect(func)
+    return function (...)
+            return statusHandler(pcall(func, ...))
+          end
+  end
+
+  function socket.newtry(finalizer)
+    return function (...)
+            local status = (...)
+            if not status then
+              pcall(finalizer or fnil, select(2, ...))
+              error(setmetatable({ (select(2, ...)) }, err_mt), 0)
+            end
+            return ...
+          end
+  end
+
+  socket.try = socket.newtry()
 end
 
-function socket.protect(func)
-  return function (...)
-           return statusHandler(pcall(func, ...))
-         end
+
+-- Setup the Copas meta table to auto-load submodules and define a default method
+local copas do
+  local submodules = { "ftp", "http", "lock", "queue", "semaphore", "smtp", "timer" }
+  for i, key in ipairs(submodules) do
+    submodules[key] = true
+    submodules[i] = nil
+  end
+
+  copas = setmetatable({},{
+    __index = function(self, key)
+      if submodules[key] then
+        self[key] = require("copas."..key)
+        submodules[key] = nil
+        return rawget(self, key)
+      end
+    end,
+    __call = function(self, ...)
+      return self.loop(...)
+    end,
+  })
 end
 
-function socket.newtry(finalizer)
-  return function (...)
-           local status = (...)
-           if not status then
-             pcall(finalizer, select(2, ...))
-             error({ (select(2, ...)) }, 0)
-           end
-           return ...
-         end
-end
-
-local copas = {}
 
 -- Meta information is public even if beginning with an "_"
-copas._COPYRIGHT   = "Copyright (C) 2005-2021 Kepler Project"
+copas._COPYRIGHT   = "Copyright (C) 2005-2013 Kepler Project, 2015-2023 Thijs Schreijer"
 copas._DESCRIPTION = "Coroutine Oriented Portable Asynchronous Services"
-copas._VERSION     = "Copas 3.0.0"
+copas._VERSION     = "Copas 4.7.0"
 
 -- Close the socket associated with the current connection after the handler finishes
 copas.autoclose = true
@@ -74,6 +126,20 @@ copas.autoclose = true
 -- indicator for the loop running
 copas.running = false
 
+
+-------------------------------------------------------------------------------
+-- Object names, to track names of thread/coroutines and sockets
+-------------------------------------------------------------------------------
+local object_names = setmetatable({}, {
+  __mode = "k",
+  __index = function(self, key)
+    local name = tostring(key)
+    if key ~= nil then
+      rawset(self, key, name)
+    end
+    return name
+  end
+})
 
 -------------------------------------------------------------------------------
 -- Simple set implementation
@@ -161,6 +227,10 @@ local _resumable = {} do
     return resumelist[1] == nil
   end
 
+  function _resumable:count()
+    return #resumelist + #_resumable
+  end
+
 end
 
 
@@ -228,6 +298,14 @@ local _sleeping = {} do
            and not (tos > 0 and next(lethargy))
   end
 
+  -- gets number of threads in binaryheap and lethargy
+  function _sleeping:status()
+    local c = 0
+    for _ in pairs(lethargy) do c = c + 1 end
+
+    return heap:size(), c
+  end
+
 end   -- _sleeping
 
 
@@ -239,6 +317,9 @@ end   -- _sleeping
 local _servers = newsocketset() -- servers being handled
 local _threads = setmetatable({}, {__mode = "k"})  -- registered threads added with addthread()
 local _canceled = setmetatable({}, {__mode = "k"}) -- threads that are canceled and pending removal
+local _autoclose = setmetatable({}, {__mode = "kv"}) -- sockets (value) to close when a thread (key) exits
+local _autoclose_r = setmetatable({}, {__mode = "kv"}) -- reverse: sockets (key) to close when a thread (value) exits
+
 
 -- for each socket we log the last read and last write times to enable the
 -- watchdog to follow up if it takes too long.
@@ -259,16 +340,23 @@ local _isSocketTimeout = { -- set of errors indicating a socket-timeout
 -------------------------------------------------------------------------------
 -- Coroutine based socket timeouts.
 -------------------------------------------------------------------------------
-
-local usertimeouts = setmetatable({}, {
+local user_timeouts_connect
+local user_timeouts_send
+local user_timeouts_receive
+do
+  local timeout_mt = {
     __mode = "k",
     __index = function(self, skt)
-      -- if there is no timeout found, we insert one automatically,
-      -- a 10 year timeout as substitute for the default "blocking" should do
-      self[skt] = 10*365*24*60*60
+      -- if there is no timeout found, we insert one automatically, to block forever
+      self[skt] = math.huge
       return self[skt]
     end,
-  })
+  }
+
+  user_timeouts_connect = setmetatable({}, timeout_mt)
+  user_timeouts_send = setmetatable({}, timeout_mt)
+  user_timeouts_receive = setmetatable({}, timeout_mt)
+end
 
 local useSocketTimeoutErrors = setmetatable({},{ __mode = "k" })
 
@@ -304,14 +392,19 @@ local sto_timeout, sto_timed_out, sto_change_queue, sto_error do
   -- Calling it as `sto_timeout()` will cancel the timeout.
   -- @param queue (string) the queue the socket is currently in, must be either "read" or "write"
   -- @param skt (socket) the socket on which to operate
+  -- @param use_connect_to (bool) timeout to use is determined based on queue (read/write) or if this
+  -- is truthy, it is the connect timeout.
   -- @return true
-  function sto_timeout(skt, queue)
-    local co = coroutine.running()
+  function sto_timeout(skt, queue, use_connect_to)
+    local co = coroutine_running()
     socket_register[co] = skt
     operation_register[co] = queue
     timeout_flags[co] = nil
     if skt then
-      copas.timeout(usertimeouts[skt], socket_callback)
+      local to = (use_connect_to and user_timeouts_connect[skt]) or
+                 (queue == "read" and user_timeouts_receive[skt]) or
+                 user_timeouts_send[skt]
+      copas.timeout(to, socket_callback)
     else
       copas.timeout(0)
     end
@@ -325,20 +418,20 @@ local sto_timeout, sto_timed_out, sto_change_queue, sto_error do
   -- @param queue (string) the new queue the socket is in, must be either "read" or "write"
   -- @return true
   function sto_change_queue(queue)
-    operation_register[coroutine.running()] = queue
+    operation_register[coroutine_running()] = queue
     return true
   end
 
 
   -- Responds with `true` if the operation timed-out.
   function sto_timed_out()
-    return timeout_flags[coroutine.running()]
+    return timeout_flags[coroutine_running()]
   end
 
 
-  -- Returns the poroper timeout error
+  -- Returns the proper timeout error
   function sto_error(err)
-    return useSocketTimeoutErrors[coroutine.running()] and err or "timeout"
+    return useSocketTimeoutErrors[coroutine_running()] and err or "timeout"
   end
 end
 
@@ -367,17 +460,53 @@ function copas.close(skt, ...)
 end
 
 
+
+-- nil or negative is indefinitly
 function copas.settimeout(skt, timeout)
-
-  if timeout ~= nil and type(timeout) ~= "number" then
-    return nil, "timeout must be a 'nil' or a number"
+  timeout = timeout or -1
+  if type(timeout) ~= "number" then
+    return nil, "timeout must be 'nil' or a number"
   end
 
-  if timeout and timeout < 0 then
-    timeout = nil    -- negative is same as nil; blocking indefinitely
+  return copas.settimeouts(skt, timeout, timeout, timeout)
+end
+
+-- negative is indefinitly, nil means do not change
+function copas.settimeouts(skt, connect, send, read)
+
+  if connect ~= nil and type(connect) ~= "number" then
+    return nil, "connect timeout must be 'nil' or a number"
+  end
+  if connect then
+    if connect < 0 then
+      connect = nil
+    end
+    user_timeouts_connect[skt] = connect
   end
 
-  usertimeouts[skt] = timeout
+
+  if send ~= nil and type(send) ~= "number" then
+    return nil, "send timeout must be 'nil' or a number"
+  end
+  if send then
+    if send < 0 then
+      send = nil
+    end
+    user_timeouts_send[skt] = send
+  end
+
+
+  if read ~= nil and type(read) ~= "number" then
+    return nil, "read timeout must be 'nil' or a number"
+  end
+  if read then
+    if read < 0 then
+      read = nil
+    end
+    user_timeouts_receive[skt] = read
+  end
+
+
   return true
 end
 
@@ -394,6 +523,11 @@ function copas.receive(client, pattern, part)
   repeat
     s, err, part = client:receive(pattern, part)
 
+    -- guarantees that high throughput doesn't take other threads to starvation
+    if (math.random(100) > 90) then
+      copas.pause()
+    end
+
     if s then
       current_log[client] = nil
       sto_timeout()
@@ -406,19 +540,19 @@ function copas.receive(client, pattern, part)
 
     elseif sto_timed_out() then
       current_log[client] = nil
-      return nil, sto_error(err)
+      return nil, sto_error(err), part
     end
 
     if err == "wantwrite" then -- wantwrite may be returned during SSL renegotiations
       current_log = _writing_log
       current_log[client] = gettime()
       sto_change_queue("write")
-      coroutine.yield(client, _writing)
+      coroutine_yield(client, _writing)
     else
       current_log = _reading_log
       current_log[client] = gettime()
       sto_change_queue("read")
-      coroutine.yield(client, _reading)
+      coroutine_yield(client, _reading)
     end
   until false
 end
@@ -433,6 +567,11 @@ function copas.receivefrom(client, size)
   repeat
     s, err, port = client:receivefrom(size) -- upon success err holds ip address
 
+    -- garantees that high throughput doesn't take other threads to starvation
+    if (math.random(100) > 90) then
+      copas.pause()
+    end
+
     if s then
       _reading_log[client] = nil
       sto_timeout()
@@ -445,26 +584,32 @@ function copas.receivefrom(client, size)
 
     elseif sto_timed_out() then
       _reading_log[client] = nil
-      return nil, sto_error(err)
+      return nil, sto_error(err), port
     end
 
     _reading_log[client] = gettime()
-    coroutine.yield(client, _reading)
+    coroutine_yield(client, _reading)
   until false
 end
 
 -- same as above but with special treatment when reading chunks,
 -- unblocks on any data received.
-function copas.receivePartial(client, pattern, part)
+function copas.receivepartial(client, pattern, part)
   local s, err
   pattern = pattern or "*l"
+  local orig_size = #(part or "")
   local current_log = _reading_log
   sto_timeout(client, "read")
 
   repeat
     s, err, part = client:receive(pattern, part)
 
-    if s or (type(pattern) == "number" and part ~= "" and part ~= nil) then
+    -- guarantees that high throughput doesn't take other threads to starvation
+    if (math.random(100) > 90) then
+      copas.pause()
+    end
+
+    if s or (type(part) == "string" and #part > orig_size) then
       current_log[client] = nil
       sto_timeout()
       return s, err, part
@@ -476,22 +621,23 @@ function copas.receivePartial(client, pattern, part)
 
     elseif sto_timed_out() then
       current_log[client] = nil
-      return nil, sto_error(err)
+      return nil, sto_error(err), part
     end
 
     if err == "wantwrite" then
       current_log = _writing_log
       current_log[client] = gettime()
       sto_change_queue("write")
-      coroutine.yield(client, _writing)
+      coroutine_yield(client, _writing)
     else
       current_log = _reading_log
       current_log[client] = gettime()
       sto_change_queue("read")
-      coroutine.yield(client, _reading)
+      coroutine_yield(client, _reading)
     end
   until false
 end
+copas.receivePartial = copas.receivepartial  -- compat: receivePartial is deprecated
 
 -- sends data to a client. The operation is buffered and
 -- yields to the writing set on timeouts
@@ -506,15 +652,9 @@ function copas.send(client, data, from, to)
   repeat
     s, err, lastIndex = client:send(data, lastIndex + 1, to)
 
-    -- adds extra coroutine swap
-    -- garantees that high throughput doesn't take other threads to starvation
+    -- guarantees that high throughput doesn't take other threads to starvation
     if (math.random(100) > 90) then
-      current_log[client] = gettime()   -- TODO: how to handle this??
-      if current_log == _writing_log then
-        coroutine.yield(client, _writing)
-      else
-        coroutine.yield(client, _reading)
-      end
+      copas.pause()
     end
 
     if s then
@@ -529,19 +669,19 @@ function copas.send(client, data, from, to)
 
     elseif sto_timed_out() then
       current_log[client] = nil
-      return nil, sto_error(err)
+      return nil, sto_error(err), lastIndex
     end
 
     if err == "wantread" then
       current_log = _reading_log
       current_log[client] = gettime()
       sto_change_queue("read")
-      coroutine.yield(client, _reading)
+      coroutine_yield(client, _reading)
     else
       current_log = _writing_log
       current_log[client] = gettime()
       sto_change_queue("write")
-      coroutine.yield(client, _writing)
+      coroutine_yield(client, _writing)
     end
   until false
 end
@@ -555,7 +695,7 @@ end
 function copas.connect(skt, host, port)
   skt:settimeout(0)
   local ret, err, tried_more_than_once
-  sto_timeout(skt, "write")
+  sto_timeout(skt, "write", true)
 
   repeat
     ret, err = skt:connect(host, port)
@@ -582,7 +722,7 @@ function copas.connect(skt, host, port)
 
     tried_more_than_once = tried_more_than_once or true
     _writing_log[skt] = gettime()
-    coroutine.yield(skt, _writing)
+    coroutine_yield(skt, _writing)
   until false
 end
 
@@ -598,12 +738,25 @@ local function ssl_wrap(skt, wrap_params)
   end
 
   ssl = ssl or require("ssl")
-  local nskt, err = ssl.wrap(skt, wrap_params)
-  if not nskt then
-    return error(err) -- throw a hard error, because we do not want to silently ignore this one!!
-  end
+  local nskt = assert(ssl.wrap(skt, wrap_params)) -- assert, because we do not want to silently ignore this one!!
+
   nskt:settimeout(0)  -- non-blocking on the ssl-socket
-  copas.settimeout(nskt, usertimeouts[skt]) -- copy copas user-timeout to newly wrapped one
+  copas.settimeouts(nskt, user_timeouts_connect[skt],
+    user_timeouts_send[skt], user_timeouts_receive[skt]) -- copy copas user-timeout to newly wrapped one
+
+  local co = _autoclose_r[skt]
+  if co then
+    -- socket registered for autoclose, move registration to wrapped one
+    _autoclose[co] = nskt
+    _autoclose_r[skt] = nil
+    _autoclose_r[nskt] = co
+  end
+
+  local sock_name = object_names[skt]
+  if sock_name ~= tostring(skt) then
+    -- socket had a custom name, so copy it over
+    object_names[nskt] = sock_name
+  end
   return nskt
 end
 
@@ -673,7 +826,7 @@ function copas.dohandshake(skt, wrap_params)
 
   local nskt = ssl_wrap(skt, wrap_params)
 
-  sto_timeout(nskt, "write")
+  sto_timeout(nskt, "write", true)
   local queue
 
   repeat
@@ -702,7 +855,7 @@ function copas.dohandshake(skt, wrap_params)
       error("TLS/SSL handshake failed: " .. tostring(err))
     end
 
-    coroutine.yield(nskt, queue)
+    coroutine_yield(nskt, queue)
   until false
 end
 
@@ -722,10 +875,14 @@ local _skt_mt_tcp = {
         end,
 
         receive = function (self, pattern, prefix)
-          if usertimeouts[self.socket] == 0 then
-            return copas.receivePartial(self.socket, pattern, prefix)
+          if user_timeouts_receive[self.socket] == 0 then
+            return copas.receivepartial(self.socket, pattern, prefix)
           end
           return copas.receive(self.socket, pattern, prefix)
+        end,
+
+        receivepartial = function (self, pattern, prefix)
+          return copas.receivepartial(self.socket, pattern, prefix)
         end,
 
         flush = function (self)
@@ -734,6 +891,10 @@ local _skt_mt_tcp = {
 
         settimeout = function (self, time)
           return copas.settimeout(self.socket, time)
+        end,
+
+        settimeouts = function (self, connect, send, receive)
+          return copas.settimeouts(self.socket, connect, send, receive)
         end,
 
         -- TODO: socket.connect is a shortcut, and must be provided with an alternative
@@ -755,7 +916,14 @@ local _skt_mt_tcp = {
         bind = function(self, ...) return self.socket:bind(...) end,
 
         -- TODO: is this DNS related? hence blocking?
-        getsockname = function(self, ...) return self.socket:getsockname(...) end,
+        getsockname = function(self, ...)
+          local ok, ip, port, family = pcall(self.socket.getsockname, self.socket, ...)
+          if ok then
+            return ip, port, family
+          else
+            return nil, "not implemented by LuaSec"
+          end
+        end,
 
         getstats = function(self, ...) return self.socket:getstats(...) end,
 
@@ -765,10 +933,33 @@ local _skt_mt_tcp = {
 
         accept = function(self, ...) return self.socket:accept(...) end,
 
-        setoption = function(self, ...) return self.socket:setoption(...) end,
+        setoption = function(self, ...)
+          local ok, res, err = pcall(self.socket.setoption, self.socket, ...)
+          if ok then
+            return res, err
+          else
+            return nil, "not implemented by LuaSec"
+          end
+        end,
+
+        getoption = function(self, ...)
+          local ok, val, err = pcall(self.socket.getoption, self.socket, ...)
+          if ok then
+            return val, err
+          else
+            return nil, "not implemented by LuaSec"
+          end
+        end,
 
         -- TODO: is this DNS related? hence blocking?
-        getpeername = function(self, ...) return self.socket:getpeername(...) end,
+        getpeername = function(self, ...)
+          local ok, ip, port, family = pcall(self.socket.getpeername, self.socket, ...)
+          if ok then
+            return ip, port, family
+          else
+            return nil, "not implemented by LuaSec"
+          end
+        end,
 
         shutdown = function(self, ...) return self.socket:shutdown(...) end,
 
@@ -789,6 +980,23 @@ local _skt_mt_tcp = {
           return self
         end,
 
+        getalpn = function(self, ...)
+          local ok, proto, err = pcall(self.socket.getalpn, self.socket, ...)
+          if ok then
+            return proto, err
+          else
+            return nil, "not a tls socket"
+          end
+        end,
+
+        getsniname = function(self, ...)
+          local ok, name, err = pcall(self.socket.getsniname, self.socket, ...)
+          if ok then
+            return name, err
+          else
+            return nil, "not a tls socket"
+          end
+        end,
       }
 }
 
@@ -818,6 +1026,11 @@ _skt_mt_udp.__index.setsockname = function(self, ...) return self.socket:setsock
                                     -- do not close client, as it is also the server for udp.
 _skt_mt_udp.__index.close       = function(self, ...) return true end
 
+_skt_mt_udp.__index.settimeouts = function (self, connect, send, receive)
+                                    return copas.settimeouts(self.socket, connect, send, receive)
+                                  end
+
+
 
 ---
 -- Wraps a LuaSocket socket object in an async Copas based socket object.
@@ -828,7 +1041,9 @@ function copas.wrap (skt, sslt)
   if (getmetatable(skt) == _skt_mt_tcp) or (getmetatable(skt) == _skt_mt_udp) then
     return skt -- already wrapped
   end
+
   skt:settimeout(0)
+
   if isTCP(skt) then
     return setmetatable ({socket = skt, ssl_params = normalize_sslt(sslt)}, _skt_mt_tcp)
   else
@@ -856,32 +1071,55 @@ end
 
 local _errhandlers = setmetatable({}, { __mode = "k" })   -- error handler per coroutine
 
-local function _deferror(msg, co, skt)
-  msg = ("%s (coroutine: %s, socket: %s)"):format(tostring(msg), tostring(co), tostring(skt))
+
+function copas.gettraceback(msg, co, skt)
+  local co_str = co == nil and "nil" or copas.getthreadname(co)
+  local skt_str = skt == nil and "nil" or copas.getsocketname(skt)
+  local msg_str = msg == nil and "" or tostring(msg)
+  if msg_str == "" then
+    msg_str = ("(coroutine: %s, socket: %s)"):format(msg_str, co_str, skt_str)
+  else
+    msg_str = ("%s (coroutine: %s, socket: %s)"):format(msg_str, co_str, skt_str)
+  end
+
   if type(co) == "thread" then
     -- regular Copas coroutine
-    msg = debug.traceback(co, msg)
-  else
-    -- not a coroutine, but the main thread, this happens if a timeout callback
-    -- (see `copas.timeout` causes an error (those callbacks run on the main thread).
-    msg = debug.traceback(msg, 2)
+    return debug.traceback(co, msg_str)
   end
-  print(msg)
+  -- not a coroutine, but the main thread, this happens if a timeout callback
+  -- (see `copas.timeout` causes an error (those callbacks run on the main thread).
+  return debug.traceback(msg_str, 2)
 end
 
-function copas.setErrorHandler (err, default)
+
+local function _deferror(msg, co, skt)
+  print(copas.gettraceback(msg, co, skt))
+end
+
+
+function copas.seterrorhandler(err, default)
+  assert(err == nil or type(err) == "function", "Expected the handler to be a function, or nil")
   if default then
+    assert(err ~= nil, "Expected the handler to be a function when setting the default")
     _deferror = err
   else
-    _errhandlers[coroutine.running()] = err
+    _errhandlers[coroutine_running()] = err
   end
 end
+copas.setErrorHandler = copas.seterrorhandler  -- deprecated; old casing
+
+
+function copas.geterrorhandler(co)
+  co = co or coroutine_running()
+  return _errhandlers[co] or _deferror
+end
+
 
 -- if `bool` is truthy, then the original socket errors will be returned in case of timeouts;
 -- `timeout, wantread, wantwrite, Operation already in progress`. If falsy, it will always
 -- return `timeout`.
 function copas.useSocketTimeoutErrors(bool)
-  useSocketTimeoutErrors[coroutine.running()] = not not bool -- force to a boolean
+  useSocketTimeoutErrors[coroutine_running()] = not not bool -- force to a boolean
 end
 
 -------------------------------------------------------------------------------
@@ -898,40 +1136,87 @@ local function _doTick (co, skt, ...)
     return
   end
 
-  local ok, res, new_q = coroutine.resume(co, skt, ...)
+  -- res: the socket (being read/write on) or the time to sleep
+  -- new_q: either _writing, _reading, or _sleeping
+  -- local time_before = gettime()
+  local ok, res, new_q = coroutine_resume(co, skt, ...)
+  -- local duration = gettime() - time_before
+  -- if duration > 1 then
+  --   duration = math.floor(duration * 1000)
+  --   pcall(_errhandlers[co] or _deferror, "task ran for "..tostring(duration).." milliseconds.", co, skt)
+  -- end
 
-  if ok and res and new_q then
+  if new_q == _reading or new_q == _writing or new_q == _sleeping then
+    -- we're yielding to a new queue
     new_q:insert (res)
     new_q:push (res, co)
-  else
-    if not ok then pcall (_errhandlers [co] or _deferror, res, co, skt) end
-    if skt and copas.autoclose and isTCP(skt) then
-      skt:close() -- do not auto-close UDP sockets, as the handler socket is also the server socket
+    return
+  end
+
+  -- coroutine is terminating
+
+  if ok and coroutine_status(co) ~= "dead" then
+    -- it called coroutine.yield from a non-Copas function which is unexpected
+    ok = false
+    res = "coroutine.yield was called without a resume first, user-code cannot yield to Copas"
+  end
+
+  if not ok then
+    local k, e = pcall(_errhandlers[co] or _deferror, res, co, skt)
+    if not k then
+      print("Failed executing error handler: " .. tostring(e))
     end
-    _errhandlers [co] = nil
   end
+
+  local skt_to_close = _autoclose[co]
+  if skt_to_close then
+    skt_to_close:close()
+    _autoclose[co] = nil
+    _autoclose_r[skt_to_close] = nil
+  end
+
+  _errhandlers[co] = nil
 end
 
 
--- accepts a connection on socket input
-local function _accept(server_skt, handler)
-  local client_skt = server_skt:accept()
-  if client_skt then
-    client_skt:settimeout(0)
-    copas.settimeout(client_skt, usertimeouts[server_skt]) -- copy server socket timeout settings
-    local co = coroutine.create(handler)
-    _doTick(co, client_skt)
+local _accept do
+  local client_counters = setmetatable({}, { __mode = "k" })
+
+  -- accepts a connection on socket input
+  function _accept(server_skt, handler)
+    local client_skt = server_skt:accept()
+    if client_skt then
+      local count = (client_counters[server_skt] or 0) + 1
+      client_counters[server_skt] = count
+      object_names[client_skt] = object_names[server_skt] .. ":client_" .. count
+
+      client_skt:settimeout(0)
+      copas.settimeouts(client_skt, user_timeouts_connect[server_skt],  -- copy server socket timeout settings
+        user_timeouts_send[server_skt], user_timeouts_receive[server_skt])
+
+      local co = coroutine_create(handler)
+      object_names[co] = object_names[server_skt] .. ":handler_" .. count
+
+      if copas.autoclose then
+        _autoclose[co] = client_skt
+        _autoclose_r[client_skt] = co
+      end
+
+      _doTick(co, client_skt)
+    end
   end
 end
-
 
 -------------------------------------------------------------------------------
 -- Adds a server/handler pair to Copas dispatcher
 -------------------------------------------------------------------------------
 
 do
-  local function addTCPserver(server, handler, timeout)
+  local function addTCPserver(server, handler, timeout, name)
     server:settimeout(0)
+    if name then
+      object_names[server] = name
+    end
     _servers[server] = handler
     _reading:insert(server)
     if timeout then
@@ -939,9 +1224,13 @@ do
     end
   end
 
-  local function addUDPserver(server, handler, timeout)
+  local function addUDPserver(server, handler, timeout, name)
     server:settimeout(0)
-    local co = coroutine.create(handler)
+    local co = coroutine_create(handler)
+    if name then
+      object_names[server] = name
+    end
+    object_names[co] = object_names[server]..":handler"
     _reading:insert(server)
     if timeout then
       copas.settimeout(server, timeout)
@@ -950,11 +1239,11 @@ do
   end
 
 
-  function copas.addserver(server, handler, timeout)
+  function copas.addserver(server, handler, timeout, name)
     if isTCP(server) then
-      addTCPserver(server, handler, timeout)
+      addTCPserver(server, handler, timeout, name)
     else
-      addUDPserver(server, handler, timeout)
+      addUDPserver(server, handler, timeout, name)
     end
   end
 end
@@ -981,14 +1270,32 @@ end
 -------------------------------------------------------------------------------
 -- Adds an new coroutine thread to Copas dispatcher
 -------------------------------------------------------------------------------
-function copas.addthread(handler, ...)
+function copas.addnamedthread(name, handler, ...)
+  if type(name) == "function" and type(handler) == "string" then
+    -- old call, flip args for compatibility
+    name, handler = handler, name
+  end
+
   -- create a coroutine that skips the first argument, which is always the socket
   -- passed by the scheduler, but `nil` in case of a task/thread
-  local thread = coroutine.create(function(_, ...) return handler(...) end)
+  local thread = coroutine_create(function(_, ...)
+    copas.pause()
+    return handler(...)
+  end)
+  if name then
+    object_names[thread] = name
+  end
+
   _threads[thread] = true -- register this thread so it can be removed
   _doTick (thread, nil, ...)
   return thread
 end
+
+
+function copas.addthread(handler, ...)
+  return copas.addnamedthread(nil, handler, ...)
+end
+
 
 function copas.removethread(thread)
   -- if the specified coroutine is registered, add it to the canceled table so
@@ -1004,9 +1311,28 @@ end
 
 -- yields the current coroutine and wakes it after 'sleeptime' seconds.
 -- If sleeptime < 0 then it sleeps until explicitly woken up using 'wakeup'
+-- TODO: deprecated, remove in next major
 function copas.sleep(sleeptime)
-  coroutine.yield((sleeptime or 0), _sleeping)
+  coroutine_yield((sleeptime or 0), _sleeping)
 end
+
+
+-- yields the current coroutine and wakes it after 'sleeptime' seconds.
+-- if sleeptime < 0 then it sleeps 0 seconds.
+function copas.pause(sleeptime)
+  if sleeptime and sleeptime > 0 then
+    coroutine_yield(sleeptime, _sleeping)
+  else
+    coroutine_yield(0, _sleeping)
+  end
+end
+
+
+-- yields the current coroutine until explicitly woken up using 'wakeup'
+function copas.pauseforever()
+  coroutine_yield(-1, _sleeping)
+end
+
 
 -- Wakes up a sleeping coroutine 'co'.
 function copas.wakeup(co)
@@ -1021,15 +1347,18 @@ end
 
 do
   local timeout_register = setmetatable({}, { __mode = "k" })
-  local timerwheel = require("timerwheel.init").new({
-      precision = TIMEOUT_PRECISION,                -- timeout precision 100ms
-      ringsize = math.floor(60/TIMEOUT_PRECISION),  -- ring size 1 minute
-      err_handler = function(...) return _deferror(...) end,
+  local time_out_thread
+  local timerwheel = require("timerwheel").new({
+      precision = TIMEOUT_PRECISION,
+      ringsize = math.floor(60*60*24/TIMEOUT_PRECISION),  -- ring size 1 day
+      err_handler = function(err)
+        return _deferror(err, time_out_thread)
+      end,
     })
 
-  copas.addthread(function()
+  time_out_thread = copas.addnamedthread("copas_core_timer", function()
     while true do
-      copas.sleep(TIMEOUT_PRECISION)
+      copas.pause(TIMEOUT_PRECISION)
       timerwheel:step()
     end
   end)
@@ -1040,21 +1369,23 @@ do
   end
 
   --- Sets the timeout for the current coroutine.
-  -- @param delay delay (seconds), use 0 to cancel the timerout
+  -- @param delay delay (seconds), use 0 (or math.huge) to cancel the timerout
   -- @param callback function with signature: `function(coroutine)` where coroutine is the routine that timed-out
   -- @return true
   function copas.timeout(delay, callback)
-    local co = coroutine.running()
+    local co = coroutine_running()
     local existing_timer = timeout_register[co]
 
     if existing_timer then
       timerwheel:cancel(existing_timer)
     end
 
-    if delay > 0 then
+    if delay > 0 and delay ~= math.huge then
       timeout_register[co] = timerwheel:set(delay, callback, co)
-    else
+    elseif delay == 0 or delay == math.huge then
       timeout_register[co] = nil
+    else
+      error("timout value must be greater than or equal to 0, got: "..tostring(delay))
     end
 
     return true
@@ -1127,7 +1458,7 @@ local _sleeping_task = {} do
     local co = _sleeping:pop(now)
     while co do
       -- we're pushing them to _resumable, since that list will be replaced before
-      -- executing. This prevents tasks running twice in a row with sleep(0) for example.
+      -- executing. This prevents tasks running twice in a row with pause(0) for example.
       -- So here we won't execute, but at _resumable step which is next
       _resumable:push(co)
       co = _sleeping:pop(now)
@@ -1160,12 +1491,12 @@ end
 -------------------------------------------------------------------------------
 -- Checks for reads and writes on sockets
 -------------------------------------------------------------------------------
-local _select do
+local _select_plain do
 
   local last_cleansing = 0
   local duration = function(t2, t1) return t2-t1 end
 
-  _select = function(timeout)
+  _select_plain = function(timeout)
     local err
     local now = gettime()
 
@@ -1230,6 +1561,39 @@ end
 -- Returns false if no socket-data was handled, or true if there was data
 -- handled (or nil + error message)
 -------------------------------------------------------------------------------
+
+local copas_stats
+local min_ever, max_ever
+
+local _select = _select_plain
+
+-- instrumented version of _select() to collect stats
+local _select_instrumented = function(timeout)
+  if copas_stats then
+    local step_duration = gettime() - copas_stats.step_start
+    copas_stats.duration_max = math.max(copas_stats.duration_max, step_duration)
+    copas_stats.duration_min = math.min(copas_stats.duration_min, step_duration)
+    copas_stats.duration_tot = copas_stats.duration_tot + step_duration
+    copas_stats.steps = copas_stats.steps + 1
+  else
+    copas_stats = {
+      duration_max = -1,
+      duration_min = 999999,
+      duration_tot = 0,
+      steps = 0,
+    }
+  end
+
+  local err = _select_plain(timeout)
+
+  local now = gettime()
+  copas_stats.time_start = copas_stats.time_start or now
+  copas_stats.step_start = now
+
+  return err
+end
+
+
 function copas.step(timeout)
   -- Need to wake up the select call in time for the next sleeping event
   if not _resumable:done() then
@@ -1246,6 +1610,12 @@ function copas.step(timeout)
 
   if err then
     if err == "timeout" then
+      if timeout + 0.01 > TIMEOUT_PRECISION and math.random(100) > 90 then
+        -- we were idle, so occasionally do a GC sweep to ensure lingering
+        -- sockets are closed, and we don't accidentally block the loop from
+        -- exiting
+        collectgarbage()
+      end
       return false
     end
     return nil, err
@@ -1264,6 +1634,84 @@ function copas.finished()
   return #_reading == 0 and #_writing == 0 and _resumable:done() and _sleeping:done(copas.gettimeouts())
 end
 
+local _getstats do
+  local _getstats_instrumented, _getstats_plain
+
+
+  function _getstats_plain(enable)
+    -- this function gets hit if turned off, so turn on if true
+    if enable == true then
+      _select = _select_instrumented
+      _getstats = _getstats_instrumented
+      -- reset stats
+      min_ever = nil
+      max_ever = nil
+      copas_stats = nil
+    end
+    return {}
+  end
+
+
+  -- convert from seconds to millisecs, with microsec precision
+  local function useconds(t)
+    return math.floor((t * 1000000) + 0.5) / 1000
+  end
+  -- convert from seconds to seconds, with millisec precision
+  local function mseconds(t)
+    return math.floor((t * 1000) + 0.5) / 1000
+  end
+
+
+  function _getstats_instrumented(enable)
+    if enable == false then
+      _select = _select_plain
+      _getstats = _getstats_plain
+      -- instrumentation disabled, so switch to the plain implementation
+      return _getstats(enable)
+    end
+    if (not copas_stats) or (copas_stats.step == 0) then
+      return {}
+    end
+    local stats = copas_stats
+    copas_stats = nil
+    min_ever = math.min(min_ever or 9999999, stats.duration_min)
+    max_ever = math.max(max_ever or 0, stats.duration_max)
+    stats.duration_min_ever = min_ever
+    stats.duration_max_ever = max_ever
+    stats.duration_avg = stats.duration_tot / stats.steps
+    stats.step_start = nil
+    stats.time_end = gettime()
+    stats.time_tot = stats.time_end - stats.time_start
+    stats.time_avg = stats.time_tot / stats.steps
+
+    stats.duration_avg = useconds(stats.duration_avg)
+    stats.duration_max = useconds(stats.duration_max)
+    stats.duration_max_ever = useconds(stats.duration_max_ever)
+    stats.duration_min = useconds(stats.duration_min)
+    stats.duration_min_ever = useconds(stats.duration_min_ever)
+    stats.duration_tot = useconds(stats.duration_tot)
+    stats.time_avg = useconds(stats.time_avg)
+    stats.time_start = mseconds(stats.time_start)
+    stats.time_end = mseconds(stats.time_end)
+    stats.time_tot = mseconds(stats.time_tot)
+    return stats
+  end
+
+  _getstats = _getstats_plain
+end
+
+
+function copas.status(enable_stats)
+  local res = _getstats(enable_stats)
+  res.running = not not copas.running
+  res.timeout = copas.gettimeouts()
+  res.timer, res.inactive = _sleeping:status()
+  res.read = #_reading
+  res.write = #_writing
+  res.active = _resumable:count()
+  return res
+end
+
 
 -------------------------------------------------------------------------------
 -- Dispatcher endless loop.
@@ -1271,7 +1719,7 @@ end
 -------------------------------------------------------------------------------
 function copas.loop(initializer, timeout)
   if type(initializer) == "function" then
-    copas.addthread(initializer)
+    copas.addnamedthread("copas_initializer", initializer)
   else
     timeout = initializer or timeout
   end
@@ -1280,5 +1728,275 @@ function copas.loop(initializer, timeout)
   while not copas.finished() do copas.step(timeout) end
   copas.running = false
 end
+
+
+-------------------------------------------------------------------------------
+-- Naming sockets and coroutines.
+-------------------------------------------------------------------------------
+do
+  local function realsocket(skt)
+    local mt = getmetatable(skt)
+    if mt == _skt_mt_tcp or mt == _skt_mt_udp then
+      return skt.socket
+    else
+      return skt
+    end
+  end
+
+
+  function copas.setsocketname(name, skt)
+    assert(type(name) == "string", "expected arg #1 to be a string")
+    skt = assert(realsocket(skt), "expected arg #2 to be a socket")
+    object_names[skt] = name
+  end
+
+
+  function copas.getsocketname(skt)
+    skt = assert(realsocket(skt), "expected arg #1 to be a socket")
+    return object_names[skt]
+  end
+end
+
+
+function copas.setthreadname(name, coro)
+  assert(type(name) == "string", "expected arg #1 to be a string")
+  coro = coro or coroutine_running()
+  assert(type(coro) == "thread", "expected arg #2 to be a coroutine or nil")
+  object_names[coro] = name
+end
+
+
+function copas.getthreadname(coro)
+  coro = coro or coroutine_running()
+  assert(type(coro) == "thread", "expected arg #1 to be a coroutine or nil")
+  return object_names[coro]
+end
+
+-------------------------------------------------------------------------------
+-- Debug functionality.
+-------------------------------------------------------------------------------
+do
+  copas.debug = {}
+
+  local log_core    -- if truthy, the core-timer will also be logged
+  local debug_log   -- function used as logger
+
+
+  local debug_yield = function(skt, queue)
+    local name = object_names[coroutine_running()]
+
+    if log_core or name ~= "copas_core_timer" then
+      if queue == _sleeping then
+        debug_log("yielding '", name, "' to SLEEP for ", skt," seconds")
+
+      elseif queue == _writing then
+        debug_log("yielding '", name, "' to WRITE on '", object_names[skt], "'")
+
+      elseif queue == _reading then
+        debug_log("yielding '", name, "' to READ on '", object_names[skt], "'")
+
+      else
+        debug_log("thread '", name, "' yielding to unexpected queue; ", tostring(queue), " (", type(queue), ")", debug.traceback())
+      end
+    end
+
+    return coroutine.yield(skt, queue)
+  end
+
+
+  local debug_resume = function(coro, skt, ...)
+    local name = object_names[coro]
+
+    if skt then
+      debug_log("resuming '", name, "' for socket '", object_names[skt], "'")
+    else
+      if log_core or name ~= "copas_core_timer" then
+        debug_log("resuming '", name, "'")
+      end
+    end
+    return coroutine.resume(coro, skt, ...)
+  end
+
+
+  local debug_create = function(f)
+    local f_wrapped = function(...)
+      local results = pack(f(...))
+      debug_log("exiting '", object_names[coroutine_running()], "'")
+      return unpack(results)
+    end
+
+    return coroutine.create(f_wrapped)
+  end
+
+
+  debug_log = fnil
+
+
+  -- enables debug output for all coroutine operations.
+  function copas.debug.start(logger, core)
+    log_core = core
+    debug_log = logger or print
+    coroutine_yield = debug_yield
+    coroutine_resume = debug_resume
+    coroutine_create = debug_create
+  end
+
+
+  -- disables debug output for coroutine operations.
+  function copas.debug.stop()
+    debug_log = fnil
+    coroutine_yield = coroutine.yield
+    coroutine_resume = coroutine.resume
+    coroutine_create = coroutine.create
+  end
+
+  do
+    local call_id = 0
+
+    -- Description table of socket functions for debug output.
+    -- each socket function name has TWO entries;
+    -- 'name_in' and 'name_out', each being an array of names/descriptions of respectively
+    -- input parameters and return values.
+    -- If either table has a 'callback' key, then that is a function that will be called
+    -- with the parameters/return-values for further inspection.
+    local args = {
+      settimeout_in = {
+        "socket ",
+        "seconds",
+        "mode   ",
+      },
+      settimeout_out = {
+        "success",
+        "error  ",
+      },
+      connect_in = {
+        "socket ",
+        "address",
+        "port   ",
+      },
+      connect_out = {
+        "success",
+        "error  ",
+      },
+      getfd_in = {
+        "socket ",
+        -- callback = function(...)
+        --   print(debug.traceback("called from:", 4))
+        -- end,
+      },
+      getfd_out = {
+        "fd",
+      },
+      send_in = {
+        "socket   ",
+        "data     ",
+        "idx-start",
+        "idx-end  ",
+      },
+      send_out = {
+        "last-idx-send    ",
+        "error            ",
+        "err-last-idx-send",
+      },
+      receive_in = {
+        "socket ",
+        "pattern",
+        "prefix ",
+      },
+      receive_out = {
+        "received    ",
+        "error       ",
+        "partial data",
+      },
+      dirty_in = {
+        "socket",
+        -- callback = function(...)
+        --   print(debug.traceback("called from:", 4))
+        -- end,
+      },
+      dirty_out = {
+        "data in read-buffer",
+      },
+      close_in = {
+        "socket",
+        -- callback = function(...)
+        --   print(debug.traceback("called from:", 4))
+        -- end,
+      },
+      close_out = {
+        "success",
+        "error",
+      },
+    }
+    local function print_call(func, msg, ...)
+      print(msg)
+      local arg = pack(...)
+      local desc = args[func] or {}
+      for i = 1, math.max(arg.n, #desc) do
+        local value = arg[i]
+        if type(value) == "string" then
+          local xvalue = value:sub(1,30)
+          if xvalue ~= value then
+            xvalue = xvalue .."(...truncated)"
+          end
+          print("\t"..(desc[i] or i)..": '"..tostring(xvalue).."' ("..type(value).." #"..#value..")")
+        else
+          print("\t"..(desc[i] or i)..": '"..tostring(value).."' ("..type(value)..")")
+        end
+      end
+      if desc.callback then
+        desc.callback(...)
+      end
+    end
+
+    local debug_mt = {
+      __index = function(self, key)
+        local value = self.__original_socket[key]
+        if type(value) ~= "function" then
+          return value
+        end
+        return function(self2, ...)
+            local my_id = call_id + 1
+            call_id = my_id
+            local results
+
+            if self2 ~= self then
+              -- there is no self
+              print_call(tostring(key).."_in", my_id .. "-calling '"..tostring(key) .. "' with; ", self, ...)
+              results = pack(value(self, ...))
+            else
+              print_call(tostring(key).."_in", my_id .. "-calling '" .. tostring(key) .. "' with; ", self.__original_socket, ...)
+              results = pack(value(self.__original_socket, ...))
+            end
+            print_call(tostring(key).."_out", my_id .. "-results '"..tostring(key) .. "' returned; ", unpack(results))
+            return unpack(results)
+          end
+      end,
+      __tostring = function(self)
+        return tostring(self.__original_socket)
+      end
+    }
+
+
+    -- wraps a socket (copas or luasocket) in a debug version printing all calls
+    -- and their parameters/return values. Extremely noisy!
+    -- returns the wrapped socket.
+    -- NOTE: only for plain sockets, will not support TLS
+    function copas.debug.socket(original_skt)
+      if (getmetatable(original_skt) == _skt_mt_tcp) or (getmetatable(original_skt) == _skt_mt_udp) then
+        -- already wrapped as Copas socket, so recurse with the original luasocket one
+        original_skt.socket = copas.debug.socket(original_skt.socket)
+        return original_skt
+      end
+
+      local proxy = setmetatable({
+        __original_socket = original_skt
+      }, debug_mt)
+
+      return proxy
+    end
+  end
+end
+
 
 return copas

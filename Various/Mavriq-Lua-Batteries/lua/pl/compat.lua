@@ -225,9 +225,9 @@ end
 -- This functions mimics the `warn` function added in Lua 5.4.
 -- @function warn
 -- @param ... any arguments
-if not warn then  -- luacheck: ignore
+if not rawget(_G, "warn") then
     local enabled = false
-    function warn(arg1, ...)  -- luacheck: ignore
+    local function warn(arg1, ...)
         if type(arg1) == "string" and arg1:sub(1, 1) == "@" then
             -- control message
             if arg1 == "@on" then
@@ -245,6 +245,8 @@ if not warn then  -- luacheck: ignore
           io.stderr:write("\n")
         end
     end
+    -- use rawset to bypass OpenResty's protection of global scope
+    rawset(_G, "warn", warn)
 end
 
 return compat
