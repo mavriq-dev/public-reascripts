@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Mavriq ReaScript Repository" commit="e0e01a335cda4b73fc4fe9533d63cda28ed9d04d">
+<index version="1" name="Mavriq ReaScript Repository" commit="0faa610f75763aa8c111c9385abdbfc80aab3805">
   <category name="Various">
     <reapack name="mavriq_bank_monitor.lua" type="script" desc="Mavriq ReaLearn Bank Monitor">
       <metadata>
@@ -439,384 +439,407 @@ v1.0.0
  - rings not working
 v0.1.0rc1
  + initial release]]></changelog>
-        <source file="batteries_header.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/batteries_header.lua</source>
-        <source>https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/metapkg.lua</source>
-        <source file="metapkg2.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/metapkg2.lua</source>
-        <source file="lua/ZipWriter.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ZipWriter.lua</source>
-        <source file="lua/ZipWriter/binary_converter.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ZipWriter/binary_converter.lua</source>
-        <source file="lua/ZipWriter/bit.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ZipWriter/bit.lua</source>
-        <source file="lua/ZipWriter/charset.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ZipWriter/charset.lua</source>
-        <source file="lua/ZipWriter/encrypt/aes.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ZipWriter/encrypt/aes.lua</source>
-        <source file="lua/ZipWriter/encrypt/aes/AesFileEncrypt.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ZipWriter/encrypt/aes/AesFileEncrypt.lua</source>
-        <source file="lua/ZipWriter/module.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ZipWriter/module.lua</source>
-        <source file="lua/ZipWriter/utils.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ZipWriter/utils.lua</source>
-        <source file="lua/ZipWriter/win/cp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ZipWriter/win/cp.lua</source>
-        <source file="lua/binaryheap.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/binaryheap.lua</source>
-        <source file="lua/cURL.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/cURL.lua</source>
-        <source file="lua/cURL/impl/cURL.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/cURL/impl/cURL.lua</source>
-        <source file="lua/cURL/safe.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/cURL/safe.lua</source>
-        <source file="lua/cURL/utils.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/cURL/utils.lua</source>
-        <source file="lua/cjson/util.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/cjson/util.lua</source>
-        <source file="lua/complex.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/complex.lua</source>
-        <source file="lua/copas.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copas.lua</source>
-        <source file="lua/copas/eventer.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copas/eventer.lua</source>
-        <source file="lua/copas/ftp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copas/ftp.lua</source>
-        <source file="lua/copas/http.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copas/http.lua</source>
-        <source file="lua/copas/limit.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copas/limit.lua</source>
-        <source file="lua/copas/lock.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copas/lock.lua</source>
-        <source file="lua/copas/queue.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copas/queue.lua</source>
-        <source file="lua/copas/semaphore.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copas/semaphore.lua</source>
-        <source file="lua/copas/smtp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copas/smtp.lua</source>
-        <source file="lua/copas/timer.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copas/timer.lua</source>
-        <source file="lua/copastimer_1_0_0_1-copas/timer.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/copastimer_1_0_0_1-copas/timer.lua</source>
-        <source file="lua/coxpcall.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/coxpcall.lua</source>
-        <source file="lua/dkjson.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/dkjson.lua</source>
-        <source file="lua/fun.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/fun.lua</source>
-        <source file="lua/json2lua.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/json2lua.lua</source>
-        <source file="lua/losc/bundle.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/bundle.lua</source>
-        <source file="lua/losc/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/init.lua</source>
-        <source file="lua/losc/lib/struct.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/lib/struct.lua</source>
-        <source file="lua/losc/message.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/message.lua</source>
-        <source file="lua/losc/packet.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/packet.lua</source>
-        <source file="lua/losc/pattern.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/pattern.lua</source>
-        <source file="lua/losc/plugins/udp-libuv.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/plugins/udp-libuv.lua</source>
-        <source file="lua/losc/plugins/udp-socket.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/plugins/udp-socket.lua</source>
-        <source file="lua/losc/serializer.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/serializer.lua</source>
-        <source file="lua/losc/timetag.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/timetag.lua</source>
-        <source file="lua/losc/types.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/losc/types.lua</source>
-        <source file="lua/ltn12.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ltn12.lua</source>
-        <source file="lua/lua2json.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lua2json.lua</source>
-        <source file="lua/luafft.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luafft.lua</source>
-        <source file="lua/luasocket_3_0rc1_2-ltn12.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-ltn12.lua</source>
-        <source file="lua/luasocket_3_0rc1_2-mime.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-mime.lua</source>
-        <source file="lua/luasocket_3_0rc1_2-socket.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket.lua</source>
-        <source file="lua/luasocket_3_0rc1_2-socket/ftp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/ftp.lua</source>
-        <source file="lua/luasocket_3_0rc1_2-socket/headers.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/headers.lua</source>
-        <source file="lua/luasocket_3_0rc1_2-socket/http.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/http.lua</source>
-        <source file="lua/luasocket_3_0rc1_2-socket/smtp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/smtp.lua</source>
-        <source file="lua/luasocket_3_0rc1_2-socket/tp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/tp.lua</source>
-        <source file="lua/luasocket_3_0rc1_2-socket/url.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/url.lua</source>
-        <source file="lua/luatz/gettime.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luatz/gettime.lua</source>
-        <source file="lua/luatz/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luatz/init.lua</source>
-        <source file="lua/luatz/parse.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luatz/parse.lua</source>
-        <source file="lua/luatz/strftime.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luatz/strftime.lua</source>
-        <source file="lua/luatz/timetable.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luatz/timetable.lua</source>
-        <source file="lua/luatz/tzcache.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luatz/tzcache.lua</source>
-        <source file="lua/luatz/tzfile.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luatz/tzfile.lua</source>
-        <source file="lua/luatz/tzinfo.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luatz/tzinfo.lua</source>
-        <source file="lua/luaunit.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/luaunit.lua</source>
-        <source file="lua/lub/Autoload.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lub/Autoload.lua</source>
-        <source file="lua/lub/Dir.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lub/Dir.lua</source>
-        <source file="lua/lub/Param.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lub/Param.lua</source>
-        <source file="lua/lub/Template.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lub/Template.lua</source>
-        <source file="lua/lub/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lub/init.lua</source>
-        <source file="lua/lustache.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lustache.lua</source>
-        <source file="lua/lustache/context.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lustache/context.lua</source>
-        <source file="lua/lustache/renderer.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lustache/renderer.lua</source>
-        <source file="lua/lustache/scanner.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lustache/scanner.lua</source>
-        <source file="lua/lxp/lom.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxp/lom.lua</source>
-        <source file="lua/lxp/threat.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxp/threat.lua</source>
-        <source file="lua/lxp/totable.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxp/totable.lua</source>
-        <source file="lua/lxsh/colors/earendel.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/colors/earendel.lua</source>
-        <source file="lua/lxsh/colors/slate.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/colors/slate.lua</source>
-        <source file="lua/lxsh/colors/wiki.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/colors/wiki.lua</source>
-        <source file="lua/lxsh/docs/bib.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/docs/bib.lua</source>
-        <source file="lua/lxsh/docs/c.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/docs/c.lua</source>
-        <source file="lua/lxsh/docs/lua.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/docs/lua.lua</source>
-        <source file="lua/lxsh/formatters/html.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/formatters/html.lua</source>
-        <source file="lua/lxsh/formatters/latex.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/formatters/latex.lua</source>
-        <source file="lua/lxsh/formatters/rtf.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/formatters/rtf.lua</source>
-        <source file="lua/lxsh/highlighters/bib.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/highlighters/bib.lua</source>
-        <source file="lua/lxsh/highlighters/c.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/highlighters/c.lua</source>
-        <source file="lua/lxsh/highlighters/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/highlighters/init.lua</source>
-        <source file="lua/lxsh/highlighters/lua.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/highlighters/lua.lua</source>
-        <source file="lua/lxsh/highlighters/sh.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/highlighters/sh.lua</source>
-        <source file="lua/lxsh/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/init.lua</source>
-        <source file="lua/lxsh/lexers/bib.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/lexers/bib.lua</source>
-        <source file="lua/lxsh/lexers/c.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/lexers/c.lua</source>
-        <source file="lua/lxsh/lexers/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/lexers/init.lua</source>
-        <source file="lua/lxsh/lexers/lua.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/lexers/lua.lua</source>
-        <source file="lua/lxsh/lexers/sh.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lxsh/lexers/sh.lua</source>
-        <source file="lua/lyaml/explicit.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lyaml/explicit.lua</source>
-        <source file="lua/lyaml/functional.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lyaml/functional.lua</source>
-        <source file="lua/lyaml/implicit.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lyaml/implicit.lua</source>
-        <source file="lua/lyaml/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/lyaml/init.lua</source>
-        <source file="lua/mavriq.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/mavriq.lua</source>
-        <source file="lua/md5.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/md5.lua</source>
-        <source file="lua/middleclass.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/middleclass.lua</source>
-        <source file="lua/mime.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/mime.lua</source>
-        <source file="lua/moses.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/moses.lua</source>
-        <source file="lua/moses_min.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/moses_min.lua</source>
-        <source file="lua/osc/Client.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/osc/Client.lua</source>
-        <source file="lua/osc/Server.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/osc/Server.lua</source>
-        <source file="lua/osc/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/osc/init.lua</source>
-        <source file="lua/pl/Date.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/Date.lua</source>
-        <source file="lua/pl/List.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/List.lua</source>
-        <source file="lua/pl/Map.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/Map.lua</source>
-        <source file="lua/pl/MultiMap.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/MultiMap.lua</source>
-        <source file="lua/pl/OrderedMap.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/OrderedMap.lua</source>
-        <source file="lua/pl/Set.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/Set.lua</source>
-        <source file="lua/pl/app.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/app.lua</source>
-        <source file="lua/pl/array2d.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/array2d.lua</source>
-        <source file="lua/pl/class.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/class.lua</source>
-        <source file="lua/pl/compat.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/compat.lua</source>
-        <source file="lua/pl/comprehension.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/comprehension.lua</source>
-        <source file="lua/pl/config.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/config.lua</source>
-        <source file="lua/pl/data.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/data.lua</source>
-        <source file="lua/pl/dir.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/dir.lua</source>
-        <source file="lua/pl/file.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/file.lua</source>
-        <source file="lua/pl/func.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/func.lua</source>
-        <source file="lua/pl/import_into.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/import_into.lua</source>
-        <source file="lua/pl/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/init.lua</source>
-        <source file="lua/pl/input.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/input.lua</source>
-        <source file="lua/pl/lapp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/lapp.lua</source>
-        <source file="lua/pl/lexer.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/lexer.lua</source>
-        <source file="lua/pl/luabalanced.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/luabalanced.lua</source>
-        <source file="lua/pl/operator.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/operator.lua</source>
-        <source file="lua/pl/path.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/path.lua</source>
-        <source file="lua/pl/permute.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/permute.lua</source>
-        <source file="lua/pl/pretty.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/pretty.lua</source>
-        <source file="lua/pl/seq.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/seq.lua</source>
-        <source file="lua/pl/sip.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/sip.lua</source>
-        <source file="lua/pl/strict.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/strict.lua</source>
-        <source file="lua/pl/stringio.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/stringio.lua</source>
-        <source file="lua/pl/stringx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/stringx.lua</source>
-        <source file="lua/pl/tablex.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/tablex.lua</source>
-        <source file="lua/pl/template.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/template.lua</source>
-        <source file="lua/pl/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/test.lua</source>
-        <source file="lua/pl/text.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/text.lua</source>
-        <source file="lua/pl/types.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/types.lua</source>
-        <source file="lua/pl/url.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/url.lua</source>
-        <source file="lua/pl/utils.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/utils.lua</source>
-        <source file="lua/pl/xml.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/pl/xml.lua</source>
-        <source file="lua/protoc.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/protoc.lua</source>
-        <source file="lua/re.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/re.lua</source>
-        <source file="lua/rs232.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/rs232.lua</source>
-        <source file="lua/sajax.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/sajax.lua</source>
-        <source file="lua/serpent.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/serpent.lua</source>
-        <source file="lua/socket.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/socket.lua</source>
-        <source file="lua/socket/ftp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/socket/ftp.lua</source>
-        <source file="lua/socket/headers.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/socket/headers.lua</source>
-        <source file="lua/socket/http.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/socket/http.lua</source>
-        <source file="lua/socket/smtp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/socket/smtp.lua</source>
-        <source file="lua/socket/tp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/socket/tp.lua</source>
-        <source file="lua/socket/url.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/socket/url.lua</source>
-        <source file="lua/ssl.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ssl.lua</source>
-        <source file="lua/ssl/https.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/ssl/https.lua</source>
-        <source file="lua/stable.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/stable.lua</source>
-        <source file="lua/std.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std.lua</source>
-        <source file="lua/std/base.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/base.lua</source>
-        <source file="lua/std/container.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/container.lua</source>
-        <source file="lua/std/debug.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/debug.lua</source>
-        <source file="lua/std/debug_init/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/debug_init/init.lua</source>
-        <source file="lua/std/functional.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/functional.lua</source>
-        <source file="lua/std/io.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/io.lua</source>
-        <source file="lua/std/list.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/list.lua</source>
-        <source file="lua/std/math.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/math.lua</source>
-        <source file="lua/std/object.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/object.lua</source>
-        <source file="lua/std/operator.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/operator.lua</source>
-        <source file="lua/std/optparse.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/optparse.lua</source>
-        <source file="lua/std/package.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/package.lua</source>
-        <source file="lua/std/set.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/set.lua</source>
-        <source file="lua/std/strbuf.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/strbuf.lua</source>
-        <source file="lua/std/strict.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/strict.lua</source>
-        <source file="lua/std/string.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/string.lua</source>
-        <source file="lua/std/table.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/table.lua</source>
-        <source file="lua/std/tree.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/std/tree.lua</source>
-        <source file="lua/timerwheel/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/timerwheel/init.lua</source>
-        <source file="lua/vstruct/api.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/api.lua</source>
-        <source file="lua/vstruct/ast.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/ast.lua</source>
-        <source file="lua/vstruct/ast/Bitpack.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Bitpack.lua</source>
-        <source file="lua/vstruct/ast/IO.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/IO.lua</source>
-        <source file="lua/vstruct/ast/List.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/List.lua</source>
-        <source file="lua/vstruct/ast/Name.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Name.lua</source>
-        <source file="lua/vstruct/ast/Node.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Node.lua</source>
-        <source file="lua/vstruct/ast/Repeat.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Repeat.lua</source>
-        <source file="lua/vstruct/ast/Root.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Root.lua</source>
-        <source file="lua/vstruct/ast/Table.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Table.lua</source>
-        <source file="lua/vstruct/compat1x.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/compat1x.lua</source>
-        <source file="lua/vstruct/cursor.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/cursor.lua</source>
-        <source file="lua/vstruct/frexp.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/frexp.lua</source>
-        <source file="lua/vstruct/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/init.lua</source>
-        <source file="lua/vstruct/io.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io.lua</source>
-        <source file="lua/vstruct/io/a.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/a.lua</source>
-        <source file="lua/vstruct/io/b.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/b.lua</source>
-        <source file="lua/vstruct/io/bigendian.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/bigendian.lua</source>
-        <source file="lua/vstruct/io/c.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/c.lua</source>
-        <source file="lua/vstruct/io/defaults.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/defaults.lua</source>
-        <source file="lua/vstruct/io/endianness.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/endianness.lua</source>
-        <source file="lua/vstruct/io/f.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/f.lua</source>
-        <source file="lua/vstruct/io/hostendian.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/hostendian.lua</source>
-        <source file="lua/vstruct/io/i.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/i.lua</source>
-        <source file="lua/vstruct/io/littleendian.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/littleendian.lua</source>
-        <source file="lua/vstruct/io/m.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/m.lua</source>
-        <source file="lua/vstruct/io/p.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/p.lua</source>
-        <source file="lua/vstruct/io/s.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/s.lua</source>
-        <source file="lua/vstruct/io/seekb.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/seekb.lua</source>
-        <source file="lua/vstruct/io/seekf.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/seekf.lua</source>
-        <source file="lua/vstruct/io/seekto.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/seekto.lua</source>
-        <source file="lua/vstruct/io/u.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/u.lua</source>
-        <source file="lua/vstruct/io/x.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/x.lua</source>
-        <source file="lua/vstruct/io/z.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/io/z.lua</source>
-        <source file="lua/vstruct/lexer.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/vstruct/lexer.lua</source>
-        <source file="lua/xavante.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante.lua</source>
-        <source file="lua/xavante/cgiluahandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/cgiluahandler.lua</source>
-        <source file="lua/xavante/encoding.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/encoding.lua</source>
-        <source file="lua/xavante/filehandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/filehandler.lua</source>
-        <source file="lua/xavante/httpd.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/httpd.lua</source>
-        <source file="lua/xavante/indexhandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/indexhandler.lua</source>
-        <source file="lua/xavante/mime.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/mime.lua</source>
-        <source file="lua/xavante/patternhandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/patternhandler.lua</source>
-        <source file="lua/xavante/redirecthandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/redirecthandler.lua</source>
-        <source file="lua/xavante/ruleshandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/ruleshandler.lua</source>
-        <source file="lua/xavante/urlhandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/urlhandler.lua</source>
-        <source file="lua/xavante/vhostshandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/lua/xavante/vhostshandler.lua</source>
-        <source file="tests/MD5/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/MD5/test.lua</source>
-        <source file="tests/batteries_tests.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/batteries_tests.lua</source>
-        <source file="tests/binaryheap/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/binaryheap/test.lua</source>
-        <source file="tests/cffi-lua/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cffi-lua/test.lua</source>
-        <source file="tests/cjson/README">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/README</source>
-        <source file="tests/cjson/TestLua.pm">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/TestLua.pm</source>
-        <source file="tests/cjson/agentzh.t">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/agentzh.t</source>
-        <source file="tests/cjson/bench.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/bench.lua</source>
-        <source file="tests/cjson/example1.json">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/example1.json</source>
-        <source file="tests/cjson/example2.json">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/example2.json</source>
-        <source file="tests/cjson/example3.json">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/example3.json</source>
-        <source file="tests/cjson/example4.json">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/example4.json</source>
-        <source file="tests/cjson/example5.json">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/example5.json</source>
-        <source file="tests/cjson/genutf8.pl">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/genutf8.pl</source>
-        <source file="tests/cjson/numbers.json">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/numbers.json</source>
-        <source file="tests/cjson/octets-escaped.dat">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/octets-escaped.dat</source>
-        <source file="tests/cjson/rfc-example1.json">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/rfc-example1.json</source>
-        <source file="tests/cjson/rfc-example2.json">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/rfc-example2.json</source>
-        <source file="tests/cjson/sort_json.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/sort_json.lua</source>
-        <source file="tests/cjson/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/test.lua</source>
-        <source file="tests/cjson/types.json">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/cjson/types.json</source>
-        <source file="tests/copas/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/copas/test.lua</source>
-        <source file="tests/lbase64/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lbase64/test.lua</source>
-        <source file="tests/lpeg/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lpeg/test.lua</source>
-        <source file="tests/lua-cjson/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lua-cjson/test.lua</source>
-        <source file="tests/lua-protobuf/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lua-protobuf/test.lua</source>
-        <source file="tests/lua-zip/lua.html">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lua-zip/lua.html</source>
-        <source file="tests/lua-zip/luajit.html">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lua-zip/luajit.html</source>
-        <source file="tests/lua-zip/luasql-test">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lua-zip/luasql-test</source>
-        <source file="tests/lua-zip/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lua-zip/test.lua</source>
-        <source file="tests/lua-zip/test.zip">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lua-zip/test.zip</source>
-        <source file="tests/luafft/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/luafft/test.lua</source>
-        <source file="tests/luafilesystem/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/luafilesystem/test.lua</source>
-        <source file="tests/luasec/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/luasec/test.lua</source>
-        <source file="tests/lustache/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lustache/test.lua</source>
-        <source file="tests/lyaml/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/lyaml/test.lua</source>
-        <source file="tests/mavriq/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/mavriq/test.lua</source>
-        <source file="tests/middleclass/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/middleclass/test.lua</source>
-        <source file="tests/moses/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/moses/test.lua</source>
-        <source file="tests/rings/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/rings/test.lua</source>
-        <source file="tests/socket/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/socket/test.lua</source>
-        <source file="tests/timerwheel/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/timerwheel/test.lua</source>
-        <source file="tests/wxlua/art.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/art.wx.lua</source>
-        <source file="tests/wxlua/auidemo.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/auidemo.wx.lua</source>
-        <source file="tests/wxlua/bindings.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/bindings.wx.lua</source>
-        <source file="tests/wxlua/calculator.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/calculator.wx.lua</source>
-        <source file="tests/wxlua/calculator.xrc">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/calculator.xrc</source>
-        <source file="tests/wxlua/catch.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/catch.lua</source>
-        <source file="tests/wxlua/choices.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/choices.wx.lua</source>
-        <source file="tests/wxlua/client.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/client.wx.lua</source>
-        <source file="tests/wxlua/controls.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/controls.wx.lua</source>
-        <source file="tests/wxlua/coroutine.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/coroutine.wx.lua</source>
-        <source file="tests/wxlua/dialog.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/dialog.wx.lua</source>
-        <source file="tests/wxlua/editor.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/editor.wx.lua</source>
-        <source file="tests/wxlua/grid.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/grid.wx.lua</source>
-        <source file="tests/wxlua/gridtable.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/gridtable.wx.lua</source>
-        <source file="tests/wxlua/htmlwin.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/htmlwin.wx.lua</source>
-        <source file="tests/wxlua/image/cmyk.jpg">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/cmyk.jpg</source>
-        <source file="tests/wxlua/image/horse.bmp">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.bmp</source>
-        <source file="tests/wxlua/image/horse.cur">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.cur</source>
-        <source file="tests/wxlua/image/horse.gif">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.gif</source>
-        <source file="tests/wxlua/image/horse.ico">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.ico</source>
-        <source file="tests/wxlua/image/horse.jpg">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.jpg</source>
-        <source file="tests/wxlua/image/horse.pcx">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.pcx</source>
-        <source file="tests/wxlua/image/horse.png">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.png</source>
-        <source file="tests/wxlua/image/horse.pnm">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.pnm</source>
-        <source file="tests/wxlua/image/horse.tga">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.tga</source>
-        <source file="tests/wxlua/image/horse.tif">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.tif</source>
-        <source file="tests/wxlua/image/horse.xpm">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.xpm</source>
-        <source file="tests/wxlua/image/horse3.ani">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse3.ani</source>
-        <source file="tests/wxlua/image/horse_ag.pnm">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse_ag.pnm</source>
-        <source file="tests/wxlua/image/horse_rg.pnm">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse_rg.pnm</source>
-        <source file="tests/wxlua/image/image.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/image.wx.lua</source>
-        <source file="tests/wxlua/image/smile.xbm">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/smile.xbm</source>
-        <source file="tests/wxlua/image/smile.xpm">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/smile.xpm</source>
-        <source file="tests/wxlua/image/toucan.png">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/image/toucan.png</source>
-        <source file="tests/wxlua/luamodule.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/luamodule.wx.lua</source>
-        <source file="tests/wxlua/mandelbrot.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/mandelbrot.wx.lua</source>
-        <source file="tests/wxlua/mdi.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/mdi.wx.lua</source>
-        <source file="tests/wxlua/media.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/media.wx.lua</source>
-        <source file="tests/wxlua/minimal.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/minimal.wx.lua</source>
-        <source file="tests/wxlua/picker.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/picker.wx.lua</source>
-        <source file="tests/wxlua/printing.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/printing.wx.lua</source>
-        <source file="tests/wxlua/scribble.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/scribble.wx.lua</source>
-        <source file="tests/wxlua/server.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/server.wx.lua</source>
-        <source file="tests/wxlua/settings.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/settings.wx.lua</source>
-        <source file="tests/wxlua/sizer.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/sizer.wx.lua</source>
-        <source file="tests/wxlua/tree.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/tree.wx.lua</source>
-        <source file="tests/wxlua/treelist.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/treelist.wx.lua</source>
-        <source file="tests/wxlua/unittest.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/unittest.wx.lua</source>
-        <source file="tests/wxlua/validator.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/validator.wx.lua</source>
-        <source file="tests/wxlua/veryminimal.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/veryminimal.wx.lua</source>
-        <source file="tests/wxlua/wrapmodule.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/wrapmodule.wx.lua</source>
-        <source file="tests/wxlua/wxluasudoku.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/tests/wxlua/wxluasudoku.wx.lua</source>
-        <source platform="win64" file="bin/base64.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/base64.dll</source>
-        <source platform="win64" file="bin/brimworks/zip.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/brimworks/zip.dll</source>
-        <source platform="win64" file="bin/cffi.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/cffi.dll</source>
-        <source platform="win64" file="bin/cjson.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/cjson.dll</source>
-        <source platform="win64" file="bin/des56.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/des56.dll</source>
-        <source platform="win64" file="bin/lcurl.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/lcurl.dll</source>
-        <source platform="win64" file="bin/lfs.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/lfs.dll</source>
-        <source platform="win64" file="bin/lpeg.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/lpeg.dll</source>
-        <source platform="win64" file="bin/lua53.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/lua53.dll</source>
-        <source platform="win64" file="bin/luasocket_3_0rc1_2-mime/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/luasocket_3_0rc1_2-mime/core.dll</source>
-        <source platform="win64" file="bin/luasocket_3_0rc1_2-socket/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/luasocket_3_0rc1_2-socket/core.dll</source>
-        <source platform="win64" file="bin/luasql/firebird.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/luasql/firebird.dll</source>
-        <source platform="win64" file="bin/luasql/mysql.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/luasql/mysql.dll</source>
-        <source platform="win64" file="bin/luasql/odbc.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/luasql/odbc.dll</source>
-        <source platform="win64" file="bin/luasql/postgres.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/luasql/postgres.dll</source>
-        <source platform="win64" file="bin/luasql/sqlite3.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/luasql/sqlite3.dll</source>
-        <source platform="win64" file="bin/lxp.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/lxp.dll</source>
-        <source platform="win64" file="bin/md5/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/md5/core.dll</source>
-        <source platform="win64" file="bin/mime/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/mime/core.dll</source>
-        <source platform="win64" file="bin/osc/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/osc/core.dll</source>
-        <source platform="win64" file="bin/pb.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/pb.dll</source>
-        <source platform="win64" file="bin/rex_pcre.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/rex_pcre.dll</source>
-        <source platform="win64" file="bin/rings.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/rings.dll</source>
-        <source platform="win64" file="bin/rs232/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/rs232/core.dll</source>
-        <source platform="win64" file="bin/socket/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/socket/core.dll</source>
-        <source platform="win64" file="bin/ssl.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/ssl.dll</source>
-        <source platform="win64" file="bin/wx.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/wx.dll</source>
-        <source platform="win64" file="bin/yaml.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/yaml.dll</source>
-        <source platform="win64" file="bin/zlib.dll">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/zlib.dll</source>
-        <source platform="darwin-arm64" file="bin/base64.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/base64.dylib</source>
-        <source platform="darwin-arm64" file="bin/brimworks/zip.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/brimworks/zip.dylib</source>
-        <source platform="darwin-arm64" file="bin/cffi.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/cffi.dylib</source>
-        <source platform="darwin-arm64" file="bin/cjson.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/cjson.dylib</source>
-        <source platform="darwin-arm64" file="bin/des56.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/des56.dylib</source>
-        <source platform="darwin-arm64" file="bin/lcurl.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/lcurl.dylib</source>
-        <source platform="darwin-arm64" file="bin/lfs.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/lfs.dylib</source>
-        <source platform="darwin-arm64" file="bin/lpeg.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/lpeg.dylib</source>
-        <source platform="darwin-arm64" file="bin/lua53.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/lua53.dylib</source>
-        <source platform="darwin-arm64" file="bin/luasql/mysql.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/luasql/mysql.dylib</source>
-        <source platform="darwin-arm64" file="bin/luasql/sqlite3.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/luasql/sqlite3.dylib</source>
-        <source platform="darwin-arm64" file="bin/md5/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/md5/core.dylib</source>
-        <source platform="darwin-arm64" file="bin/mime/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/mime/core.dylib</source>
-        <source platform="darwin-arm64" file="bin/pb.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/pb.dylib</source>
-        <source platform="darwin-arm64" file="bin/rex_pcre2.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/rex_pcre2.dylib</source>
-        <source platform="darwin-arm64" file="bin/rings.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/rings.dylib</source>
-        <source platform="darwin-arm64" file="bin/rs232/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/rs232/core.dylib</source>
-        <source platform="darwin-arm64" file="bin/socket/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/socket/core.dylib</source>
-        <source platform="darwin-arm64" file="bin/socket/serial.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/socket/serial.dylib</source>
-        <source platform="darwin-arm64" file="bin/socket/unix.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/socket/unix.dylib</source>
-        <source platform="darwin-arm64" file="bin/ssl.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/ssl.dylib</source>
-        <source platform="darwin-arm64" file="bin/yaml.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/yaml.dylib</source>
-        <source platform="darwin-arm64" file="bin/zlib.dylib">https://github.com/mavriq-dev/public-reascripts/raw/e0e01a335cda4b73fc4fe9533d63cda28ed9d04d/Various/Mavriq-Lua-Batteries/bin/zlib.dylib</source>
+        <source file="batteries_header.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/batteries_header.lua</source>
+        <source>https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/metapkg.lua</source>
+        <source file="metapkg2.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/metapkg2.lua</source>
+        <source file="lua/ZipWriter.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ZipWriter.lua</source>
+        <source file="lua/ZipWriter/binary_converter.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ZipWriter/binary_converter.lua</source>
+        <source file="lua/ZipWriter/bit.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ZipWriter/bit.lua</source>
+        <source file="lua/ZipWriter/charset.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ZipWriter/charset.lua</source>
+        <source file="lua/ZipWriter/encrypt/aes.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ZipWriter/encrypt/aes.lua</source>
+        <source file="lua/ZipWriter/encrypt/aes/AesFileEncrypt.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ZipWriter/encrypt/aes/AesFileEncrypt.lua</source>
+        <source file="lua/ZipWriter/module.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ZipWriter/module.lua</source>
+        <source file="lua/ZipWriter/utils.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ZipWriter/utils.lua</source>
+        <source file="lua/ZipWriter/win/cp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ZipWriter/win/cp.lua</source>
+        <source file="lua/binaryheap.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/binaryheap.lua</source>
+        <source file="lua/cURL.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/cURL.lua</source>
+        <source file="lua/cURL/impl/cURL.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/cURL/impl/cURL.lua</source>
+        <source file="lua/cURL/safe.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/cURL/safe.lua</source>
+        <source file="lua/cURL/utils.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/cURL/utils.lua</source>
+        <source file="lua/cjson/util.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/cjson/util.lua</source>
+        <source file="lua/complex.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/complex.lua</source>
+        <source file="lua/copas.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copas.lua</source>
+        <source file="lua/copas/eventer.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copas/eventer.lua</source>
+        <source file="lua/copas/ftp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copas/ftp.lua</source>
+        <source file="lua/copas/http.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copas/http.lua</source>
+        <source file="lua/copas/limit.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copas/limit.lua</source>
+        <source file="lua/copas/lock.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copas/lock.lua</source>
+        <source file="lua/copas/queue.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copas/queue.lua</source>
+        <source file="lua/copas/semaphore.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copas/semaphore.lua</source>
+        <source file="lua/copas/smtp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copas/smtp.lua</source>
+        <source file="lua/copas/timer.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copas/timer.lua</source>
+        <source file="lua/copastimer_1_0_0_1-copas/timer.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/copastimer_1_0_0_1-copas/timer.lua</source>
+        <source file="lua/coxpcall.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/coxpcall.lua</source>
+        <source file="lua/dkjson.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/dkjson.lua</source>
+        <source file="lua/fun.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/fun.lua</source>
+        <source file="lua/json2lua.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/json2lua.lua</source>
+        <source file="lua/losc/bundle.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/bundle.lua</source>
+        <source file="lua/losc/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/init.lua</source>
+        <source file="lua/losc/lib/struct.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/lib/struct.lua</source>
+        <source file="lua/losc/message.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/message.lua</source>
+        <source file="lua/losc/packet.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/packet.lua</source>
+        <source file="lua/losc/pattern.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/pattern.lua</source>
+        <source file="lua/losc/plugins/udp-libuv.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/plugins/udp-libuv.lua</source>
+        <source file="lua/losc/plugins/udp-socket.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/plugins/udp-socket.lua</source>
+        <source file="lua/losc/serializer.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/serializer.lua</source>
+        <source file="lua/losc/timetag.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/timetag.lua</source>
+        <source file="lua/losc/types.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/losc/types.lua</source>
+        <source file="lua/ltn12.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ltn12.lua</source>
+        <source file="lua/lua2json.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lua2json.lua</source>
+        <source file="lua/luafft.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luafft.lua</source>
+        <source file="lua/luasocket_3_0rc1_2-ltn12.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-ltn12.lua</source>
+        <source file="lua/luasocket_3_0rc1_2-mime.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-mime.lua</source>
+        <source file="lua/luasocket_3_0rc1_2-socket.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket.lua</source>
+        <source file="lua/luasocket_3_0rc1_2-socket/ftp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/ftp.lua</source>
+        <source file="lua/luasocket_3_0rc1_2-socket/headers.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/headers.lua</source>
+        <source file="lua/luasocket_3_0rc1_2-socket/http.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/http.lua</source>
+        <source file="lua/luasocket_3_0rc1_2-socket/smtp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/smtp.lua</source>
+        <source file="lua/luasocket_3_0rc1_2-socket/tp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/tp.lua</source>
+        <source file="lua/luasocket_3_0rc1_2-socket/url.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luasocket_3_0rc1_2-socket/url.lua</source>
+        <source file="lua/luatz/gettime.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luatz/gettime.lua</source>
+        <source file="lua/luatz/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luatz/init.lua</source>
+        <source file="lua/luatz/parse.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luatz/parse.lua</source>
+        <source file="lua/luatz/strftime.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luatz/strftime.lua</source>
+        <source file="lua/luatz/timetable.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luatz/timetable.lua</source>
+        <source file="lua/luatz/tzcache.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luatz/tzcache.lua</source>
+        <source file="lua/luatz/tzfile.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luatz/tzfile.lua</source>
+        <source file="lua/luatz/tzinfo.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luatz/tzinfo.lua</source>
+        <source file="lua/luaunit.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/luaunit.lua</source>
+        <source file="lua/lub/Autoload.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lub/Autoload.lua</source>
+        <source file="lua/lub/Dir.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lub/Dir.lua</source>
+        <source file="lua/lub/Param.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lub/Param.lua</source>
+        <source file="lua/lub/Template.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lub/Template.lua</source>
+        <source file="lua/lub/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lub/init.lua</source>
+        <source file="lua/lustache.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lustache.lua</source>
+        <source file="lua/lustache/context.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lustache/context.lua</source>
+        <source file="lua/lustache/renderer.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lustache/renderer.lua</source>
+        <source file="lua/lustache/scanner.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lustache/scanner.lua</source>
+        <source file="lua/lxp/lom.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxp/lom.lua</source>
+        <source file="lua/lxp/threat.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxp/threat.lua</source>
+        <source file="lua/lxp/totable.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxp/totable.lua</source>
+        <source file="lua/lxsh/colors/earendel.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/colors/earendel.lua</source>
+        <source file="lua/lxsh/colors/slate.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/colors/slate.lua</source>
+        <source file="lua/lxsh/colors/wiki.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/colors/wiki.lua</source>
+        <source file="lua/lxsh/docs/bib.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/docs/bib.lua</source>
+        <source file="lua/lxsh/docs/c.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/docs/c.lua</source>
+        <source file="lua/lxsh/docs/lua.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/docs/lua.lua</source>
+        <source file="lua/lxsh/formatters/html.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/formatters/html.lua</source>
+        <source file="lua/lxsh/formatters/latex.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/formatters/latex.lua</source>
+        <source file="lua/lxsh/formatters/rtf.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/formatters/rtf.lua</source>
+        <source file="lua/lxsh/highlighters/bib.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/highlighters/bib.lua</source>
+        <source file="lua/lxsh/highlighters/c.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/highlighters/c.lua</source>
+        <source file="lua/lxsh/highlighters/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/highlighters/init.lua</source>
+        <source file="lua/lxsh/highlighters/lua.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/highlighters/lua.lua</source>
+        <source file="lua/lxsh/highlighters/sh.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/highlighters/sh.lua</source>
+        <source file="lua/lxsh/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/init.lua</source>
+        <source file="lua/lxsh/lexers/bib.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/lexers/bib.lua</source>
+        <source file="lua/lxsh/lexers/c.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/lexers/c.lua</source>
+        <source file="lua/lxsh/lexers/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/lexers/init.lua</source>
+        <source file="lua/lxsh/lexers/lua.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/lexers/lua.lua</source>
+        <source file="lua/lxsh/lexers/sh.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lxsh/lexers/sh.lua</source>
+        <source file="lua/lyaml/explicit.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lyaml/explicit.lua</source>
+        <source file="lua/lyaml/functional.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lyaml/functional.lua</source>
+        <source file="lua/lyaml/implicit.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lyaml/implicit.lua</source>
+        <source file="lua/lyaml/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/lyaml/init.lua</source>
+        <source file="lua/mavriq.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/mavriq.lua</source>
+        <source file="lua/md5.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/md5.lua</source>
+        <source file="lua/middleclass.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/middleclass.lua</source>
+        <source file="lua/mime.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/mime.lua</source>
+        <source file="lua/moses.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/moses.lua</source>
+        <source file="lua/moses_min.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/moses_min.lua</source>
+        <source file="lua/osc/Client.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/osc/Client.lua</source>
+        <source file="lua/osc/Server.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/osc/Server.lua</source>
+        <source file="lua/osc/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/osc/init.lua</source>
+        <source file="lua/pl/Date.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/Date.lua</source>
+        <source file="lua/pl/List.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/List.lua</source>
+        <source file="lua/pl/Map.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/Map.lua</source>
+        <source file="lua/pl/MultiMap.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/MultiMap.lua</source>
+        <source file="lua/pl/OrderedMap.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/OrderedMap.lua</source>
+        <source file="lua/pl/Set.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/Set.lua</source>
+        <source file="lua/pl/app.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/app.lua</source>
+        <source file="lua/pl/array2d.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/array2d.lua</source>
+        <source file="lua/pl/class.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/class.lua</source>
+        <source file="lua/pl/compat.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/compat.lua</source>
+        <source file="lua/pl/comprehension.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/comprehension.lua</source>
+        <source file="lua/pl/config.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/config.lua</source>
+        <source file="lua/pl/data.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/data.lua</source>
+        <source file="lua/pl/dir.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/dir.lua</source>
+        <source file="lua/pl/file.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/file.lua</source>
+        <source file="lua/pl/func.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/func.lua</source>
+        <source file="lua/pl/import_into.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/import_into.lua</source>
+        <source file="lua/pl/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/init.lua</source>
+        <source file="lua/pl/input.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/input.lua</source>
+        <source file="lua/pl/lapp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/lapp.lua</source>
+        <source file="lua/pl/lexer.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/lexer.lua</source>
+        <source file="lua/pl/luabalanced.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/luabalanced.lua</source>
+        <source file="lua/pl/operator.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/operator.lua</source>
+        <source file="lua/pl/path.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/path.lua</source>
+        <source file="lua/pl/permute.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/permute.lua</source>
+        <source file="lua/pl/pretty.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/pretty.lua</source>
+        <source file="lua/pl/seq.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/seq.lua</source>
+        <source file="lua/pl/sip.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/sip.lua</source>
+        <source file="lua/pl/strict.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/strict.lua</source>
+        <source file="lua/pl/stringio.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/stringio.lua</source>
+        <source file="lua/pl/stringx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/stringx.lua</source>
+        <source file="lua/pl/tablex.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/tablex.lua</source>
+        <source file="lua/pl/template.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/template.lua</source>
+        <source file="lua/pl/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/test.lua</source>
+        <source file="lua/pl/text.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/text.lua</source>
+        <source file="lua/pl/types.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/types.lua</source>
+        <source file="lua/pl/url.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/url.lua</source>
+        <source file="lua/pl/utils.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/utils.lua</source>
+        <source file="lua/pl/xml.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/pl/xml.lua</source>
+        <source file="lua/protoc.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/protoc.lua</source>
+        <source file="lua/re.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/re.lua</source>
+        <source file="lua/rs232.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/rs232.lua</source>
+        <source file="lua/sajax.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/sajax.lua</source>
+        <source file="lua/serpent.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/serpent.lua</source>
+        <source file="lua/socket.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/socket.lua</source>
+        <source file="lua/socket/ftp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/socket/ftp.lua</source>
+        <source file="lua/socket/headers.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/socket/headers.lua</source>
+        <source file="lua/socket/http.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/socket/http.lua</source>
+        <source file="lua/socket/smtp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/socket/smtp.lua</source>
+        <source file="lua/socket/tp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/socket/tp.lua</source>
+        <source file="lua/socket/url.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/socket/url.lua</source>
+        <source file="lua/ssl.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ssl.lua</source>
+        <source file="lua/ssl/https.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/ssl/https.lua</source>
+        <source file="lua/stable.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/stable.lua</source>
+        <source file="lua/std.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std.lua</source>
+        <source file="lua/std/base.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/base.lua</source>
+        <source file="lua/std/container.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/container.lua</source>
+        <source file="lua/std/debug.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/debug.lua</source>
+        <source file="lua/std/debug_init/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/debug_init/init.lua</source>
+        <source file="lua/std/functional.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/functional.lua</source>
+        <source file="lua/std/io.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/io.lua</source>
+        <source file="lua/std/list.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/list.lua</source>
+        <source file="lua/std/math.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/math.lua</source>
+        <source file="lua/std/object.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/object.lua</source>
+        <source file="lua/std/operator.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/operator.lua</source>
+        <source file="lua/std/optparse.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/optparse.lua</source>
+        <source file="lua/std/package.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/package.lua</source>
+        <source file="lua/std/set.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/set.lua</source>
+        <source file="lua/std/strbuf.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/strbuf.lua</source>
+        <source file="lua/std/strict.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/strict.lua</source>
+        <source file="lua/std/string.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/string.lua</source>
+        <source file="lua/std/table.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/table.lua</source>
+        <source file="lua/std/tree.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/std/tree.lua</source>
+        <source file="lua/timerwheel/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/timerwheel/init.lua</source>
+        <source file="lua/vstruct/api.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/api.lua</source>
+        <source file="lua/vstruct/ast.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/ast.lua</source>
+        <source file="lua/vstruct/ast/Bitpack.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Bitpack.lua</source>
+        <source file="lua/vstruct/ast/IO.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/IO.lua</source>
+        <source file="lua/vstruct/ast/List.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/List.lua</source>
+        <source file="lua/vstruct/ast/Name.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Name.lua</source>
+        <source file="lua/vstruct/ast/Node.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Node.lua</source>
+        <source file="lua/vstruct/ast/Repeat.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Repeat.lua</source>
+        <source file="lua/vstruct/ast/Root.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Root.lua</source>
+        <source file="lua/vstruct/ast/Table.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/ast/Table.lua</source>
+        <source file="lua/vstruct/compat1x.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/compat1x.lua</source>
+        <source file="lua/vstruct/cursor.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/cursor.lua</source>
+        <source file="lua/vstruct/frexp.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/frexp.lua</source>
+        <source file="lua/vstruct/init.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/init.lua</source>
+        <source file="lua/vstruct/io.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io.lua</source>
+        <source file="lua/vstruct/io/a.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/a.lua</source>
+        <source file="lua/vstruct/io/b.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/b.lua</source>
+        <source file="lua/vstruct/io/bigendian.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/bigendian.lua</source>
+        <source file="lua/vstruct/io/c.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/c.lua</source>
+        <source file="lua/vstruct/io/defaults.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/defaults.lua</source>
+        <source file="lua/vstruct/io/endianness.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/endianness.lua</source>
+        <source file="lua/vstruct/io/f.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/f.lua</source>
+        <source file="lua/vstruct/io/hostendian.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/hostendian.lua</source>
+        <source file="lua/vstruct/io/i.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/i.lua</source>
+        <source file="lua/vstruct/io/littleendian.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/littleendian.lua</source>
+        <source file="lua/vstruct/io/m.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/m.lua</source>
+        <source file="lua/vstruct/io/p.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/p.lua</source>
+        <source file="lua/vstruct/io/s.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/s.lua</source>
+        <source file="lua/vstruct/io/seekb.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/seekb.lua</source>
+        <source file="lua/vstruct/io/seekf.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/seekf.lua</source>
+        <source file="lua/vstruct/io/seekto.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/seekto.lua</source>
+        <source file="lua/vstruct/io/u.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/u.lua</source>
+        <source file="lua/vstruct/io/x.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/x.lua</source>
+        <source file="lua/vstruct/io/z.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/io/z.lua</source>
+        <source file="lua/vstruct/lexer.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/vstruct/lexer.lua</source>
+        <source file="lua/xavante.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante.lua</source>
+        <source file="lua/xavante/cgiluahandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/cgiluahandler.lua</source>
+        <source file="lua/xavante/encoding.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/encoding.lua</source>
+        <source file="lua/xavante/filehandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/filehandler.lua</source>
+        <source file="lua/xavante/httpd.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/httpd.lua</source>
+        <source file="lua/xavante/indexhandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/indexhandler.lua</source>
+        <source file="lua/xavante/mime.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/mime.lua</source>
+        <source file="lua/xavante/patternhandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/patternhandler.lua</source>
+        <source file="lua/xavante/redirecthandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/redirecthandler.lua</source>
+        <source file="lua/xavante/ruleshandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/ruleshandler.lua</source>
+        <source file="lua/xavante/urlhandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/urlhandler.lua</source>
+        <source file="lua/xavante/vhostshandler.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/lua/xavante/vhostshandler.lua</source>
+        <source file="tests/MD5/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/MD5/test.lua</source>
+        <source file="tests/batteries_tests.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/batteries_tests.lua</source>
+        <source file="tests/binaryheap/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/binaryheap/test.lua</source>
+        <source file="tests/cffi-lua/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cffi-lua/test.lua</source>
+        <source file="tests/cjson/README">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/README</source>
+        <source file="tests/cjson/TestLua.pm">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/TestLua.pm</source>
+        <source file="tests/cjson/agentzh.t">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/agentzh.t</source>
+        <source file="tests/cjson/bench.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/bench.lua</source>
+        <source file="tests/cjson/example1.json">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/example1.json</source>
+        <source file="tests/cjson/example2.json">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/example2.json</source>
+        <source file="tests/cjson/example3.json">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/example3.json</source>
+        <source file="tests/cjson/example4.json">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/example4.json</source>
+        <source file="tests/cjson/example5.json">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/example5.json</source>
+        <source file="tests/cjson/genutf8.pl">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/genutf8.pl</source>
+        <source file="tests/cjson/numbers.json">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/numbers.json</source>
+        <source file="tests/cjson/octets-escaped.dat">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/octets-escaped.dat</source>
+        <source file="tests/cjson/rfc-example1.json">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/rfc-example1.json</source>
+        <source file="tests/cjson/rfc-example2.json">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/rfc-example2.json</source>
+        <source file="tests/cjson/sort_json.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/sort_json.lua</source>
+        <source file="tests/cjson/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/test.lua</source>
+        <source file="tests/cjson/types.json">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/cjson/types.json</source>
+        <source file="tests/copas/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/copas/test.lua</source>
+        <source file="tests/lbase64/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lbase64/test.lua</source>
+        <source file="tests/lpeg/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lpeg/test.lua</source>
+        <source file="tests/lua-cjson/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lua-cjson/test.lua</source>
+        <source file="tests/lua-protobuf/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lua-protobuf/test.lua</source>
+        <source file="tests/lua-zip/lua.html">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lua-zip/lua.html</source>
+        <source file="tests/lua-zip/luajit.html">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lua-zip/luajit.html</source>
+        <source file="tests/lua-zip/luasql-test">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lua-zip/luasql-test</source>
+        <source file="tests/lua-zip/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lua-zip/test.lua</source>
+        <source file="tests/lua-zip/test.zip">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lua-zip/test.zip</source>
+        <source file="tests/luafft/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/luafft/test.lua</source>
+        <source file="tests/luafilesystem/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/luafilesystem/test.lua</source>
+        <source file="tests/luasec/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/luasec/test.lua</source>
+        <source file="tests/lustache/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lustache/test.lua</source>
+        <source file="tests/lyaml/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/lyaml/test.lua</source>
+        <source file="tests/mavriq/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/mavriq/test.lua</source>
+        <source file="tests/middleclass/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/middleclass/test.lua</source>
+        <source file="tests/moses/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/moses/test.lua</source>
+        <source file="tests/rings/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/rings/test.lua</source>
+        <source file="tests/socket/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/socket/test.lua</source>
+        <source file="tests/timerwheel/test.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/timerwheel/test.lua</source>
+        <source file="tests/wxlua/art.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/art.wx.lua</source>
+        <source file="tests/wxlua/auidemo.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/auidemo.wx.lua</source>
+        <source file="tests/wxlua/bindings.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/bindings.wx.lua</source>
+        <source file="tests/wxlua/calculator.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/calculator.wx.lua</source>
+        <source file="tests/wxlua/calculator.xrc">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/calculator.xrc</source>
+        <source file="tests/wxlua/catch.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/catch.lua</source>
+        <source file="tests/wxlua/choices.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/choices.wx.lua</source>
+        <source file="tests/wxlua/client.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/client.wx.lua</source>
+        <source file="tests/wxlua/controls.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/controls.wx.lua</source>
+        <source file="tests/wxlua/coroutine.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/coroutine.wx.lua</source>
+        <source file="tests/wxlua/dialog.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/dialog.wx.lua</source>
+        <source file="tests/wxlua/editor.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/editor.wx.lua</source>
+        <source file="tests/wxlua/grid.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/grid.wx.lua</source>
+        <source file="tests/wxlua/gridtable.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/gridtable.wx.lua</source>
+        <source file="tests/wxlua/htmlwin.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/htmlwin.wx.lua</source>
+        <source file="tests/wxlua/image/cmyk.jpg">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/cmyk.jpg</source>
+        <source file="tests/wxlua/image/horse.bmp">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.bmp</source>
+        <source file="tests/wxlua/image/horse.cur">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.cur</source>
+        <source file="tests/wxlua/image/horse.gif">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.gif</source>
+        <source file="tests/wxlua/image/horse.ico">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.ico</source>
+        <source file="tests/wxlua/image/horse.jpg">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.jpg</source>
+        <source file="tests/wxlua/image/horse.pcx">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.pcx</source>
+        <source file="tests/wxlua/image/horse.png">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.png</source>
+        <source file="tests/wxlua/image/horse.pnm">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.pnm</source>
+        <source file="tests/wxlua/image/horse.tga">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.tga</source>
+        <source file="tests/wxlua/image/horse.tif">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.tif</source>
+        <source file="tests/wxlua/image/horse.xpm">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse.xpm</source>
+        <source file="tests/wxlua/image/horse3.ani">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse3.ani</source>
+        <source file="tests/wxlua/image/horse_ag.pnm">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse_ag.pnm</source>
+        <source file="tests/wxlua/image/horse_rg.pnm">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/horse_rg.pnm</source>
+        <source file="tests/wxlua/image/image.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/image.wx.lua</source>
+        <source file="tests/wxlua/image/smile.xbm">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/smile.xbm</source>
+        <source file="tests/wxlua/image/smile.xpm">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/smile.xpm</source>
+        <source file="tests/wxlua/image/toucan.png">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/image/toucan.png</source>
+        <source file="tests/wxlua/luamodule.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/luamodule.wx.lua</source>
+        <source file="tests/wxlua/mandelbrot.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/mandelbrot.wx.lua</source>
+        <source file="tests/wxlua/mdi.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/mdi.wx.lua</source>
+        <source file="tests/wxlua/media.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/media.wx.lua</source>
+        <source file="tests/wxlua/minimal.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/minimal.wx.lua</source>
+        <source file="tests/wxlua/picker.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/picker.wx.lua</source>
+        <source file="tests/wxlua/printing.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/printing.wx.lua</source>
+        <source file="tests/wxlua/scribble.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/scribble.wx.lua</source>
+        <source file="tests/wxlua/server.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/server.wx.lua</source>
+        <source file="tests/wxlua/settings.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/settings.wx.lua</source>
+        <source file="tests/wxlua/sizer.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/sizer.wx.lua</source>
+        <source file="tests/wxlua/tree.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/tree.wx.lua</source>
+        <source file="tests/wxlua/treelist.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/treelist.wx.lua</source>
+        <source file="tests/wxlua/unittest.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/unittest.wx.lua</source>
+        <source file="tests/wxlua/validator.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/validator.wx.lua</source>
+        <source file="tests/wxlua/veryminimal.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/veryminimal.wx.lua</source>
+        <source file="tests/wxlua/wrapmodule.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/wrapmodule.wx.lua</source>
+        <source file="tests/wxlua/wxluasudoku.wx.lua">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/tests/wxlua/wxluasudoku.wx.lua</source>
+        <source platform="win64" file="bin/base64.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/base64.dll</source>
+        <source platform="win64" file="bin/brimworks/zip.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/brimworks/zip.dll</source>
+        <source platform="win64" file="bin/cffi.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/cffi.dll</source>
+        <source platform="win64" file="bin/cjson.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/cjson.dll</source>
+        <source platform="win64" file="bin/des56.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/des56.dll</source>
+        <source platform="win64" file="bin/lcurl.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lcurl.dll</source>
+        <source platform="win64" file="bin/lfs.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lfs.dll</source>
+        <source platform="win64" file="bin/lpeg.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lpeg.dll</source>
+        <source platform="win64" file="bin/lua53.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lua53.dll</source>
+        <source platform="win64" file="bin/luasocket_3_0rc1_2-mime/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasocket_3_0rc1_2-mime/core.dll</source>
+        <source platform="win64" file="bin/luasocket_3_0rc1_2-socket/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasocket_3_0rc1_2-socket/core.dll</source>
+        <source platform="win64" file="bin/luasql/firebird.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasql/firebird.dll</source>
+        <source platform="win64" file="bin/luasql/mysql.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasql/mysql.dll</source>
+        <source platform="win64" file="bin/luasql/odbc.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasql/odbc.dll</source>
+        <source platform="win64" file="bin/luasql/postgres.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasql/postgres.dll</source>
+        <source platform="win64" file="bin/luasql/sqlite3.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasql/sqlite3.dll</source>
+        <source platform="win64" file="bin/lxp.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lxp.dll</source>
+        <source platform="win64" file="bin/md5/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/md5/core.dll</source>
+        <source platform="win64" file="bin/mime/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/mime/core.dll</source>
+        <source platform="win64" file="bin/osc/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/osc/core.dll</source>
+        <source platform="win64" file="bin/pb.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/pb.dll</source>
+        <source platform="win64" file="bin/rex_pcre.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/rex_pcre.dll</source>
+        <source platform="win64" file="bin/rings.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/rings.dll</source>
+        <source platform="win64" file="bin/rs232/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/rs232/core.dll</source>
+        <source platform="win64" file="bin/socket/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/socket/core.dll</source>
+        <source platform="win64" file="bin/ssl.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/ssl.dll</source>
+        <source platform="win64" file="bin/wx.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/wx.dll</source>
+        <source platform="win64" file="bin/yaml.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/yaml.dll</source>
+        <source platform="win64" file="bin/zlib.dll">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/zlib.dll</source>
+        <source platform="darwin64" file="bin/base64.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/base64.dylib</source>
+        <source platform="darwin64" file="bin/brimworks/zip.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/brimworks/zip.dylib</source>
+        <source platform="darwin64" file="bin/cffi.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/cffi.dylib</source>
+        <source platform="darwin64" file="bin/cjson.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/cjson.dylib</source>
+        <source platform="darwin64" file="bin/des56.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/des56.dylib</source>
+        <source platform="darwin64" file="bin/lcurl.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lcurl.dylib</source>
+        <source platform="darwin64" file="bin/lfs.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lfs.dylib</source>
+        <source platform="darwin64" file="bin/lpeg.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lpeg.dylib</source>
+        <source platform="darwin64" file="bin/lua53.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lua53.dylib</source>
+        <source platform="darwin64" file="bin/luasql/mysql.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasql/mysql.dylib</source>
+        <source platform="darwin64" file="bin/luasql/sqlite3.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasql/sqlite3.dylib</source>
+        <source platform="darwin64" file="bin/md5/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/md5/core.dylib</source>
+        <source platform="darwin64" file="bin/mime/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/mime/core.dylib</source>
+        <source platform="darwin64" file="bin/pb.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/pb.dylib</source>
+        <source platform="darwin64" file="bin/rex_pcre2.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/rex_pcre2.dylib</source>
+        <source platform="darwin64" file="bin/rings.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/rings.dylib</source>
+        <source platform="darwin64" file="bin/rs232/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/rs232/core.dylib</source>
+        <source platform="darwin64" file="bin/socket/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/socket/core.dylib</source>
+        <source platform="darwin64" file="bin/socket/serial.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/socket/serial.dylib</source>
+        <source platform="darwin64" file="bin/socket/unix.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/socket/unix.dylib</source>
+        <source platform="darwin64" file="bin/ssl.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/ssl.dylib</source>
+        <source platform="darwin64" file="bin/yaml.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/yaml.dylib</source>
+        <source platform="darwin64" file="bin/zlib.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/zlib.dylib</source>
+        <source platform="darwin-arm64" file="bin/base64.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/base64.dylib</source>
+        <source platform="darwin-arm64" file="bin/brimworks/zip.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/brimworks/zip.dylib</source>
+        <source platform="darwin-arm64" file="bin/cffi.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/cffi.dylib</source>
+        <source platform="darwin-arm64" file="bin/cjson.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/cjson.dylib</source>
+        <source platform="darwin-arm64" file="bin/des56.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/des56.dylib</source>
+        <source platform="darwin-arm64" file="bin/lcurl.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lcurl.dylib</source>
+        <source platform="darwin-arm64" file="bin/lfs.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lfs.dylib</source>
+        <source platform="darwin-arm64" file="bin/lpeg.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lpeg.dylib</source>
+        <source platform="darwin-arm64" file="bin/lua53.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/lua53.dylib</source>
+        <source platform="darwin-arm64" file="bin/luasql/mysql.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasql/mysql.dylib</source>
+        <source platform="darwin-arm64" file="bin/luasql/sqlite3.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/luasql/sqlite3.dylib</source>
+        <source platform="darwin-arm64" file="bin/md5/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/md5/core.dylib</source>
+        <source platform="darwin-arm64" file="bin/mime/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/mime/core.dylib</source>
+        <source platform="darwin-arm64" file="bin/pb.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/pb.dylib</source>
+        <source platform="darwin-arm64" file="bin/rex_pcre2.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/rex_pcre2.dylib</source>
+        <source platform="darwin-arm64" file="bin/rings.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/rings.dylib</source>
+        <source platform="darwin-arm64" file="bin/rs232/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/rs232/core.dylib</source>
+        <source platform="darwin-arm64" file="bin/socket/core.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/socket/core.dylib</source>
+        <source platform="darwin-arm64" file="bin/socket/serial.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/socket/serial.dylib</source>
+        <source platform="darwin-arm64" file="bin/socket/unix.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/socket/unix.dylib</source>
+        <source platform="darwin-arm64" file="bin/ssl.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/ssl.dylib</source>
+        <source platform="darwin-arm64" file="bin/yaml.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/yaml.dylib</source>
+        <source platform="darwin-arm64" file="bin/zlib.dylib">https://github.com/mavriq-dev/public-reascripts/raw/0faa610f75763aa8c111c9385abdbfc80aab3805/Various/Mavriq-Lua-Batteries/bin/zlib.dylib</source>
       </version>
     </reapack>
     <reapack name="metapkg2.lua" type="script" desc="Mavriq Lua Batteries (Docs)">
