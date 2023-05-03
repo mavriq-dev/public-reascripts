@@ -1,6 +1,6 @@
 -- @metapackage
 -- @description Mavriq Lua Batteries
--- @version 0.1.0rc2
+-- @version 0.1.0rc3
 -- @author Mavriq
 -- @about
 --   # Adds the missing "batteries" to lua in 'REAPER'
@@ -10,6 +10,8 @@
 --   Forum Thread https://github.com/available_soon
 --   GitHub repository https://github.com/mavriq-dev/mavriq-lua-batteries
 -- @changelog
+--   v0.1.0rc3
+--    + Fix batteries_header for M1 (Thanks Cordilia)
 --   v0.1.0rc2
 --    + update various modules
 --    + add mac version

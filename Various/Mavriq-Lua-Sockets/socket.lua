@@ -1,6 +1,6 @@
 -- @metapackage
 -- @description Mavriq Lua Sockets
--- @version 1.1.1
+-- @version 1.1.2
 -- @author Mavriq
 -- @about
 --   # Allows use of Lua Sockets in 'REAPER'
@@ -14,6 +14,8 @@
 --   Forum Thread https://github.com/available_soon
 --   GitHub repository https://github.com/mavriq-dev/mavriq-lua-sockets
 -- @changelog
+--   V1.1.2
+--    + fix M1
 --   V1.1.1
 --    + fixed issue with mac silicon due to changes in Reapack
 --   V1.1.0
