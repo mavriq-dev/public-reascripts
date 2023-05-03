@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<index version="1" name="Mavriq ReaScript Repository" commit="0faa610f75763aa8c111c9385abdbfc80aab3805">
+<index version="1" name="Mavriq ReaScript Repository" commit="f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16">
   <category name="Various">
     <reapack name="mavriq_bank_monitor.lua" type="script" desc="Mavriq ReaLearn Bank Monitor">
       <metadata>
@@ -1961,6 +1961,37 @@ v1.0.0pre1
         <source platform="darwin64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/socket/core.so</source>
         <source platform="darwin-arm64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/socket/core.so</source>
         <source platform="linux64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/e600839e711161704eb10cdf76e0d98c9acdd84d/Various/Mavriq-Lua-Sockets/socket/core.so.linux</source>
+      </version>
+      <version name="1.1.2" author="Mavriq" time="2023-05-03T15:26:13Z">
+        <changelog><![CDATA[V1.1.2
+ + fix M1
+V1.1.1
+ + fixed issue with mac silicon due to changes in Reapack
+V1.1.0
+ + added support for mac silicon
+ + added support for older macs (10.9+)
+v1.0.0
+ + initial release
+v1.0.0pre3
+ + linux fix
+v1.0.0pre2
+ + fixed linux version
+v1.0.0pre1
+ + initial release]]></changelog>
+        <source file="ftp.lua">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/ftp.lua</source>
+        <source file="headers.lua">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/headers.lua</source>
+        <source file="http.lua">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/http.lua</source>
+        <source file="ltn12.lua">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/ltn12.lua</source>
+        <source file="mbox.lua">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/mbox.lua</source>
+        <source file="mime.lua">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/mime.lua</source>
+        <source file="smtp.lua">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/smtp.lua</source>
+        <source>https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/socket.lua</source>
+        <source file="tp.lua">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/tp.lua</source>
+        <source file="url.lua">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/url.lua</source>
+        <source platform="win64" file="socket/core.dll">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/socket/core.dll</source>
+        <source platform="darwin64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/socket/core.so</source>
+        <source platform="darwin-arm64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/socket/core.so</source>
+        <source platform="linux64" file="socket/core.so">https://github.com/mavriq-dev/public-reascripts/raw/f86ad60a7e98ebcd3fd45cc52ab720c9fe4c2d16/Various/Mavriq-Lua-Sockets/socket/core.so.linux</source>
       </version>
     </reapack>
   </category>
