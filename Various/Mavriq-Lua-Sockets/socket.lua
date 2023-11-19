@@ -1,6 +1,6 @@
 -- @metapackage
 -- @description Mavriq Lua Sockets
--- @version 1.1.2
+-- @version 1.2
 -- @author Mavriq
 -- @about
 --   # Allows use of Lua Sockets in 'REAPER'
@@ -9,11 +9,16 @@
 --   Until the REAPER devs fix this, we have to work around the issue. This project does that for all all three REAPER platforms.
 --   
 --   This package is used by other scripts and doesn't do anything on its own.
+--
+--   ### Thanks
+--   A huge thanks to Sexan and Daniel Lumertz for updating the packages to 5.4 in my absence. And cfillion for doing final testing on mac and linux as I had no access at that moment.
 -- @donation: https://www.paypal.com/paypalme/mavriqdev
 -- @links
 --   Forum Thread https://github.com/available_soon
 --   GitHub repository https://github.com/mavriq-dev/mavriq-lua-sockets
 -- @changelog
+--   V1.2
+--    + fix for Reaper 7/Lua 5.4
 --   V1.1.2
 --    + fix M1
 --   V1.1.1
